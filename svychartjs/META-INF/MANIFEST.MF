@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: svychartjs
+Bundle-Name: Chart JS
+Bundle-Version: 1.0.0
+Package-Type: Web-Component
+
+Name: chart/chart.spec
+Web-Component: True
+
