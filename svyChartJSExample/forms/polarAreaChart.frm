@@ -15,7 +15,8 @@ y:16
 size:{
 height:446,
 width:597
-}
+},
+type:"polarArea"
 },
 location:"22,16",
 name:"chart",

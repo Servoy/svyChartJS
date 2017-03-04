@@ -7,9 +7,8 @@ typeid:19,
 uuid:"17D15076-197E-4F8C-900D-A9B2E2C7F87D"
 },
 {
-anchors:15,
 json:{
-anchors:15,
+anchors:0,
 location:{
 x:29,
 y:23
@@ -17,7 +16,8 @@ y:23
 size:{
 height:408,
 width:559
-}
+},
+type:"pie"
 },
 location:"29,23",
 name:"chart",

@@ -9,7 +9,8 @@ y:6
 size:{
 height:449,
 width:611
-}
+},
+type:"bar"
 },
 location:"8,6",
 name:"chart",

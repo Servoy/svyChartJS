@@ -75,6 +75,8 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 						hoverBorderWidth: [],
 						data: []
 					};
+					if (!$scope.model.foundset) return;
+					
 					var rows = $scope.model.foundset.viewPort.rows
 					for (var i = 0; i < rows.length; i++) {
 						var row = rows[i]
@@ -93,7 +95,8 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 						type: $scope.model.type,
 						data: {labels:labels, datasets:[dataset]},
 						options: {responsive:false}
-					};
+					};								
+					
 				}
 			},
 			link: function($scope, $element, $attrs) {
@@ -124,6 +127,13 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 						var canvas = document.getElementById($scope.model.svyMarkupId);
 						var ctx = canvas.getContext("2d");
 						ctx.clearRect(0, 0, canvas.width, canvas.height);
+						
+						var parent = canvas.parentNode.parentNode;
+						
+						canvas.width = parent.offsetWidth;
+						canvas.height = parent.offsetHeight;
+//						console.log(canvas.width);
+//						console.log(canvas.height);
 						$scope.model.chart = new Chart(ctx, {
 								type: x.type,
 								data: x.data,
