@@ -56,6 +56,13 @@ typeid:15,
 uuid:"4D88462C-01BC-4BA5-9DD5-059128571121"
 },
 {
+containsFormID:"41423C2F-EF29-4EF4-BA0A-0DC2B405918A",
+location:"299,437",
+text:"Responsive",
+typeid:15,
+uuid:"97E342DD-E9A3-46FB-BA94-3DA6D76BE7FD"
+},
+{
 containsFormID:"664130BB-6190-47EE-A927-BAA985182CD3",
 location:"82,206",
 text:"Bar-Line Combo",
