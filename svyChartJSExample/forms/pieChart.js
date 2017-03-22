@@ -27,7 +27,18 @@ function onShow(firstShow, event) {
 				}]
 			},
 			options: {
-				responsive: false
+				tooltips: {
+					callbacks: {
+						label: {
+							isFunction: true,
+							name: 'label',
+							params: [
+							'tooltipItem',
+							'data',
+							"return ' $'+data.datasets[0].data[tooltipItem.index];"]
+						}
+					}
+				}
 			}
 		};
 
