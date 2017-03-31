@@ -1,17 +1,7 @@
 /**
- * Callback method for when form is shown.
- *
- * @param {Boolean} firstShow form is shown first time after load
- * @param {JSEvent} event the event that triggered the action
- *
- * @protected
- *
- * @properties={typeid:24,uuid:"72957D4F-4C8A-46DE-A9B9-E9FC4DC4CCAE"}
+ * @properties={typeid:35,uuid:"E49D0234-269B-4B16-946A-5D652BD869E6",variableType:-4}
  */
-function onShow(firstShow, event) {
-	//if (firstShow) {
-
-	var node = {
+var node = {
 		type: 'bar',
 		data: {
 			labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -95,6 +85,112 @@ function onShow(firstShow, event) {
 			}
 		}
 	};
+
+/**
+ * Callback method for when form is shown.
+ *
+ * @param {Boolean} firstShow form is shown first time after load
+ * @param {JSEvent} event the event that triggered the action
+ *
+ * @protected
+ *
+ * @properties={typeid:24,uuid:"72957D4F-4C8A-46DE-A9B9-E9FC4DC4CCAE"}
+ */
+function onShow(firstShow, event) {
+	//if (firstShow) {
+
+	
 	elements.chart.drawGraph(node);
 	//}
+}
+
+/**
+ * Callback method when form is resized.
+ *
+ * @param {JSEvent} event the event that triggered the action
+ *
+ * @private
+ *
+ * @properties={typeid:24,uuid:"17FD4550-1DF8-4EBE-810B-5159A9E842C4"}
+ */
+function onResize(event) {
+	elements.chart.drawGraph(node)
+}
+
+/**
+ *
+ * @return {String}
+ *
+ * @properties={typeid:24,uuid:"67AA61A4-1AF9-4FBB-85AC-262FE220F800"}
+ */
+function getName() {
+	return 'Bar Chart'
+}
+
+/**
+*
+* @return {String}
+*
+* @properties={typeid:24,uuid:"C9F0B017-A884-41C6-97B6-1B56E21A73A4"}
+*/
+function getDescription() {
+	return 'Bar Chart Implementation';
+}
+
+
+/**
+*
+* @return {RuntimeForm<AbstractMicroSample>}
+*
+* @properties={typeid:24,uuid:"A7FEF181-1245-41F3-A343-CA0FD218571F"}
+*/
+function getParent() {
+	return forms.chartExamplesProvider;
+}
+
+
+
+/**
+*
+* @return {String}
+*
+* @properties={typeid:24,uuid:"80004826-6741-4FBA-93BB-A05EF64987FE"}
+*/
+function getIconStyleClass() {
+	return 'fa fa-bar-chart';
+}
+
+
+
+/**
+*
+* @return {String} Download URL
+*
+* @properties={typeid:24,uuid:"33DAAE12-A1EC-4382-8321-309972A59F50"}
+*/
+function getDownloadURL() {
+	return 'https://github.com/Servoy/svyChartJS/releases/download/v1.0.0-b1/svyChartJSExample.servoy';
+}
+
+
+
+/**
+*
+* @return {String} Additioanl info (wiki markdown supported)
+*
+* @properties={typeid:24,uuid:"CF9E9F3A-1C06-4EEF-B969-69A6627280E5"}
+*/
+function getMoreInfo() {
+	var url = 'https://raw.githubusercontent.com/Servoy/svyChartJS/master/README.md';
+	return plugins.http.getPageData(url)
+}
+
+/**
+*
+* @return {Array<String>} code lines
+*
+* @properties={typeid:24,uuid:"4F671172-8AFF-4108-A1B3-5F74A176C967"}
+*/
+function getSampleCode() {
+	return printMethodCode(node);
 }

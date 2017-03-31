@@ -7,8 +7,9 @@ typeid:19,
 uuid:"17D15076-197E-4F8C-900D-A9B2E2C7F87D"
 },
 {
+anchors:15,
 json:{
-anchors:0,
+anchors:15,
 location:{
 x:29,
 y:23

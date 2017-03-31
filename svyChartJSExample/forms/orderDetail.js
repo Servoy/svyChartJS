@@ -42,3 +42,21 @@ function onDataChangeChartType(oldValue, newValue, event) {
 	elements.chart.type = chartType;
 	return true
 }
+
+/**
+ * Handle changed data, return false if the value should not be accepted. In NGClient you can return also a (i18n) string, instead of false, which will be shown as a tooltip.
+ *
+ * @param {Date} oldValue old value
+ * @param {Date} newValue new value
+ * @param {JSEvent} event the event that triggered the action
+ *
+ * @return {Boolean}
+ *
+ * @private
+ *
+ * @properties={typeid:24,uuid:"90C2212B-47D1-4685-ADAD-17AC1FE60B08"}
+ */
+function onDataChange(oldValue, newValue, event) {
+	// TODO Auto-generated method stub
+	return true
+}

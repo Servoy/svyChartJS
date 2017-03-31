@@ -37,3 +37,43 @@ function onShow(firstShow, event) {
 		elements.chart.drawGraph(node);
 	}
 }
+
+/**
+ *
+ * @return {String}
+ *
+ * @properties={typeid:24,uuid:"1457134F-0ADF-499E-8BA5-1284A8D9CDDE"}
+ */
+function getName() {
+	return 'Donuts Chart';
+}
+
+/**
+*
+* @return {String}
+*
+* @properties={typeid:24,uuid:"00CCD64E-96CB-4DA7-AF26-6E846588C98F"}
+*/
+function getDescription() {
+	return 'Mmmmm...Donuts';
+}
+
+/**
+*
+* @return {RuntimeForm<AbstractMicroSample>}
+*
+* @properties={typeid:24,uuid:"A22A6672-3753-4C25-BADB-2F51EABE936D"}
+*/
+function getParent() {
+	return forms.chartExamplesProvider;
+}
+
+/**
+*
+* @return {String}
+*
+* @properties={typeid:24,uuid:"FA7B3F8F-C2FB-42C0-A052-E222C8E09B02"}
+*/
+function getIconStyleClass() {
+	return 'fa fa-pie-chart';
+}

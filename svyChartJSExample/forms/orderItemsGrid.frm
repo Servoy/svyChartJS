@@ -1,4 +1,10 @@
-customProperties:"formComponent:false",
+customProperties:"formComponent:false,\
+methods:{\
+onLoadMethodID:{\
+arguments:null,\
+parameters:null\
+}\
+}",
 dataSource:"db:/example_data/order_details",
 extendsID:"B2F60AA9-D837-4542-9782-037C059C1B8D",
 items:[
@@ -145,6 +151,7 @@ uuid:"FAD5EA55-9C0C-4896-BDB8-F356BD0494AE"
 }
 ],
 name:"orderItemsGrid",
+onLoadMethodID:"27B4C466-D63E-4400-BB80-5D78679F6E1D",
 size:"570,50",
 typeid:3,
 uuid:"22B73395-C54B-4766-98F0-7816AE69A4AD"

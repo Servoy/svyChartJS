@@ -175,13 +175,13 @@ y:45
 onClick:"87FF09BC-CDBC-4742-A4EE-FBA5B0187CAD",
 size:{
 height:327,
-width:410
+width:374
 },
 type:"pie"
 },
 location:"236,45",
 name:"chart",
-size:"410,327",
+size:"374,327",
 typeName:"svychartjs-chart",
 typeid:47,
 uuid:"AE5575E9-0FB3-4D02-80C9-DD4E9F3D3F89"
@@ -217,12 +217,11 @@ typeid:7,
 uuid:"D9137DA3-2C4F-4608-8FDF-5334718CE92F"
 },
 {
-anchors:3,
 formIndex:1,
 labelFor:"chartType",
-location:"470,50",
+location:"20,290",
 name:"chartType_label",
-size:"140,20",
+size:"190,20",
 text:"Chart Type",
 transparent:true,
 typeid:7,
@@ -239,15 +238,14 @@ uuid:"E61D44DE-F46F-4FB7-BB5C-E384C8CB65D7",
 valuelistID:"364ABB20-3F0C-47F4-8498-9EAA691C3FC4"
 },
 {
-anchors:3,
 dataProviderID:"chartType",
 displayType:2,
 editable:false,
 formIndex:2,
-location:"470,70",
+location:"20,310",
 name:"chartType",
 onDataChangeMethodID:"96C5C75D-D209-4860-A03A-B2856DC4AEA1",
-size:"140,30",
+size:"190,30",
 typeid:4,
 uuid:"EF55B534-80B3-400C-BB23-9AFF01C95971",
 valuelistID:"DD071E36-8A9A-44F1-8C89-612961FDE3E0"
@@ -255,7 +253,7 @@ valuelistID:"DD071E36-8A9A-44F1-8C89-612961FDE3E0"
 ],
 name:"orderDetail",
 showInMenu:true,
-size:"822,580",
+size:"620,580",
 typeid:3,
 uuid:"D530DD1D-5DC9-4DE2-92CE-4A4F9C8C6BCB",
 view:5

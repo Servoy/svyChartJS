@@ -135,3 +135,47 @@ function onShow(firstShow, event) {
 	elements.chart.drawGraph(node);
 	}
 }
+
+/**
+ *
+ * @return {String}
+ *
+ * @properties={typeid:24,uuid:"7E8AF613-4FB5-4CEA-8523-C969A3E0C5FD"}
+ */
+function getName() {
+	return 'Line Chart';
+}
+
+
+
+/**
+*
+* @return {String}
+*
+* @properties={typeid:24,uuid:"28DA03A4-B1AB-4B43-8B06-C9DBA5611284"}
+*/
+function getDescription() {
+	return 'Line Chart Example';
+}
+
+/**
+*
+* @return {String}
+*
+* @properties={typeid:24,uuid:"49FDD9CA-DF90-41A3-B331-600F0E33E179"}
+*/
+function getIconStyleClass() {
+	return 'fa fa-line-chart';
+}
+
+
+
+/**
+*
+* @return {RuntimeForm<AbstractMicroSample>}
+*
+* @properties={typeid:24,uuid:"C098CA21-7226-49EF-B91A-FA4DDD927CA4"}
+*/
+function getParent() {
+	return forms.chartExamplesProvider;
+}

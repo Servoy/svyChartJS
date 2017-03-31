@@ -1,7 +1,9 @@
 encapsulation:60,
 items:[
 {
+anchors:15,
 json:{
+anchors:15,
 location:{
 x:10,
 y:10

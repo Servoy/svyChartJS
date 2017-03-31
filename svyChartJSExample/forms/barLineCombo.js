@@ -106,3 +106,45 @@ function onShow(firstShow, event) {
 		elements.chart.drawGraph(node);
 	}
 }
+
+/**
+ *
+ * @return {String}
+ *
+ * @properties={typeid:24,uuid:"4CEC653C-9F04-4008-B08B-82783FA50A00"}
+ */
+function getName() {
+	return 'Bar/Line Combo';
+}
+
+/**
+*
+* @return {String}
+*
+* @properties={typeid:24,uuid:"E3A59EE8-6891-4753-81ED-FA8151577695"}
+*/
+function getDescription() {
+	return 'Bar / Line Combination Example'
+}
+
+/**
+*
+* @return {String}
+*
+* @properties={typeid:24,uuid:"F17FEFD1-C92A-4617-8251-47ACB35025F9"}
+*/
+function getIconStyleClass() {
+	return 'fa fa-line-chart';
+}
+
+
+
+/**
+*
+* @return {RuntimeForm<AbstractMicroSample>}
+*
+* @properties={typeid:24,uuid:"89644014-9B31-484B-AD5F-41A7D116936A"}
+*/
+function getParent() {
+	return forms.chartExamplesProvider;
+}
