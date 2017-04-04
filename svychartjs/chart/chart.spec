@@ -25,6 +25,8 @@
 				"hoverBorderColor",
 				"hoverBorderWidth"] 
 		},
+		 "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "values" :[]}
+		,
 		"node": 
 		{
 			"type": "object",

@@ -9,7 +9,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 		};
 	})
 
-angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', function($timeout) {
+angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', function($timeout, $sabloConstants) {
 		return {
 			restrict: 'E',
 			scope: {
@@ -19,6 +19,32 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 				svyApi: "=svyServoyapi"
 			},
 			controller: function($scope, $element, $attrs) {
+				var className;
+				var element = $element.children().first();
+				Object.defineProperty($scope.model, $sabloConstants.modelChangeNotifier, {
+						configurable: true,
+						value: function(property, value) {
+							switch (property) {
+							case "styleClass":
+								if (className)
+									element.removeClass(className);
+								className = value;
+								if (className)
+									element.addClass(className);
+								break;
+							}
+						}
+					});
+				var destroyListenerUnreg = $scope.$on("$destroy", function() {
+						destroyListenerUnreg();
+						delete $scope.model[$sabloConstants.modelChangeNotifier];
+					});
+				// data can already be here, if so call the modelChange function so
+				// that it is initialized correctly.
+				var modelChangFunction = $scope.model[$sabloConstants.modelChangeNotifier];
+				for (key in $scope.model) {
+					modelChangFunction(key, $scope.model[key]);
+				}
 
 				$scope.$watch('model.type', function(newValue) {
 						drawChart();
@@ -122,8 +148,8 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 
 					var x = JSON.parse(str);
 					x.options.onClick = handleClick;
-
-					var canvas = document.getElementById($scope.model.svyMarkupId);
+					var element = document.getElementById($scope.model.svyMarkupId);
+					var canvas = element.childNodes[1];
 					if (!canvas) return;
 					var ctx = canvas.getContext("2d");
 					// ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -162,7 +188,15 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 					};
 
 					findFnInObj(x.options);
-					x.options.responsive = false;
+					// if we are not using a stylesheet make the width/height 100% to use all the space available.					
+					if (element.className.length == 0) {
+						element.style.width = '100%';
+						element.style.height = '100%';
+					}
+	
+					x.options.responsive = true;
+					x.options.maintainAspectRatio = false;
+
 					$scope.model.chart = new Chart(ctx, {
 							type: x.type,
 							data: x.data,
@@ -171,37 +205,34 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 				}
 
 				//when window is resized redraw the chart
-				
+
 				var rtime;
 				var timeout = false;
 				var delta = 200;
 				$(window).resize(function() {
-				    rtime = new Date();
-				    if (timeout === false) {
-				        timeout = true;
-				        setTimeout(resizeend, delta);
-				    }
+					rtime = new Date();
+					if (timeout === false) {
+						timeout = true;
+						setTimeout(resizeend, delta);
+					}
 				});
 
 				function resizeend() {
-				    if (new Date() - rtime < delta) {
-				        setTimeout(resizeend, delta);
-				    } else {
-				        timeout = false;
-				        if ($scope.model.chart) {
+					if (new Date() - rtime < delta) {
+						setTimeout(resizeend, delta);
+					} else {
+						timeout = false;
+						if ($scope.model.chart) {
 							refreshChart();
 						}
-				    }               
+					}
 				}
-				
-				
-				
-				
-				//if the data model node changes redraw the chart 
+
+				//if the data model node changes redraw the chart
 				$scope.$watchCollection('model.node', function(newValue, oldValue) {
 						refreshChart();
 					});
-				
+
 				//handle click events.
 				function handleClick(e) {
 					var activePoints = $scope.model.chart.getElementsAtEvent(e);
