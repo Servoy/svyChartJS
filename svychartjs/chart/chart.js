@@ -46,8 +46,9 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
                 modelChangFunction(key, $scope.model[key]);
             }
 
+            //if type is updated (re)draw chart
             $scope.$watch('model.type', function(newValue) {
-                drawChart();
+                setupData();
             });
 
             $scope.$watch('model.foundset.serverSize', function(newValue) {
@@ -57,7 +58,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
                     if (wanted > $scope.model.foundset.viewPort.size) {
                         $scope.model.foundset.loadRecordsAsync(0, wanted);
                     }
-                    drawChart();
+                    setupData();
                 }
             });
             $scope.$watch('model.foundset.viewPort.size', function(newValue) {
@@ -69,69 +70,71 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
                             $scope.model.foundset.loadRecordsAsync(0, wanted);
                         }
                     }
-                    drawChart();
+                    setupData();
                 }
             });
 
             /* draw the chart when the value in foundset changes */
             $scope.$watchCollection('model.foundset.viewPort.rows', function(newValue) {
-                drawChart();
+                setupData();
             });
 
-            function drawChart() {
+            var setupData = function() {
                 var labels = [];
                 var dataset = {
-                    label: "",
-                    backgroundColor: ['#5DA5DA',
-                        '#FAA43A',
-                        '#60BD68',
-                        '#F17CB0',
-                        '#B2912F',
-                        '#B276B2',
-                        '#DECF3F',
-                        '#F15854',
-                        '#4D4D4D'
-                    ],
-                    borderColor: [],
-                    borderWidth: [],
-                    hoverBackgroundColor: [],
-                    hoverBorderColor: [],
-                    hoverBorderWidth: [],
+                    label: $scope.model.legendLabel,
+                    backgroundColor: $scope.model.backgroundColor,
+                    borderColor: $scope.model.borderColor,
+                    borderWidth: $scope.model.borderWidth,
+                    hoverBackgroundColor: $scope.model.hoverBackgroundColor,
+                    hoverBorderColor: $scope.model.hoverBorderColor,
+                    hoverBorderWidth: $scope.model.hoverBorderWidth,
                     data: []
                 };
                 if (!$scope.model.foundset) return;
 
+                //add foundset records to dataset for chart.
                 var rows = $scope.model.foundset.viewPort.rows
                 for (var i = 0; i < rows.length; i++) {
-                    var row = rows[i]
-
+                    var row = rows[i];
                     labels.push(row.label ? row.label : row.value);
                     dataset.data.push(row.value);
-                    if (row.backgroundColor) {
-                        dataset.backgroundColor[i] = row.backgroundColor;
-                    }
-                    dataset.borderColor.push(row.borderColor ? row.borderColor : "#888");
-                    dataset.borderWidth.push(row.borderWidth ? row.borderWidth : 1);
-                    if (row.hoverBackgroundColor) dataset.hoverBackgroundColor.push(row.hoverBackgroundColor);
-                    if (row.hoverBorderColor) dataset.hoverBorderColor.push(row.hoverBorderColor);
-                    if (row.hoverBorderWidth) dataset.hoverBorderWidth.push(row.hoverBorderWidth);
                 }
-
-                $scope.model.node = {
+                //update datamodel
+                $scope.model.data = {
                     type: $scope.model.type,
-                    data: { labels: labels, datasets: [dataset] },
-                    options: { responsive: false }
+                    data: { labels: labels, datasets: [dataset] }
+                };
+                $scope.model.options = {
+                    responsive: true
                 };
 
             }
+
         },
         link: function($scope, $element, $attrs) {
+
+            //refresh the chart (if options updated)
+            var refreshChart = function() {
+                if (!$scope.model.data || !$scope.model.options) {
+                    return;
+                }
+                // update the chart if it already exists
+                if ($scope.model.chart) {
+                    $scope.model.chart.update();
+                }
+            }
+
+            //(re)draw the chart
             var tmp;
             var str;
-            //refresh the chart
-            function refreshChart() {
-                if (!$scope.model.node) {
+            $scope.api.drawChart = function() {
+                if (!$scope.model.data) {
                     return;
+                }
+
+                if (!$scope.model.options) {
+                    $scope.model.options = {};
                 }
 
                 // destroy the chart each time
@@ -142,41 +145,34 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
                 //we need to pass a fresh node object to the chart each time we paint it as the library Chart.js
                 // modifies the node object. On a second show if the node object has not changed, we pass it the same node object,
                 //which this time is already once modified by the chart library and it will not draw the graph
-                if (tmp !== $scope.model.node) {
-                    tmp = $scope.model.node;
-                    str = JSON.stringify($scope.model.node);
+                if (tmp !== $scope.model.data) {
+                    tmp = $scope.model.data;
+                    str = JSON.stringify($scope.model.data);
                 }
 
                 var x = JSON.parse(str);
-                x.options.onClick = handleClick;
+                $scope.model.options.onClick = handleClick;
                 var element = document.getElementById($scope.model.svyMarkupId + '-wrapper');
                 var canvas = document.getElementById($scope.model.svyMarkupId);
                 if (!canvas) return;
                 var ctx = canvas.getContext("2d");
-                // ctx.clearRect(0, 0, canvas.width, canvas.height);
 
                 var parent = canvas.parentNode.parentNode;
-
                 canvas.width = parent.offsetWidth;
                 canvas.height = parent.offsetHeight;
 
-                //find function callback params in options and create functions.
+                //look for function callbacks in options
                 var findFnInObj = function(obj) {
                     if (obj.isFunction == true) {
-                        var fn = obj.name + "_func = new Function ("
+                        var fn = "new Function ("
                         for (var j = 0; j < obj.params.length; j++) {
                             fn += '"' + obj.params[j] + '"';
-                            if (j == obj.params.length - 1) {
-                                fn += ')';
-                            } else {
-                                fn += ',';
-                            }
-
+                            fn += ',';
                         }
-                        eval(fn);
-                        return window[obj.name + "_func"];
+                        fn += '"' + obj.expression + '")';
+                        return eval(fn);
                     }
-                    //if value found is function, re set the key value.
+                    //if value found is function, re set the key value for that option
                     for (var i in obj) {
                         if (obj.hasOwnProperty(i) && (typeof obj[i] !== 'string')) {
                             var foundFunction = findFnInObj(obj[i]);
@@ -188,26 +184,33 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
                     return null;
                 };
 
-                findFnInObj(x.options);
+                //check if any of the options have callbacks and re-setup options object.
+                findFnInObj($scope.model.options);
+
                 // if we are not using a stylesheet make the width/height 100% to use all the space available.                  
                 if (element.className.length == 0) {
                     element.style.width = '100%';
                     element.style.height = '100%';
                 }
-
-                x.options.responsive = true;
-                x.options.maintainAspectRatio = false;
-
+                //by default we will use responsive charts
+                if (!$scope.model.options.responsive) {
+                    $scope.model.options.responsive = true;
+                    $scope.model.options.maintainAspectRatio = false;
+                }
                 $scope.model.chart = new Chart(ctx, {
                     type: x.type,
                     data: x.data,
-                    options: x.options
+                    options: $scope.model.options
                 });
-
             }
 
-            //if the data model node changes redraw the chart
-            $scope.$watchCollection('model.node', function(newValue, oldValue) {
+            //if the data is updated (re)draw chart
+            $scope.$watchCollection('model.data', function(newValue, oldValue) {
+                $scope.api.drawChart();
+            });
+
+            //if the options are updated redraw the chart
+            $scope.$watchCollection('model.options', function(newValue, oldValue) {
                 refreshChart();
             });
 
@@ -217,7 +220,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
                 var firstPoint = activePoints[0];
                 if (!firstPoint) return;
                 var label = $scope.model.chart.data.labels[firstPoint._index];
-                var value = $scope.model.chart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];                
+                var value = $scope.model.chart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
                 if ($scope.handlers.onClick) {
                     $scope.handlers.onClick(firstPoint._index, label, value);
                 }

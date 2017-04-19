@@ -1,3 +1,7 @@
-$scope.api.drawGraph = function(node) {
-	$scope.model.node = node;
+$scope.api.setOptions = function(options) {
+	$scope.model.options = options;
+}
+
+$scope.api.setData = function(data) {
+	$scope.model.data = data;
 }

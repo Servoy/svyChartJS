@@ -17,17 +17,18 @@
 			"type": "foundset", 
 			"dataproviders": [
 				"value", 
-				"label", 
-				"backgroundColor", 
-				"borderColor", 
-				"borderWidth",
-				"hoverBackgroundColor",
-				"hoverBorderColor",
-				"hoverBorderWidth"] 
+				"label"] 
 		},
-		 "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "values" :[]}
+		"legendLabel" : {"type":"string", "default":"My Chart"},
+		"backgroundColor" : {"type":"dataprovider"}, 
+		"borderColor":{"type":"dataprovider"}, 
+		"borderWidth":{"type":"dataprovider"},
+		"hoverBackgroundColor":{"type":"dataprovider"},
+		"hoverBorderColor":{"type":"dataprovider"},
+		"hoverBorderWidth":{"type":"dataprovider"},
+		"styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "values" :[]}
 		,
-		"node": 
+		"data": 
 		{
 			"type": "object",
 			"tags": 
@@ -35,9 +36,17 @@
 				"scope": "private"
 			}
 		},
+		"options": 
+		{
+			"type": "object",
+			"tags": 
+			{
+				"scope": "private"
+			}
+		},	
 		"type" : {
 			"type" : "string", 
-			"values" : [{"BAR":"bar"},{"DOUNT":"doughnut"},{"LINE":"line"},{"PIE":"pie"},{"POLAR AREA":"polarArea"}]
+			"values" : [{"BAR":"bar"},{"BUBBLE":"bubble"},{"DOUNT":"doughnut"},{"HORIZONTAL BAR":"horizontalBar"},{"LINE":"line"},{"PIE":"pie"},{"POLAR AREA":"polarArea"},{"RADAR":"radar"},{"SCATTER":"scatter"}]
 		}
 	},
 	
@@ -53,12 +62,25 @@
     
 	"api": 
 	{
-		"drawGraph": 
+		"drawChart": 
+		{
+		},
+		"setOptions": 
 		{
 			"parameters": 
 			[
 				{
-					"name": "node",
+					"name": "options",
+					"type": "object"
+				}
+			]
+		},
+		"setData": 
+		{
+			"parameters": 
+			[
+				{
+					"name": "data",
 					"type": "object"
 				}
 			]
