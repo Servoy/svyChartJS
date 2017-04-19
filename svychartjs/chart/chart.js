@@ -81,7 +81,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
             function drawChart() {
                 var labels = [];
                 var dataset = {
-                    label: "My First dataset",
+                    label: "",
                     backgroundColor: ['#5DA5DA',
                         '#FAA43A',
                         '#60BD68',
@@ -189,7 +189,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
                 };
 
                 findFnInObj(x.options);
-                // if we are not using a stylesheet make the width/height 100% to use all the space available.					
+                // if we are not using a stylesheet make the width/height 100% to use all the space available.                  
                 if (element.className.length == 0) {
                     element.style.width = '100%';
                     element.style.height = '100%';
@@ -215,9 +215,12 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
             function handleClick(e) {
                 var activePoints = $scope.model.chart.getElementsAtEvent(e);
                 var firstPoint = activePoints[0];
+                if (!firstPoint) return;
                 var label = $scope.model.chart.data.labels[firstPoint._index];
-                var value = $scope.model.chart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
-                $scope.handlers.onClick(firstPoint._index, label, value);
+                var value = $scope.model.chart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];                
+                if ($scope.handlers.onClick) {
+                    $scope.handlers.onClick(firstPoint._index, label, value);
+                }
             }
 
         },
