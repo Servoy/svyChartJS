@@ -206,30 +206,6 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 
             }
 
-            //when window is resized redraw the chart
-
-            var rtime;
-            var timeout = false;
-            var delta = 200;
-            $(window).resize(function() {
-                rtime = new Date();
-                if (timeout === false) {
-                    timeout = true;
-                    setTimeout(resizeend, delta);
-                }
-            });
-
-            function resizeend() {
-                if (new Date() - rtime < delta) {
-                    setTimeout(resizeend, delta);
-                } else {
-                    timeout = false;
-                    if ($scope.model.chart) {
-                        refreshChart();
-                    }
-                }
-            }
-
             //if the data model node changes redraw the chart
             $scope.$watchCollection('model.node', function(newValue, oldValue) {
                 refreshChart();
