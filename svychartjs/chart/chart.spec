@@ -65,6 +65,9 @@
 		"drawChart": 
 		{
 		},
+		"refreshChart": 
+		{
+		},
 		"setOptions": 
 		{
 			"parameters": 

@@ -115,7 +115,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
         link: function($scope, $element, $attrs) {
 
             //refresh the chart (if options updated)
-            var refreshChart = function() {
+            $scope.api.refreshChart = function() {
                 if (!$scope.model.data || !$scope.model.options) {
                     return;
                 }
@@ -211,7 +211,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 
             //if the options are updated redraw the chart
             $scope.$watchCollection('model.options', function(newValue, oldValue) {
-                refreshChart();
+                $scope.api.refreshChart();
             });
 
             //handle click events.
