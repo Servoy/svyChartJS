@@ -5,7 +5,7 @@
  */
 function onShow( event) {
 	//draw bar
-	var node = {
+	var data = {
 		type: 'bar',
 		data: {
 			labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -39,8 +39,8 @@ function onShow( event) {
 				hoverBorderColor: "rgba(220,220,220,1)",
 				data: [28, 48, 40, 19, 86, 27, 90]
 			}]
-		},
-		options: {
+		}}
+		var options = {
 
 			title: {
 				text: 'Combined bar and line charts'
@@ -88,11 +88,11 @@ function onShow( event) {
 				}]
 			}
 		}
-	};
-	elements.bar_chart.drawGraph(node);
+	elements.bar_chart.setData(data);
+	elements.bar_chart.setOptions(options);
 
 	//draw doughnut
-	node = {
+	data = {
 		type: 'doughnut',
 		data: {
 			labels: ["Red",
@@ -110,16 +110,12 @@ function onShow( event) {
 				"#46BFBD",
 				"#FDB45C"]
 			}]
-		},
-		options: {
-			responsive: false
-		}
-	};
+		}}
 
-	elements.donut_chart.drawGraph(node);
+	elements.donut_chart.setData(data);
 
 	// draw line
-	node = {
+	data = {
 		type: 'line',
 		data: {
 			labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -192,8 +188,8 @@ function onShow( event) {
 				pointHoverBorderWidth: 2,
 				data: [28, 48, 40, 19, 86, 27, 90]
 			}]
-		},
-		options: {
+		}}
+	 options = {
 			responsive: false,
 			tooltips: {
 				mode: 'label'
@@ -236,12 +232,11 @@ function onShow( event) {
 					}
 				}]
 			}
-		}
-	};
-	elements.line_chart.drawGraph(node);
-	
+		};
+	elements.line_chart.setData(data);
+	elements.line_chart.setOptions(options);
 	//draw linechart
-	node = {
+	data = {
 		type: 'bar',
 		data: {
 			labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -275,8 +270,8 @@ function onShow( event) {
 				hoverBorderColor: "rgba(220,220,220,1)",
 				data: [28, 48, 40, 19, 86, 27, 90]
 			}]
-		},
-		options: {
+		}}
+		options = {
 			responsive: false,
 			scales: {
 				xAxes: [{
@@ -287,7 +282,7 @@ function onShow( event) {
 				}]
 			}
 		}
-	};
 
-	elements.stacked_chart.drawGraph(node);
+	elements.stacked_chart.setData(data);
+	elements.stacked_chart.setOptions(options);
 }

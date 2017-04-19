@@ -1,7 +1,7 @@
 addEmptyValue:1,
 customValues:"BAR|bar\r\
-DONUT|doughnut\r\
-LINE|line\r\
+DONUT|doughnut\
+HORIZONTAL BAR|horizontalBar\r\
 PIE|pie\r\
 POLAR AREA|polarArea",
 name:"chartTypes",

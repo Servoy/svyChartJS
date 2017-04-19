@@ -155,6 +155,7 @@ uuid:"A8FD032D-CF38-4598-B87D-6880D24F7D5A"
 {
 json:{
 anchors:0,
+backgroundColor:"backgroundColor",
 foundset:{
 dataproviders:{
 backgroundColor:null,
@@ -168,6 +169,7 @@ value:"subtotal"
 },
 foundsetSelector:"orders_to_order_details"
 },
+hoverBorderColor:"hoverBorderColor",
 location:{
 x:236,
 y:45

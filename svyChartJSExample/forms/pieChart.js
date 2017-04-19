@@ -9,39 +9,36 @@
  * @properties={typeid:24,uuid:"D9F698EF-3BD4-4826-A2AF-1764C3D9B505"}
  */
 function onShow(firstShow, event) {
-	if (firstShow) {
-		var node = {
-			type: 'pie',
-			data: {
-				labels: ["Red",
-				"Green",
-				"Yellow"],
-				datasets: [{
-					data: [300, 50, 100],
-					backgroundColor: ["#F7464A",
-					"#46BFBD",
-					"#FDB45C"],
-					hoverBackgroundColor: ["#FF5A5E",
-					"#5AD3D1",
-					"#FFC870"]
-				}]
-			},
-			options: {
-				tooltips: {
-					callbacks: {
-						label: {
-							isFunction: true,
-							name: 'label',
-							params: [
-							'tooltipItem',
-							'data',
-							"return ' $'+data.datasets[0].data[tooltipItem.index];"]
-						}
-					}
+	var data = {
+		type: 'pie',
+		data: {
+			labels: ["Red",
+			"Green",
+			"Yellow"],
+			datasets: [{
+				data: [300, 50, 100],
+				backgroundColor: ["#F7464A",
+				"#46BFBD",
+				"#FDB45C"],
+				hoverBackgroundColor: ["#FF5A5E",
+				"#5AD3D1",
+				"#FFC870"]
+			}]
+		}
+	}
+
+	var options = {
+		tooltips: {
+			callbacks: {
+				label: {
+					isFunction: true,
+					params: ['tooltipItem', 'data'],
+					expression: "return ' $'+data.datasets[0].data[tooltipItem.index];"
 				}
 			}
-		};
-
-		elements.chart.drawGraph(node);
+		}
 	}
+
+	elements.chart.setData(data);
+	elements.chart.setOptions(options);
 }

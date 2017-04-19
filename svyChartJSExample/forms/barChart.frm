@@ -25,7 +25,6 @@ uuid:"00570CE1-463B-415B-AD5A-73F4A74820B2"
 ],
 name:"barChart",
 navigatorID:"-1",
-onResizeMethodID:"17FD4550-1DF8-4EBE-810B-5159A9E842C4",
 onShowMethodID:"72957D4F-4C8A-46DE-A9B9-E9FC4DC4CCAE",
 showInMenu:true,
 typeid:3,
