@@ -2,7 +2,7 @@
     "name": "svychartjs",
     "displayName": "ChartJS Implementation for Servoy",
     "packageType": "Web-Component",
-    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Growth_icon.svg/2000px-Growth_icon.svg.png",
+    "icon": "https://github.com/Servoy/svyChartJS/raw/master/icon.svg",
     "description": "An all-purpose charting component, based on popular open-source lib ChartJS",
     "wikiUrl": "https://github.com/Servoy/svyChartJS/wiki",
     "sourceUrl": "https://github.com/Servoy/svyChartJS",
