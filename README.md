@@ -4,7 +4,7 @@ Chart components for Servoy
 Getting started
 -------------
 
-Get the latest version from the [releases](https://github.com/Servoy/svyChartJS/releases). Download and import the [svyChartJSExample.servoy](https://github.com/Servoy/svyChartJS/releases/download/v1.0.0-b1/svyChartJSExample.servoy) example solution or check out source directly from github.
+Get the latest version from the [releases](https://github.com/Servoy/svyChartJS/releases). Download and import the [svyChartJSExample.servoy](https://github.com/Servoy/svyChartJS/releases/download/v1.0.0-rc1/svyChartJSExample.servoy) example solution or check out source directly from github.
 
 Documentation
 -------------
