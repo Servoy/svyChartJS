@@ -1,6 +1,6 @@
 {
     "name": "svychartjs",
-    "displayName": "ChartJS Implementation for Servoy",
+    "displayName": "ChartJS",
     "packageType": "Web-Component",
     "icon": "https://raw.githubusercontent.com/Servoy/svyChartJS/master/icon.png",
     "description": "An all-purpose charting component, based on popular open-source lib ChartJS",
