@@ -4,7 +4,9 @@
 	<comment></comment>
 	<projects>
 		<project>resources</project>
-		<project>svychartjs</project>
+		<project>exampleDataModel</project>
+		<project>exampleUI</project>
+		<project>svyMicroSamples</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
