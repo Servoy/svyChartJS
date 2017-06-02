@@ -10,3 +10,10 @@
 	width: 600px;
 	height: 50vh;
 }
+
+.chart-reponsive-container {
+	height: 100%;
+	width: 100%;
+	overflow-y: auto !important;
+	overflow-x: hidden;
+}

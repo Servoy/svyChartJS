@@ -169,5 +169,6 @@ name:"responsive",
 onShowMethodID:"2200B80C-3038-4114-9ED6-A2C1CEC0550E",
 scrollbars:36,
 showInMenu:true,
+styleClass:"chart-reponsive-container",
 typeid:3,
 uuid:"5A9CAA9B-BD4D-42B5-A908-138298FEC787"
