@@ -32,3 +32,13 @@ function getDescription() {
 function getIconStyleClass() {
 	return 'fa fa-area-chart';
 }
+
+/**
+ * @public 
+ * @return {String} The sort order, i.e. 1, 1.1, 1.1.2
+ *
+ * @properties={typeid:24,uuid:"99D6C123-EC1B-475B-A5C9-959342CC35E2"}
+ */
+function getSort() {
+	return '3'
+}

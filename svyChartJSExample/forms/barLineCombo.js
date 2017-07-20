@@ -144,5 +144,5 @@ function getIconStyleClass() {
  * @properties={typeid:24,uuid:"89644014-9B31-484B-AD5F-41A7D116936A"}
  */
 function getParent() {
-	return forms.chartExamplesProvider;
+	return forms.chartSamples;
 }

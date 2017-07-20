@@ -134,7 +134,7 @@ function getDescription() {
  * @properties={typeid:24,uuid:"A7FEF181-1245-41F3-A343-CA0FD218571F"}
  */
 function getParent() {
-	return forms.chartExamplesProvider;
+	return forms.chartSamples;
 }
 
 /**

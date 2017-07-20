@@ -40,5 +40,5 @@ function getIconStyleClass() {
  * @properties={typeid:24,uuid:"4AE8CDD2-48FE-4143-B4E0-CA9EF8C235FF"}
  */
 function getParent() {
-	return forms.chartExamplesProvider;
+	return forms.chartSamples;
 }
