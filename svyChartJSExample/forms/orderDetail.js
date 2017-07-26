@@ -51,24 +51,7 @@ var color_scheme_2 = ['#4D4D4D',
  */
 var backgroundColor = color_scheme_1;
 
-/**
- *
- * @param {Number} index
- * @param {string} label
- * @param {Number} value
- *
- * @private
- *
- * @properties={typeid:24,uuid:"87FF09BC-CDBC-4742-A4EE-FBA5B0187CAD"}
- */
-function onClick(index, label, value) {
 
-	// record index that was clicked
-	var fsIndex = index + 1;
-
-	//	sync with order details foundset
-	orders_to_order_details.setSelectedIndex(fsIndex);
-}
 
 /**
  * Handle changed data, return false if the value should not be accepted. In NGClient you can return also a (i18n) string, instead of false, which will be shown as a tooltip.
@@ -88,3 +71,23 @@ function onDataChangeChartType(oldValue, newValue, event) {
 	return true
 }
 
+
+/**
+ * @param {Number} dataset_index
+ * @param {Number} index
+ * @param {string} label
+ * @param {Number} value
+ *
+ * @private
+ *
+ * @properties={typeid:24,uuid:"C8507FD4-BC47-449E-9FCE-3ECE3BE36D20"}
+ */
+function onClick(dataset_index, index, label, value) {
+
+	// record index that was clicked
+	var fsIndex = index + 1;
+
+	//	sync with order details foundset
+	orders_to_order_details.setSelectedIndex(fsIndex);
+
+}
