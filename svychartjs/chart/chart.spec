@@ -53,6 +53,7 @@
 	"handlers": {
       "onClick" : {
         "parameters" : [
+            { "name" : "dataset_index", "type" : "int" },
             { "name" : "index", "type" : "int" },
             { "name" : "label", "type" : "string" },
             { "name" : "value", "type" : "int" }
