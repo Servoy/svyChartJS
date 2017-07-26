@@ -217,12 +217,14 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
             //handle click events.
             function handleClick(e) {
                 var activePoints = $scope.model.chart.getElementsAtEvent(e);
-                var firstPoint = activePoints[0];
-                if (!firstPoint) return;
-                var label = $scope.model.chart.data.labels[firstPoint._index];
-                var value = $scope.model.chart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
+                var dataset = $scope.model.chart.getDatasetAtEvent(e);
+                var datasetIndex = dataset[0]._datasetIndex;                
+                var selected = activePoints[datasetIndex];
+                if (!selected) return;
+                var label = $scope.model.chart.data.labels[selected._index];
+                var value = $scope.model.chart.data.datasets[selected._datasetIndex].data[selected._index];
                 if ($scope.handlers.onClick) {
-                    $scope.handlers.onClick(firstPoint._index, label, value);
+                    $scope.handlers.onClick(selected._index, label, value);
                 }
             }
 
