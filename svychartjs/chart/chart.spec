@@ -63,12 +63,9 @@
     
 	"api": 
 	{
-		"drawChart": 
-		{
-		},
-		"refreshChart": 
-		{
-		},
+		"generateLegend": {"returns":"string"},
+		"drawChart": {},
+		"refreshChart": {},
 		"setOptions": 
 		{
 			"parameters": 

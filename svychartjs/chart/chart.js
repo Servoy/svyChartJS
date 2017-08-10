@@ -125,6 +125,12 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 
 			},
 			link: function($scope, $element, $attrs) {
+				//return legend
+				$scope.api.generateLegend = function() {
+					if ($scope.model.chart) {
+						return $scope.model.chart.generateLegend();
+					}
+				}
 
 				//refresh the chart (if options updated)
 				$scope.api.refreshChart = function() {

@@ -2,22 +2,6 @@ customProperties:"formComponent:false",
 extendsID:"E8B2A839-18F1-4D54-9A85-9CB949C9841E",
 items:[
 {
-extendsID:"7B1D727F-5405-4F7D-A24E-291175E6FEA3",
-formIndex:1,
-location:"330,30",
-text:"ChartJS Example",
-typeid:7,
-uuid:"4B94EE85-D011-46B4-AD45-9BB4FA2D8658"
-},
-{
-extendsID:"E9B6A1AC-D387-45ED-B1A3-6A919D5F927E",
-formIndex:0,
-size:"600,110",
-styleClass:null,
-typeid:7,
-uuid:"903AC39C-DF4F-4CA0-91A4-4B4D219F19D8"
-},
-{
 extendsID:"2A5F4A4C-AB7B-4911-B94F-34313023357A",
 items:[
 {
@@ -29,7 +13,7 @@ uuid:"0D455AFF-BC08-47DF-86BE-FF510E0D7BEB"
 },
 {
 containsFormID:"5A9CAA9B-BD4D-42B5-A908-138298FEC787",
-location:"369,426",
+location:"303,419",
 text:"Responsive",
 typeid:15,
 uuid:"0E21DFB2-6AC9-4175-BB35-B631EE4A9DF6"
@@ -61,6 +45,13 @@ location:"175,305",
 text:"Pie",
 typeid:15,
 uuid:"4D88462C-01BC-4BA5-9DD5-059128571121"
+},
+{
+containsFormID:"09962BA4-AF64-469D-9AD5-B2BD4039A33D",
+location:"191,315",
+text:"Pie w/ Custom Legend",
+typeid:15,
+uuid:"55849BE5-DE0D-416D-A70E-BAF9ACC74973"
 },
 {
 containsFormID:"664130BB-6190-47EE-A927-BAA985182CD3",

@@ -17,3 +17,22 @@
 	overflow-y: auto !important;
 	overflow-x: hidden;
 }
+
+.custom-legend li span{
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    margin-right: 5px;        
+        
+    border:5px solid black;
+}
+
+.custom-legend ul{
+	padding-top:20px;
+	color:white;
+	background:gray;
+	font-weight:bold;
+	font-size: 35px;
+    list-style-type: none;
+    text-align:center;
+}
