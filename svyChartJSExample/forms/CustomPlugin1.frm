@@ -7,6 +7,15 @@ typeid:19,
 uuid:"53C011FF-BEF7-4383-8CFD-1DF19F53C233"
 },
 {
+anchors:14,
+horizontalAlignment:0,
+location:"12,428",
+size:"620,46",
+text:"<h2>Using a plugin to display text in center<\/h2>",
+typeid:7,
+uuid:"D8D3B8C5-8C76-49CA-B1D0-80BBD12FAAA8"
+},
+{
 anchors:15,
 json:{
 anchors:15,
