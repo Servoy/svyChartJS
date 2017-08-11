@@ -6,14 +6,14 @@ extendsID:"2A5F4A4C-AB7B-4911-B94F-34313023357A",
 items:[
 {
 containsFormID:"A0EBB72D-85D8-4BB9-85B9-54CD44A642F9",
-location:"268,404",
+location:"302,425",
 text:"Stacked Bar",
 typeid:15,
 uuid:"0D455AFF-BC08-47DF-86BE-FF510E0D7BEB"
 },
 {
 containsFormID:"5A9CAA9B-BD4D-42B5-A908-138298FEC787",
-location:"303,419",
+location:"337,440",
 text:"Responsive",
 typeid:15,
 uuid:"0E21DFB2-6AC9-4175-BB35-B631EE4A9DF6"
@@ -24,6 +24,13 @@ location:"113,239",
 text:"Donuts",
 typeid:15,
 uuid:"13660949-D6E6-4FF1-80AE-843030553780"
+},
+{
+containsFormID:"7EDC5E58-F14A-464D-A191-1FCDFCAAF776",
+location:"237,350",
+text:"Custom Plugin 2",
+typeid:15,
+uuid:"2B15294E-E619-4F84-8B54-9888FE14E2C2"
 },
 {
 containsFormID:"7138D8EA-AD7F-42E2-A83D-C4F40F0F9AE9",
@@ -54,6 +61,13 @@ typeid:15,
 uuid:"55849BE5-DE0D-416D-A70E-BAF9ACC74973"
 },
 {
+containsFormID:"05FBE711-A836-4D21-98A6-298282A78047",
+location:"216,333",
+text:"Custom Plugin 1",
+typeid:15,
+uuid:"90A4EAB7-B22F-4EC7-B141-B950FBE53550"
+},
+{
 containsFormID:"664130BB-6190-47EE-A927-BAA985182CD3",
 location:"82,206",
 text:"Bar-Line Combo",
@@ -62,7 +76,7 @@ uuid:"B1DDB41F-91F0-4540-A33E-4E5C281BEE90"
 },
 {
 containsFormID:"763E4CB6-A31E-4EE5-93D2-1346708A953C",
-location:"237,371",
+location:"271,392",
 text:"Radar",
 typeid:15,
 uuid:"CE08E6FA-98D0-459D-8BDE-23C872BCBA62"
@@ -76,7 +90,7 @@ uuid:"DA0BA1E7-9742-4A4B-B34E-55FE416F44E4"
 },
 {
 containsFormID:"858B2A94-1D04-4EFE-A6A6-02EF24F43565",
-location:"206,338",
+location:"254,374",
 text:"Polar Area",
 typeid:15,
 uuid:"F25AEC23-839D-4344-A14F-05A548841B98"

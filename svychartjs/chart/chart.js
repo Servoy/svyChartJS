@@ -81,7 +81,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 
 				var setupData = function() {
 					var labels = [];
-					
+
 					//default color scheme if property not used
 					var color_scheme = ['#5DA5DA',
 						'#FAA43A',
@@ -92,7 +92,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 						'#DECF3F',
 						'#F15854',
 						'#4D4D4D'];
-					
+
 					var dataset = {
 						label: $scope.model.legendLabel,
 						backgroundColor: (typeof $scope.model.backgroundColor === 'undefined') ? color_scheme : $scope.model.backgroundColor,
@@ -147,8 +147,37 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 				var tmp;
 				var str;
 				$scope.api.drawChart = function() {
+					//look for function callbacks in options
+					var findFnInObj = function(obj) {
+						if (obj.isFunction == true) {
+							var fn = "new Function ("
+							for (var j = 0; j < obj.params.length; j++) {
+								fn += '"' + obj.params[j] + '"';
+								fn += ',';
+							}
+							fn += '"' + obj.expression + '")';							
+							return eval(fn);
+						}
+						//if value found is function, re set the key value for that option
+						for (var i in obj) {
+							if (obj.hasOwnProperty(i) && (typeof obj[i] !== 'string')) {
+								var foundFunction = findFnInObj(obj[i]);
+								if (foundFunction) {
+									obj[i] = foundFunction;
+								}
+							}
+						}
+						return null;
+					};
+					
 					if (!$scope.model.data) {
 						return;
+					}
+
+					//register plugin if it exists
+					if ($scope.model.plugin) {
+						findFnInObj($scope.model.plugin);
+						Chart.plugins.register($scope.model.plugin)
 					}
 
 					if (!$scope.model.options) {
@@ -177,33 +206,11 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 
 					var parent = canvas.parentNode.parentNode;
 					canvas.width = parent.offsetWidth;
-					canvas.height = parent.offsetHeight;
-
-					//look for function callbacks in options
-					var findFnInObj = function(obj) {
-						if (obj.isFunction == true) {
-							var fn = "new Function ("
-							for (var j = 0; j < obj.params.length; j++) {
-								fn += '"' + obj.params[j] + '"';
-								fn += ',';
-							}
-							fn += '"' + obj.expression + '")';
-							return eval(fn);
-						}
-						//if value found is function, re set the key value for that option
-						for (var i in obj) {
-							if (obj.hasOwnProperty(i) && (typeof obj[i] !== 'string')) {
-								var foundFunction = findFnInObj(obj[i]);
-								if (foundFunction) {
-									obj[i] = foundFunction;
-								}
-							}
-						}
-						return null;
-					};
+					canvas.height = parent.offsetHeight;					
 
 					//check if any of the options have callbacks and re-setup options object.
 					findFnInObj($scope.model.options);
+					
 
 					// if we are not using a stylesheet make the width/height 100% to use all the space available.
 					if (element.className.length == 0) {
@@ -219,6 +226,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 							type: x.type,
 							data: x.data,
 							options: $scope.model.options
+
 						});
 				}
 
@@ -229,6 +237,11 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 
 				//if the options are updated redraw the chart
 				$scope.$watchCollection('model.options', function(newValue, oldValue) {
+						$scope.api.refreshChart();
+					});
+				
+				//if the plugin isupdated redraw the chart
+				$scope.$watchCollection('model.plugin', function(newValue, oldValue) {
 						$scope.api.refreshChart();
 					});
 

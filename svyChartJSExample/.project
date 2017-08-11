@@ -7,6 +7,7 @@
 		<project>exampleDataModel</project>
 		<project>exampleUI</project>
 		<project>svyMicroSamples</project>
+		<project>svychartjs</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

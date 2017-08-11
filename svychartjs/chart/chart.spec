@@ -44,6 +44,14 @@
 				"scope": "private"
 			}
 		},	
+		"plugin": 
+		{
+			"type": "object",
+			"tags": 
+			{
+				"scope": "private"
+			}
+		},
 		"type" : {
 			"type" : "string", 
 			"values" : [{"BAR":"bar"},{"BUBBLE":"bubble"},{"DOUNT":"doughnut"},{"HORIZONTAL BAR":"horizontalBar"},{"LINE":"line"},{"PIE":"pie"},{"POLAR AREA":"polarArea"},{"RADAR":"radar"},{"SCATTER":"scatter"}]
@@ -66,6 +74,16 @@
 		"generateLegend": {"returns":"string"},
 		"drawChart": {},
 		"refreshChart": {},
+		"setPlugin": 
+		{
+			"parameters": 
+			[
+				{
+					"name": "plugins",
+					"type": "object"
+				}
+			]
+		},
 		"setOptions": 
 		{
 			"parameters": 
