@@ -1,6 +1,6 @@
 //demo plugins
 /**
- * @properties={typeid:35,uuid:"8C5C737B-BFFD-4686-AF66-F983BD40A81F",variableType:-4}
+ * @properties={typeid:35,uuid:"48649E4B-B845-4F9C-A9A4-BF5F0CB28801",variableType:-4}
  */
 var demoPlugin1 = {
 	id: 'demo_plugin',
@@ -65,7 +65,7 @@ var demoPlugin1 = {
 }
 
 /**
- * @properties={typeid:35,uuid:"5FD321C5-6278-40B4-995F-9BA168B48D22",variableType:-4}
+ * @properties={typeid:35,uuid:"32F1A8B7-89AE-4B44-96A3-DBB8F8D9652C",variableType:-4}
  */
 var demoPlugin2 = {
 	id: 'demo_plugin_2',

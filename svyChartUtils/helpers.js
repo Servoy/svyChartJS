@@ -3,7 +3,7 @@
  * @param search
  * @param replacement
  * Replace all matching items in a string
- * @properties={typeid:24,uuid:"E28C9ECB-5631-40A6-A70B-14CE334F868F"}
+ * @properties={typeid:24,uuid:"7D4159EE-6924-48B9-AFCB-B4F509A185F6"}
  */
 function replaceAll (str ,search, replacement) {
     return str.replace(new RegExp(search, 'g'), replacement);
@@ -12,7 +12,7 @@ function replaceAll (str ,search, replacement) {
 /** 
  * @param {Function} fn
  * Convert a function's body into string
- * @properties={typeid:24,uuid:"F3529BD3-48AE-4FA6-8029-0D79ECFECBBC"}
+ * @properties={typeid:24,uuid:"18D96B11-6C4B-4ED4-A3DF-069EEB870F67"}
  */
 function fnToString(fn){
 	/** @type {String} */	
