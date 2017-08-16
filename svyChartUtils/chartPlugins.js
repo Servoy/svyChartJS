@@ -11,6 +11,7 @@
 var Chart;
 
 /**
+ * Plugin that allows adding text to center of a chart
  * @properties={typeid:35,uuid:"48649E4B-B845-4F9C-A9A4-BF5F0CB28801",variableType:-4}
  */
 var demoPlugin1 = {
@@ -76,6 +77,7 @@ var demoPlugin1 = {
 }
 
 /**
+ * Plugin that allows all tooltips to appear and stay active at once
  * @properties={typeid:35,uuid:"32F1A8B7-89AE-4B44-96A3-DBB8F8D9652C",variableType:-4}
  */
 var demoPlugin2 = {
