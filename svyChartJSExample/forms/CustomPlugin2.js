@@ -90,8 +90,8 @@ function onShow(firstShow, event) {
 
 	var plugin = {
 		id: scopes.chartPlugins.demoPlugin2.id,
-		beforeRender: { isFunction: true, params: ['chart'], expression: scopes.helpers.fnToString(scopes.chartPlugins.demoPlugin2.beforeRender) },
-		afterDraw: { isFunction: true, params: ['chart', 'easing'], expression: scopes.helpers.fnToString(scopes.chartPlugins.demoPlugin2.afterDraw) }
+		beforeRender: { isFunction: true, params: ['chart'], expression: scopes.stringUtils.fnToString(scopes.chartPlugins.demoPlugin2.beforeRender) },
+		afterDraw: { isFunction: true, params: ['chart', 'easing'], expression: scopes.stringUtils.fnToString(scopes.chartPlugins.demoPlugin2.afterDraw) }
 	}
 
 	elements.chart.setPlugin(plugin);

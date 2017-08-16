@@ -1,4 +1,12 @@
 //demo plugins
+//Client side only functions
+/**
+ * @type {Object}
+ * Declared in place of Chart object
+ * @properties={typeid:35,uuid:"DC9F4413-4A43-4754-AFA2-0A3B07A8DB34",variableType:-4}
+ */
+var Chart;
+
 /**
  * @properties={typeid:35,uuid:"48649E4B-B845-4F9C-A9A4-BF5F0CB28801",variableType:-4}
  */
@@ -6,26 +14,26 @@ var demoPlugin1 = {
 	id: 'demo_plugin',
 	afterUpdate: function(chart) {
 		if (chart.config.options.elements.center) {
-			var helpers = Chart.helpers;
+			var helpers = Chart['helpers'];
 			var centerConfig = chart.config.options.elements.center;
-			var globalConfig = Chart.defaults.global;
+			var globalConfig = Chart['defaults'].global;
 			var ctx = chart.chart.ctx;
 
-			var fontStyle = helpers.getValueOrDefault(centerConfig.fontStyle, globalConfig.defaultFontStyle);
-			var fontFamily = helpers.getValueOrDefault(centerConfig.fontFamily, globalConfig.defaultFontFamily);
+			var fontStyle = helpers['getValueOrDefault'](centerConfig['fontStyle'], globalConfig['defaultFontStyle']);
+			var fontFamily = helpers['getValueOrDefault'](centerConfig['fontFamily'], globalConfig['defaultFontFamily']);
 
 			if (centerConfig.fontSize)
 				var fontSize = centerConfig.fontSize;
 			// figure out the best font size, if one is not specified
 			else {
-				ctx.save();
-				var fontSize = helpers.getValueOrDefault(centerConfig.minFontSize, 1);
-				var maxFontSize = helpers.getValueOrDefault(centerConfig.maxFontSize, 256);
-				var maxText = helpers.getValueOrDefault(centerConfig.maxText, centerConfig.text);
+				ctx['save']();
+				fontSize = helpers['getValueOrDefault'](centerConfig['minFontSize'], 1);
+				var maxFontSize = helpers['getValueOrDefault'](centerConfig['maxFontSize'], 256);
+				var maxText = helpers['getValueOrDefault'](centerConfig['maxText'], centerConfig['text']);
 
 				do {
-					ctx.font = helpers.fontString(fontSize, fontStyle, fontFamily);
-					var textWidth = ctx.measureText(maxText).width;
+					ctx.font = helpers['fontString'](fontSize, fontStyle, fontFamily);
+					var textWidth = ctx['measureText'](maxText).width;
 
 					// check if it fits, is within configured limits and that we are not simply toggling back and forth
 					if (textWidth < chart.innerRadius * 2 && fontSize < maxFontSize)
@@ -36,13 +44,13 @@ var demoPlugin1 = {
 						break;
 					}
 				} while (true)
-				ctx.restore();
+				ctx['restore']();
 			}
 
 			// save properties
 			chart.center = {
-				font: helpers.fontString(fontSize, fontStyle, fontFamily),
-				fillStyle: helpers.getValueOrDefault(centerConfig.fontColor, globalConfig.defaultFontColor)
+				font: helpers['fontString'](fontSize, fontStyle, fontFamily),
+				fillStyle: helpers['getValueOrDefault'](centerConfig['fontColor'], globalConfig['defaultFontColor'])
 			};
 		}
 	},
@@ -51,15 +59,15 @@ var demoPlugin1 = {
 			var centerConfig = chart.config.options.elements.center;
 			var ctx = chart.chart.ctx;
 
-			ctx.save();
+			ctx['save']();
 			ctx.font = chart.center.font;
 			ctx.fillStyle = chart.center.fillStyle;
 			ctx.textAlign = 'center';
 			ctx.textBaseline = 'middle';
 			var centerX = (chart.chartArea.left + chart.chartArea.right) / 2;
 			var centerY = (chart.chartArea.top + chart.chartArea.bottom) / 2;
-			ctx.fillText(centerConfig.text, centerX, centerY);
-			ctx.restore();
+			ctx['fillText'](centerConfig['text'], centerX, centerY);
+			ctx['restore']();
 		}
 	}
 }
@@ -76,7 +84,7 @@ var demoPlugin2 = {
 			chart.pluginTooltips = [];
 			chart.config.data.datasets.forEach(function(dataset, i) {
 				chart.getDatasetMeta(i).data.forEach(function(sector, j) {
-					chart.pluginTooltips.push(new Chart.Tooltip({
+					chart.pluginTooltips.push(new Chart['Tooltip']({
 							_chart: chart.chart,
 							_chartInstance: chart,
 							_data: chart.data,
@@ -101,8 +109,7 @@ var demoPlugin2 = {
 					
 			// turn on tooltips
 			chart.options.tooltips.enabled = true;
-			Chart.helpers.each(chart.pluginTooltips, function(tooltip) {
-				console.log(tooltip)
+			Chart['helpers'].each(chart.pluginTooltips, function(tooltip) {				
 					tooltip.initialize();
 					tooltip.update();
 					// we don't actually need this since we are not animating tooltips
