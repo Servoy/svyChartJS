@@ -1,8 +1,11 @@
-//demo plugins
-//Client side only functions
+/** 
+ * ChartJS Demo plugins
+ * Client side only objects that can be registered as a ChartJS plugin
+ */
+ 
 /**
  * @type {Object}
- * Declared in place of Chart object
+ * Declared in place of Chart object to hide warnings.
  * @properties={typeid:35,uuid:"DC9F4413-4A43-4754-AFA2-0A3B07A8DB34",variableType:-4}
  */
 var Chart;
