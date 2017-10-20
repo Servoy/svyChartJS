@@ -248,7 +248,8 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 				//handle click events.
 				function handleClick(e) {
 					var activePoints = $scope.model.chart.getElementsAtEvent(e);
-					var dataset = $scope.model.chart.getDatasetAtEvent(e);
+					var dataset = $scope.model.chart.getDatasetAtEvent(e);					
+					if (!dataset[0]) return;
 					//get selected dataset index (helps distinguish between multiple datasets)
 					var datasetIndex = dataset[0]._datasetIndex;
 					var selected = activePoints[datasetIndex];
