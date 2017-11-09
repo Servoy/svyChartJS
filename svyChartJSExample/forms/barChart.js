@@ -40,6 +40,16 @@ var data = {
 };
 
 /**
+ * @properties={typeid:35,uuid:"9860AF65-B597-4C51-AFAB-5B123AC78790",variableType:-4}
+ */
+var options = {
+	title: {
+		display: true,
+		text: 'Combined bar and line charts'
+	}
+}
+
+/**
  * Callback method for when form is shown.
  *
  * @param {Boolean} firstShow form is shown first time after load
@@ -51,6 +61,7 @@ var data = {
  */
 function onShow(firstShow, event) {	
 	elements.chart.setData(data);
+	elements.chart.setOptions(options)
 }
 
 

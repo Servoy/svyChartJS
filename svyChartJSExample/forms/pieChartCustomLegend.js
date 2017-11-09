@@ -28,6 +28,10 @@ function onShow(firstShow, event) {
 	}
 
 	var options = {
+		title:{
+			display:true,
+			text:'Pie Chart with a Custom Legend'
+		},
 		responsive: true,
 		legend:{
 			display:false

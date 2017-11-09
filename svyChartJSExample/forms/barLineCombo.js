@@ -39,6 +39,7 @@ function onShow(firstShow, event) {
 
 	var options = {
 		title: {
+			display: true,
 			text: 'Combined bar and line charts'
 		},
 		responsive: false,

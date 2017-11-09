@@ -29,7 +29,14 @@ function onShow(firstShow, event) {
 			}]
 		}
 	};
+	var options = {
+		title: {
+			display: true,
+			text: 'Line Chart'
+		}
+	}
 	elements.chart.setData(data);
+	elements.chart.setOptions(options);
 }
 
 /**
