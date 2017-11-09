@@ -29,7 +29,11 @@ function onShow(firstShow, event) {
 
 	var options = {
 		legend: {
-			display: false
+			display: false			
+		},
+		title:{
+			display:true,
+			text:'CUSTOM PLUGIN TO SHOW ALL TOOLTIPS AT SAME TIME'
 		},
 		showAllTooltips: true,
 		tooltips: {

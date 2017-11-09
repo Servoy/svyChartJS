@@ -42,6 +42,10 @@ function onShow(firstShow, event) {
 			ticks: {
 				beginAtZero: true
 			}
+		},
+		title:{
+			display:true,
+			text:'Radar Chart'
 		}
 	}
 	elements.chart.setData(data);

@@ -27,7 +27,7 @@ function onShow(firstShow, event) {
 		}
 	}
 
-	var options = {
+	var options = {				
 		elements: {
 			center: {
 				// the longest text that could appear in the center

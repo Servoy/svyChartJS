@@ -40,6 +40,10 @@ function onShow(firstShow, event) {
 			arc: {
 				borderColor: "#fff"
 			}
+		},
+		title:{
+			display:true,
+			text:'Polar Chart'
 		}
 	}
 	elements.chart.setData(data);
