@@ -6,7 +6,7 @@
 	"serverscript": "svychartjs/chart/chart_server.js",
 	"libraries": [{
 			"name": "Chart.js",
-			"version": "2.5.0",
+			"version": "2.7.1",
 			"url": "svychartjs/lib/js/Chart.js",
 			"mimetype": "text/javascript"
 		}],
@@ -19,7 +19,7 @@
 				"value", 
 				"label"] 
 		},
-		"legendLabel" : {"type":"string", "default":"My Chart"},
+		"legendLabel" : {"type":"dataprovider"},
 		"backgroundColor" : {"type":"dataprovider"}, 
 		"borderColor":{"type":"dataprovider"}, 
 		"borderWidth":{"type":"dataprovider"},
@@ -54,7 +54,8 @@
 		},
 		"type" : {
 			"type" : "string", 
-			"values" : [{"BAR":"bar"},{"BUBBLE":"bubble"},{"DOUNT":"doughnut"},{"HORIZONTAL BAR":"horizontalBar"},{"LINE":"line"},{"PIE":"pie"},{"POLAR AREA":"polarArea"},{"RADAR":"radar"},{"SCATTER":"scatter"}]
+			"values" : [{"BAR":"bar"},{"BUBBLE":"bubble"},{"DOUGHNUT":"doughnut"},{"HORIZONTAL BAR":"horizontalBar"},{"LINE":"line"},{"PIE":"pie"},{"POLAR AREA":"polarArea"},{"RADAR":"radar"},{"SCATTER":"scatter"}],
+			"default" : "pie"
 		}
 	},
 	

@@ -20,7 +20,9 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 			},
 			controller: function($scope, $element, $attrs) {
 				var className;
+
 				var element = $element.children().first();
+
 				Object.defineProperty($scope.model, $sabloConstants.modelChangeNotifier, {
 						configurable: true,
 						value: function(property, value) {
@@ -35,10 +37,12 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 							}
 						}
 					});
+
 				var destroyListenerUnreg = $scope.$on("$destroy", function() {
 						destroyListenerUnreg();
 						delete $scope.model[$sabloConstants.modelChangeNotifier];
 					});
+
 				// data can already be here, if so call the modelChange function so
 				// that it is initialized correctly.
 				var modelChangFunction = $scope.model[$sabloConstants.modelChangeNotifier];
@@ -61,6 +65,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 							setupData();
 						}
 					});
+
 				$scope.$watch('model.foundset.viewPort.size', function(newValue) {
 						if ($scope.model.source == 'foundset') {
 
@@ -117,9 +122,12 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 						type: $scope.model.type,
 						data: { labels: labels, datasets: [dataset] }
 					};
-					$scope.model.options = {
-						responsive: true
-					};
+					//if we don't have any options set - use default ones;
+					if (!$scope.model.options) {
+						$scope.model.options = {
+							responsive: true							
+						};
+					}
 
 				}
 
@@ -155,7 +163,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 								fn += '"' + obj.params[j] + '"';
 								fn += ',';
 							}
-							fn += '"' + obj.expression + '")';							
+							fn += '"' + obj.expression + '")';
 							return eval(fn);
 						}
 						//if value found is function, re set the key value for that option
@@ -169,7 +177,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 						}
 						return null;
 					};
-					
+
 					if (!$scope.model.data) {
 						return;
 					}
@@ -206,11 +214,10 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 
 					var parent = canvas.parentNode.parentNode;
 					canvas.width = parent.offsetWidth;
-					canvas.height = parent.offsetHeight;					
+					canvas.height = parent.offsetHeight;
 
 					//check if any of the options have callbacks and re-setup options object.
 					findFnInObj($scope.model.options);
-					
 
 					// if we are not using a stylesheet make the width/height 100% to use all the space available.
 					if (element.className.length == 0) {
@@ -239,7 +246,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 				$scope.$watchCollection('model.options', function(newValue, oldValue) {
 						$scope.api.refreshChart();
 					});
-				
+
 				//if the plugin isupdated redraw the chart
 				$scope.$watchCollection('model.plugin', function(newValue, oldValue) {
 						$scope.api.refreshChart();
@@ -248,7 +255,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 				//handle click events.
 				function handleClick(e) {
 					var activePoints = $scope.model.chart.getElementsAtEvent(e);
-					var dataset = $scope.model.chart.getDatasetAtEvent(e);					
+					var dataset = $scope.model.chart.getDatasetAtEvent(e);
 					if (!dataset[0]) return;
 					//get selected dataset index (helps distinguish between multiple datasets)
 					var datasetIndex = dataset[0]._datasetIndex;
