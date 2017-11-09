@@ -4,4 +4,5 @@
 	<buildpathentry exported="true" kind="prj" path="/exampleDataModel"/>
 	<buildpathentry exported="true" kind="prj" path="/svyChartUtils"/>
 	<buildpathentry exported="true" kind="prj" path="/svyMicroSamples"/>
+	<buildpathentry exported="true" kind="prj" path="/svyUtils"/>
 </buildpath>

@@ -10,84 +10,43 @@ function onShow( event) {
 		data: {
 			labels: ["January", "February", "March", "April", "May", "June", "July"],
 			datasets: [{
-				label: "My First dataset",
-
-				// The properties below allow an array to be specified to change the value of the item at the given index
-				// String  or array - the bar color
-				backgroundColor: "#46BFBD",
-
-				// String or array - bar stroke color
-				borderColor: "rgba(220,220,220,1)",
-
-				// Number or array - bar border width
-				borderWidth: 1,
-
-				// String or array - fill color when hovered
-				hoverBackgroundColor: "#46bf81",
-
-				// String or array - border color when hovered
-				hoverBorderColor: "rgba(220,220,220,1)",
-
-				// The actual data
-				data: [65, 59, 80, 81, 56, 55, 40]
+				type: 'bar',
+				label: "Visitor",
+				data: [200, 185, 590, 621, 250, 400, 95],
+				fill: false,
+				backgroundColor: 'rgba(113,179,124, 0.5)',
+				borderColor: 'rgba(113,179,124, 1)',
+				hoverBackgroundColor: 'rgba(255,255,0, 0.3)',
+				hoverBorderColor: '#71B37C'
 			}, {
-				label: "My Second dataset",
-				backgroundColor: "#FF5A5E",
-				borderColor: "rgba(220,220,220,1)",
-				borderWidth: 1,
-				hoverBackgroundColor: "#ff8e90",
-				hoverBorderColor: "rgba(220,220,220,1)",
-				data: [28, 48, 40, 19, 86, 27, 90]
+				label: "Sales",
+				type: 'line',
+				data: [51, 65, 40, 49, 60, 37, 40],
+				fill: false,
+				borderColor: '#EC932F',
+				backgroundColor: '#EC932F',
+				pointBorderColor: '#EC932F',
+				pointBackgroundColor: '#EC932F',
+				pointHoverBackgroundColor: '#EC932F',
+				pointHoverBorderColor: '#000'
 			}]
-		}}
-		var options = {
+		}
+	}
 
-			title: {
-				text: 'Combined bar and line charts'
-			},
-			responsive: false,
-			tooltips: {
-				mode: 'label'
-			},
-			elements: {
-				line: {
-					fill: false
-				}
-			},
-			scales: {
-				xAxes: [{
-					display: true,
-					gridLines: {
-						display: false
-					},
-					labels: {
-						show: true
-					},
-					scaleLabel: {
-						display: true,
-						labelString: 'First 6 months',
-						fontSize: 16
-					}
-				}],
-				yAxes: [{
-					type: "linear",
-					display: true,
-					position: "left",
-					id: "y-axis-1",
-					gridLines: {
-						display: false
-					},
-					labels: {
-						show: true
-					},
-					scaleLabel: {
-						display: true,
-						labelString: 'Numbers per month',
-						fontSize: 16
-					}
-				}]
+	var options = {
+		title: {
+			text: 'Combined bar and line charts'
+		},
+		responsive: false,
+		tooltips: {
+			mode: 'label'
+		},
+		elements: {
+			line: {
+				fill: false
 			}
 		}
+	}
 	elements.bar_chart.setData(data);
 	elements.bar_chart.setOptions(options);
 
@@ -170,10 +129,7 @@ function onShow( event) {
 				tension: 0.1,
 
 				// The actual data
-				data: [65, 59, 80, 81, 56, 55, 40],
-
-				// String - If specified, binds the dataset to a certain y-axis. If not specified, the first y-axis is used.
-				yAxisID: "y-axis-1"
+				data: [65, 59, 80, 81, 56, 55, 40]
 			}, {
 				label: "My Second dataset",
 				fill: false,
@@ -198,39 +154,6 @@ function onShow( event) {
 				line: {
 					fill: false
 				}
-			},
-			scales: {
-				xAxes: [{
-					display: true,
-					gridLines: {
-						display: false
-					},
-					labels: {
-						show: true
-					},
-					scaleLabel: {
-						display: true,
-						labelString: 'First 6 months',
-						fontSize: 16
-					}
-				}],
-				yAxes: [{
-					type: "linear",
-					display: true,
-					position: "left",
-					id: "y-axis-1",
-					gridLines: {
-						display: false
-					},
-					labels: {
-						show: true
-					},
-					scaleLabel: {
-						display: true,
-						labelString: 'Numbers per month',
-						fontSize: 16
-					}
-				}]
 			}
 		};
 	elements.line_chart.setData(data);

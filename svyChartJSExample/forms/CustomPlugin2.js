@@ -39,8 +39,8 @@ function onShow(firstShow, event) {
 			bodyFontSize: 20,
 			titleFontSize: 15,
 			displayColors: false,
-			caretSize:0,
-			mode:'average',
+			caretSize: 0,
+			mode: 'average',
 			callbacks: {
 				label: {
 					isFunction: true,
@@ -48,43 +48,6 @@ function onShow(firstShow, event) {
 					expression: "return data.datasets[0].data[tooltipItem.index];"
 				}
 			}
-		},
-		scales: {
-			xAxes: [{
-				labels: {
-					show: true
-				},
-				gridLines: {
-					display: true
-				},
-				scaleLabel: {
-					display: true,
-					labelString: 'Example plugin to display tooltips immediately',
-					fontSize: 20
-				},
-				ticks: {
-					display: true,
-					beginAtZero: true,
-					min: 0,
-					max: 300,
-					steps: 1,
-					stepValue: 1
-				}
-			}],
-			yAxes: [{
-				stacked: true,
-				display: true,
-				position: "left",
-				gridLines: {
-					display: false
-				},
-				ticks: {
-					fontColor: "white"
-				},
-				labels: {
-					show: true
-				}
-			}]
 		}
 	}
 
