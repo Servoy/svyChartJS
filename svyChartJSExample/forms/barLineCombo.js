@@ -21,8 +21,7 @@ function onShow(firstShow, event) {
 				backgroundColor: 'rgba(113,179,124, 0.5)',
 				borderColor: 'rgba(113,179,124, 1)',
 				hoverBackgroundColor: 'rgba(255,255,0, 0.3)',
-				hoverBorderColor: '#71B37C',
-				yAxisID: 'y-axis-1'
+				hoverBorderColor: '#71B37C'
 			}, {
 				label: "Sales",
 				type: 'line',
@@ -33,8 +32,7 @@ function onShow(firstShow, event) {
 				pointBorderColor: '#EC932F',
 				pointBackgroundColor: '#EC932F',
 				pointHoverBackgroundColor: '#EC932F',
-				pointHoverBorderColor: '#000',
-				yAxisID: 'y-axis-2'
+				pointHoverBorderColor: '#000'
 			}]
 		}
 	}
@@ -51,55 +49,6 @@ function onShow(firstShow, event) {
 			line: {
 				fill: false
 			}
-		},
-		scales: {
-			xAxes: [{
-				display: true,
-				gridLines: {
-					display: false
-				},
-				labels: {
-					show: true
-				},
-				scaleLabel: {
-					display: true,
-					labelString: 'X Axis Title! YEE',
-					fontSize: 16
-				}
-			}],
-			yAxes: [{
-				type: "linear",
-				display: true,
-				position: "left",
-				id: "y-axis-1",
-				gridLines: {
-					display: false
-				},
-				labels: {
-					show: true
-				},
-				scaleLabel: {
-					display: true,
-					labelString: 'Nothing',
-					fontSize: 16
-				}
-			}, {
-				type: "linear",
-				display: true,
-				position: "right",
-				id: "y-axis-2",
-				gridLines: {
-					display: false
-				},
-				labels: {
-					show: true
-				},
-				scaleLabel: {
-					display: true,
-					labelString: 'Something',
-					fontSize: 16
-				}
-			}]
 		}
 	}
 

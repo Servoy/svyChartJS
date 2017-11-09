@@ -13,7 +13,8 @@ function onShow(firstShow, event) {
 		type: 'line',
 		data: {
 			labels: ["January", "February", "March", "April", "May", "June", "July"],
-			datasets: [{
+			datasets: [
+			{
 				label: "My First dataset",
 
 				// Boolean - if true fill the area under the line
@@ -64,10 +65,8 @@ function onShow(firstShow, event) {
 				tension: 0.1,
 
 				// The actual data
-				data: [65, 59, 80, 81, 56, 55, 40],
+				data: [65, 59, 80, 81, 56, 55, 40]
 
-				// String - If specified, binds the dataset to a certain y-axis. If not specified, the first y-axis is used.
-				yAxisID: "y-axis-1"
 			}, {
 				label: "My Second dataset",
 				fill: false,
@@ -85,53 +84,53 @@ function onShow(firstShow, event) {
 		}
 	}
 
-	var options = {
-		responsive: false,
-		tooltips: {
-			mode: 'label'
-		},
-		elements: {
-			line: {
-				fill: false
-			}
-		},
-		scales: {
-			xAxes: [{
-				display: true,
-				gridLines: {
-					display: false
-				},
-				labels: {
-					show: true
-				},
-				scaleLabel: {
-					display: true,
-					labelString: 'First 6 months',
-					fontSize: 16
-				}
-			}],
-			yAxes: [{
-				type: "linear",
-				display: true,
-				position: "left",
-				id: "y-axis-1",
-				gridLines: {
-					display: false
-				},
-				labels: {
-					show: true
-				},
-				scaleLabel: {
-					display: true,
-					labelString: 'Numbers per month',
-					fontSize: 16
-				}
-			}]
-		}
-	}
+//	var options = {
+//		responsive: false,
+//		tooltips: {
+//			mode: 'label'
+//		},
+//		elements: {
+//			line: {
+//				fill: false
+//			}
+//		},
+//		scales: {
+//			xAxes: [{
+//				display: true,
+//				gridLines: {
+//					display: false
+//				},
+//				labels: {
+//					show: true
+//				},
+//				scaleLabel: {
+//					display: true,
+//					labelString: 'First 6 months',
+//					fontSize: 16
+//				}
+//			}],
+//			yAxes: [{
+//				type: "linear",
+//				display: true,
+//				position: "left",
+//				id: "y-axis-1",
+//				gridLines: {
+//					display: false
+//				},
+//				labels: {
+//					show: true
+//				},
+//				scaleLabel: {
+//					display: true,
+//					labelString: 'Numbers per month',
+//					fontSize: 16
+//				}
+//			}]
+//		}
+//	}
 
 	elements.chart.setData(data);
-	elements.chart.setOptions(options);
+//	elements.chart.setOptions(options);
 
 }
 

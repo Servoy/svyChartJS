@@ -40,58 +40,6 @@ var data = {
 };
 
 /**
- * @properties={typeid:35,uuid:"763F0F56-4B2C-40B5-BA30-BD85290320E9",variableType:-4}
- */
-var options = {
-
-	title: {
-		text: 'Combined bar and line charts'
-	},
-	responsive: false,
-	tooltips: {
-		mode: 'label'
-	},
-	elements: {
-		line: {
-			fill: false
-		}
-	},
-	scales: {
-		xAxes: [{
-			display: true,
-			gridLines: {
-				display: false
-			},
-			labels: {
-				show: true
-			},
-			scaleLabel: {
-				display: true,
-				labelString: 'First 6 months',
-				fontSize: 16
-			}
-		}],
-		yAxes: [{
-			type: "linear",
-			display: true,
-			position: "left",
-			id: "y-axis-1",
-			gridLines: {
-				display: false
-			},
-			labels: {
-				show: true
-			},
-			scaleLabel: {
-				display: true,
-				labelString: 'Numbers per month',
-				fontSize: 16
-			}
-		}]
-	}
-}
-
-/**
  * Callback method for when form is shown.
  *
  * @param {Boolean} firstShow form is shown first time after load
@@ -103,7 +51,6 @@ var options = {
  */
 function onShow(firstShow, event) {	
 	elements.chart.setData(data);
-	elements.chart.setOptions(options);
 }
 
 
