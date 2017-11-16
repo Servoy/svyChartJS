@@ -1,4 +1,30 @@
 @IMPORT url("sample.css");
+.chart-one {
+	width: 30vw;
+	height: 30vh;
+}
+
+.chart-two {	
+	position: absolute;
+	left: 20vw;
+	width: 30vw;
+	height: 30vh;
+}
+
+.chart-three {
+	position: absolute;
+	width: 30vw;
+	top:5vh;
+	height: 30vh;
+}
+
+.chart-four {
+	position: absolute;
+	left: 20vw;
+	width: 30vw;
+	top:5vh;
+	height: 30vh;
+}
 
 .chart_absolute {
 	width: 100%;
