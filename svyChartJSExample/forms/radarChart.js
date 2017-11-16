@@ -42,12 +42,48 @@ function onShow(firstShow, event) {
 			ticks: {
 				beginAtZero: true
 			}
-		},
-		title:{
-			display:true,
-			text:'Radar Chart'
 		}
 	}
 	elements.chart.setData(data);
 	elements.chart.setOptions(options);
+}
+
+/**
+ *
+ * @return {String}
+ *
+ * @properties={typeid:24,uuid:"F7939AF1-69DE-4D09-A4CF-3DF72348B929"}
+ */
+function getName() {
+	return 'Radar chart';
+}
+
+/**
+ *
+ * @return {String}
+ *
+ * @properties={typeid:24,uuid:"F1CBD8A7-E81E-44CC-924C-08878E785EBE"}
+ */
+function getDescription() {
+	return 'Radar Chart Example';
+}
+
+/**
+ *
+ * @return {String}
+ *
+ * @properties={typeid:24,uuid:"D009DBFC-8769-4581-B4D2-34FB546334A1"}
+ */
+function getIconStyleClass() {
+	return 'fa fa-cog';
+}
+
+/**
+ *
+ * @return {RuntimeForm<AbstractMicroSample>}
+ *
+ * @properties={typeid:24,uuid:"1CD636C7-5752-4A0D-86B4-B0ABD1173774"}
+ */
+function getParent() {
+	return forms.chartSamples;
 }
