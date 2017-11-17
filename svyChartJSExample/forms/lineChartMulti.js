@@ -18,14 +18,14 @@ function onShow(firstShow, event) {
 	            borderColor: "red",
 	            backgroundColor: "red",
 	            fill: false,
-	            data: [65, 59, 80, 81, 56, 55, 40],
+	            data: [65, -65, 80, 2, 36, -10, 40],
 	            yAxisID: "y-axis-1"
 	        }, {
 	            label: "My Second dataset",
 	            borderColor: "blue",
 	            backgroundColor: "blue",
 	            fill: false,
-	            data: [65, 59, 80, 81, 56, 55, 40],
+	            data: [-15, 76, 31, 22, -10, 77, 1],
 	            yAxisID: "y-axis-2"
 	        }]
 		}
