@@ -133,5 +133,8 @@ function getMoreInfo() {
  * @properties={typeid:24,uuid:"4F671172-8AFF-4108-A1B3-5F74A176C967"}
  */
 function getSampleCode() {
-	return printMethodCode(node);
+	return printMethodCode(data)
+	.concat(printMethodCode(options))
+	.concat(printMethodCode(onShow));
+
 }
