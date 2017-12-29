@@ -137,11 +137,11 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 						g.style.height = '100%'
 						g.style.position = 'absolute'
 						g.style.top = '25%'
-						t.innerHTML = capFirst($scope.model.type) + ' Chart' 
+						t.innerHTML = capFirst($scope.model.type) + ' Chart'
 						c.appendChild(t)
 						c.appendChild(g)
 						element.prepend(c)
-																								  
+
 						var ctx = g.getContext('2d');
 						var myChart = new Chart(ctx, {
 									type: $scope.model.type,
@@ -173,9 +173,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 					}
 				}
 
-				setTimeout(function() {
-						showInDesignChart()
-					}, 500);
+				showInDesignChart()
 
 				//return legend
 				$scope.api.generateLegend = function() {
