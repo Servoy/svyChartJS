@@ -11,7 +11,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 				var className;
 
 				var element = $element.children().first();
-				
+
 				function showInDesignChart() {
 					if ($scope.svyServoyapi.isInDesigner()) {
 						function capFirst(string) {
@@ -32,7 +32,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 						c.appendChild(t)
 						c.appendChild(g)
 						element.prepend(c)
-						
+
 						//default color scheme if property not used
 						var color_scheme = ['#5DA5DA',
 							'#FAA43A',
@@ -42,7 +42,8 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 							'#B276B2',
 							'#DECF3F',
 							'#F15854',
-							'#4D4D4D'];
+							'#4D4D4D'];											
+						
 						var ctx = g.getContext('2d');
 						var myChart = new Chart(ctx, {
 									type: $scope.model.type,
@@ -52,7 +53,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 											label: 'Chart JS Component',
 											data: [12, 19, 3, 5, 2, 3],
 											backgroundColor: (typeof $scope.model.backgroundColor === 'undefined') ? color_scheme : $scope.model.backgroundColor,
-											borderColor: $scope.model.borderColor,											
+											borderColor: $scope.model.borderColor,
 											borderWidth: $scope.model.borderWidth,
 											hoverBackgroundColor: $scope.model.hoverBackgroundColor,
 											hoverBorderColor: $scope.model.hoverBorderColor,
@@ -91,12 +92,12 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 				// that it is initialized correctly.
 				var modelChangFunction = $scope.model[$sabloConstants.modelChangeNotifier];
 				for (key in $scope.model) {
-					modelChangFunction(key, $scope.model[key]);					
+					modelChangFunction(key, $scope.model[key]);
 				}
 
 				//if type is updated (re)draw chart
 				$scope.$watch('model.type', function(newValue) {
-						setupData();						
+						setupData();
 						showInDesignChart()
 					});
 
@@ -177,63 +178,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 				}
 
 			},
-			link: function($scope, $element, $attrs) {
-				function showInDesignChart() {
-					if ($scope.svyServoyapi.isInDesigner()) {
-						function capFirst(string) {
-							return string.charAt(0).toUpperCase() + string.slice(1);
-						}
-						// render the chart in form editor with some mocked data
-						var element = $element;
-						$element.empty()
-						var c = document.createElement("div");
-						var t = document.createElement("h2")
-						t.style.textAlign = 'center'
-						var g = document.createElement("canvas");
-						g.style.width = '100%'
-						g.style.height = '100%'
-						g.style.position = 'absolute'
-						g.style.top = '25%'
-						t.innerHTML = capFirst($scope.model.type) + ' Chart'
-						c.appendChild(t)
-						c.appendChild(g)
-						element.prepend(c)
-						
-						//default color scheme if property not used
-						var color_scheme = ['#5DA5DA',
-							'#FAA43A',
-							'#60BD68',
-							'#F17CB0',
-							'#B2912F',
-							'#B276B2',
-							'#DECF3F',
-							'#F15854',
-							'#4D4D4D'];
-						var ctx = g.getContext('2d');
-						var myChart = new Chart(ctx, {
-									type: $scope.model.type,
-									data: {
-										labels: ["R", "B", "Y", "G", "P", "O"],
-										datasets: [{
-											label: 'Chart JS Component',
-											data: [12, 19, 3, 5, 2, 3],
-											backgroundColor: (typeof $scope.model.backgroundColor === 'undefined') ? color_scheme : $scope.model.backgroundColor,
-											borderColor: $scope.model.borderColor,											
-											borderWidth: $scope.model.borderWidth,
-											hoverBackgroundColor: $scope.model.hoverBackgroundColor,
-											hoverBorderColor: $scope.model.hoverBorderColor,
-											hoverBorderWidth: $scope.model.hoverBorderWidth,
-										}]
-									},
-									options: {
-										legend: { display: false },
-										responsive: true
-									}
-								});
-					}
-				}
-				showInDesignChart()				
-				
+			link: function($scope, $element, $attrs) {				
 
 				//return legend
 				$scope.api.generateLegend = function() {
