@@ -1,14 +1,3 @@
-angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', function() {
-		return {
-			restrict: 'E',
-			scope: {
-				model: '=svyModel'
-			},
-			controller: function($scope, $element, $attrs) { },
-			templateUrl: 'svychartjs/chart/chart.html'
-		};
-	})
-
 angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', function($timeout, $sabloConstants) {
 		return {
 			restrict: 'E',
@@ -16,7 +5,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 				model: '=svyModel',
 				handlers: "=svyHandlers",
 				api: "=svyApi",
-				svyApi: "=svyServoyapi"
+				svyServoyapi: "="
 			},
 			controller: function($scope, $element, $attrs) {
 				var className;
@@ -125,7 +114,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 					//if we don't have any options set - use default ones;
 					if (!$scope.model.options) {
 						$scope.model.options = {
-							responsive: true							
+							responsive: true
 						};
 					}
 
@@ -133,6 +122,61 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 
 			},
 			link: function($scope, $element, $attrs) {
+				function showInDesignChart() {
+					if ($scope.svyServoyapi.isInDesigner()) {
+						function capFirst(string) {
+							return string.charAt(0).toUpperCase() + string.slice(1);
+						}
+						// render the chart in form editor with some mocked data
+						var element = $element;
+						var c = document.createElement("div");
+						var t = document.createElement("h2")
+						t.style.textAlign = 'center'
+						var g = document.createElement("canvas");
+						g.style.width = '100%'
+						g.style.height = '100%'
+						g.style.position = 'absolute'
+						g.style.top = '25%'
+						t.innerHTML = capFirst($scope.model.type) + ' Chart' 
+						c.appendChild(t)
+						c.appendChild(g)
+						element.prepend(c)
+																								  
+						var ctx = g.getContext('2d');
+						var myChart = new Chart(ctx, {
+									type: $scope.model.type,
+									data: {
+										labels: ["R", "B", "Y", "G", "P", "O"],
+										datasets: [{
+											label: 'Chart JS Component',
+											data: [12, 19, 3, 5, 2, 3],
+											backgroundColor: ['rgba(255, 99, 132, 0.2)',
+											'rgba(54, 162, 235, 0.2)',
+											'rgba(255, 206, 86, 0.2)',
+											'rgba(75, 192, 192, 0.2)',
+											'rgba(153, 102, 255, 0.2)',
+											'rgba(255, 159, 64, 0.2)'],
+											borderColor: ['rgba(255,99,132,1)',
+											'rgba(54, 162, 235, 1)',
+											'rgba(255, 206, 86, 1)',
+											'rgba(75, 192, 192, 1)',
+											'rgba(153, 102, 255, 1)',
+											'rgba(255, 159, 64, 1)'],
+											borderWidth: 1
+										}]
+									},
+									options: {
+										legend: { display: false },
+										responsive: true
+									}
+								});
+					}
+				}
+
+				setTimeout(function() {
+						showInDesignChart()
+					}, 500);
+
 				//return legend
 				$scope.api.generateLegend = function() {
 					if ($scope.model.chart) {
