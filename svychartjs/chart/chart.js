@@ -21,13 +21,11 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 						var element = $element;
 						$element.empty()
 						var c = document.createElement("div");
-						var t = document.createElement("h2")
+						var t = document.createElement("h3")
 						t.style.textAlign = 'center'
 						var g = document.createElement("canvas");
-						g.style.width = '100%'
-						g.style.height = '100%'
-						g.style.position = 'absolute'
-						g.style.top = '25%'
+						c.style.width = 'auto'
+						c.style.height = 'auto'
 						t.innerHTML = capFirst($scope.model.type) + ' Chart'
 						c.appendChild(t)
 						c.appendChild(g)
