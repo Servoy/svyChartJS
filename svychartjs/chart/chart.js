@@ -17,6 +17,9 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 						function capFirst(string) {
 							return string.charAt(0).toUpperCase() + string.slice(1);
 						}
+						if (!$scope.model.type) {
+							$scope.model.type = 'pie'
+						}
 						// render the chart in form editor with some mocked data
 						var element = $element;
 						$element.empty()
@@ -40,29 +43,101 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 							'#B276B2',
 							'#DECF3F',
 							'#F15854',
-							'#4D4D4D'];											
-						
+							'#4D4D4D'];
+
 						var ctx = g.getContext('2d');
-						var myChart = new Chart(ctx, {
+
+						if ($scope.model.type == 'scatter') {
+							var options = {
+								legend: false,
+								tooltips: false,
+								responsive: true
+							};
+
+							var data = {
+								datasets: [{
+									label: "My First dataset",
+									borderColor: "red",
+									backgroundColor: "red",
+									data: [{ x: Math.random() * 100, y: Math.random() * 100 }, { x: Math.random() * 100, y: Math.random() * 100 }, { x: Math.random() * 100, y: Math.random() * 100 }, { x: Math.random() * 100, y: Math.random() * 100 }]
+								}, {
+									label: "My Second dataset",
+									borderColor: "blue",
+									backgroundColor: "blue",
+									data: [{ x: Math.random() * 100, y: Math.random() * 100 }, { x: Math.random() * 100, y: Math.random() * 100 }, { x: Math.random() * 100, y: Math.random() * 100 }, { x: Math.random() * 100, y: Math.random() * 100 }]
+								}]
+							}
+							new Chart(ctx, {
 									type: $scope.model.type,
-									data: {
-										labels: ["R", "B", "Y", "G", "P", "O"],
-										datasets: [{
-											label: 'Chart JS Component',
-											data: [12, 19, 3, 5, 2, 3],
-											backgroundColor: (typeof $scope.model.backgroundColor === 'undefined') ? color_scheme : $scope.model.backgroundColor,
-											borderColor: $scope.model.borderColor,
-											borderWidth: $scope.model.borderWidth,
-											hoverBackgroundColor: $scope.model.hoverBackgroundColor,
-											hoverBorderColor: $scope.model.hoverBorderColor,
-											hoverBorderWidth: $scope.model.hoverBorderWidth,
-										}]
-									},
-									options: {
-										legend: { display: false },
-										responsive: true
-									}
+									data: data,
+									options: options
 								});
+							return;
+						}
+
+						if ($scope.model.type == 'bubble') {
+
+							var DATA_COUNT = 16;
+							var MIN_XY = -150;
+							var MAX_XY = 100;
+
+							function generateData() {
+								var data = [];
+								var i;
+
+								for (i = 0; i < DATA_COUNT; ++i) {
+									data.push({
+										x: Math.floor(Math.random() * MIN_XY) + MAX_XY,
+										y: Math.floor(Math.random() * MIN_XY) + MAX_XY,
+										v: Math.floor(Math.random() * 1000) + 0
+									});
+								}
+
+								return data;
+							}
+
+							var data = {
+								datasets: [{
+									data: generateData()
+								}, {
+									data: generateData()
+								}]
+							};
+
+							var options = {
+								legend: false,
+								tooltips: false,
+								responsive: true
+							};
+
+							new Chart(ctx, {
+									type: $scope.model.type,
+									data: data,
+									options: options
+								});
+							return;
+						}
+
+						new Chart(ctx, {
+								type: $scope.model.type,
+								data: {
+									labels: ["R", "B", "Y", "G", "P", "O"],
+									datasets: [{
+										label: 'Chart JS Component',
+										data: [12, 19, 3, 5, 2, 3],
+										backgroundColor: (typeof $scope.model.backgroundColor === 'undefined') ? color_scheme : $scope.model.backgroundColor,
+										borderColor: $scope.model.borderColor,
+										borderWidth: $scope.model.borderWidth,
+										hoverBackgroundColor: $scope.model.hoverBackgroundColor,
+										hoverBorderColor: $scope.model.hoverBorderColor,
+										hoverBorderWidth: $scope.model.hoverBorderWidth,
+									}]
+								},
+								options: {
+									legend: { display: false },
+									responsive: true
+								}
+							});
 					}
 				}
 
@@ -176,7 +251,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 				}
 
 			},
-			link: function($scope, $element, $attrs) {				
+			link: function($scope, $element, $attrs) {
 
 				//return legend
 				$scope.api.generateLegend = function() {
