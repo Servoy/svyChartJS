@@ -20,7 +20,12 @@
 				"label"] 
 		},
 		"legendLabel" : {"type":"dataprovider"},
-		"backgroundColor" : {"type":"dataprovider"}, 
+		"backgroundColor" : {"type":"dataprovider"},
+		"backgroundColorScheme" : {
+			"type" : "string", 
+			"values" : ["default_color_scheme","facebook","bootstrap","space_gray","cappuccino","beach","blues","metro","turquoise_shades","retro","pastel_rainbow","pwc_corp","sage_cream","pink_shades","craftsman","minimal_fire","modern_1","modern_2","modern_3","modern_muted"],
+			"default" : "default_color_scheme"
+		}, 
 		"borderColor":{"type":"dataprovider"}, 
 		"borderWidth":{"type":"dataprovider"},
 		"hoverBackgroundColor":{"type":"dataprovider"},
