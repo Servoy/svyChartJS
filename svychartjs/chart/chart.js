@@ -11,6 +11,17 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 
 				function getColorScheme(type) {
 					switch (type) {
+					case 'default_color_scheme':
+						return ['#5DA5DA',
+						'#FAA43A',
+						'#60BD68',
+						'#F17CB0',
+						'#B2912F',
+						'#B276B2',
+						'#DECF3F',
+						'#F15854',
+						'#4D4D4D']
+						break;
 					case 'facebook':
 						return ['#3b5998',
 						'#8b9dc3',
@@ -191,9 +202,9 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 							'#DECF3F',
 							'#F15854',
 							'#4D4D4D'];
-						
+
 						if ($scope.model.backgroundColorScheme) {
-							color_scheme = getColorScheme($scope.model.backgroundColorScheme) 
+							color_scheme = getColorScheme($scope.model.backgroundColorScheme)
 						}
 
 						var ctx = g.getContext('2d');
@@ -336,11 +347,11 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 						setupData();
 						showInDesignChart()
 					});
-				
+
 				$scope.$watch('model.backgroundColorScheme', function(newValue) {
-					setupData();
-					showInDesignChart()
-				});
+						setupData();
+						showInDesignChart()
+					});
 
 				$scope.$watch('model.foundset.serverSize', function(newValue) {
 						if ($scope.model.source == 'foundset') {
@@ -384,9 +395,9 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 						'#DECF3F',
 						'#F15854',
 						'#4D4D4D'];
-					
+
 					if ($scope.model.backgroundColorScheme) {
-						color_scheme = getColorScheme($scope.model.backgroundColorScheme) 
+						color_scheme = getColorScheme($scope.model.backgroundColorScheme)
 					}
 
 					var dataset = {
