@@ -1,21 +1,14 @@
 /**
  * @properties={typeid:35,uuid:"AEF17259-399E-43C3-9B7D-31AA3C6CA9EB",variableType:-4}
  */
-var modernCombo = ['#99b898',
-	'#feceab',
-	'#ff847c',
-	'#e84a5f',
-	'#2a363b',
-	'#192425',
-	'#d2aa6b',
-	'#fd9418',
-	'#475758',
-	'#2b6c8c', 
-	'#d75c37',
-	'#67727a',
-	'#6991ac',
-	'#c3d7df',
-	'#f5f5f5']
+var prodin = [
+	'#F9A110',
+	'#4880FF',
+	'#76BB29',
+	'#741010',
+	'#92A2B5',
+	'#BFC5D4',
+	'#BFC5D4']
 
 /**
  * @properties={typeid:35,uuid:"F740F4CE-E47E-4194-9790-4BF235A188AB",variableType:-4}
