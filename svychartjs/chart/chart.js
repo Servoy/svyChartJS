@@ -466,6 +466,15 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 								fn += '"' + obj.params[j] + '"';
 								fn += ',';
 							}
+							try {
+								//fix for using custom plugins server side
+								var fn2 = fn.toString();
+								fn2 += '"' + obj.expression + '")()';
+								if (eval(fn2)) {
+									return;
+								}
+							} catch (e) {
+							}
 							fn += '"' + obj.expression + '")';
 							return eval(fn);
 						}
