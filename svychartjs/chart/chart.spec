@@ -6,7 +6,7 @@
 	"serverscript": "svychartjs/chart/chart_server.js",
 	"libraries": [{
 			"name": "Chart.js",
-			"version": "2.7.1",
+			"version": "2.7.2",
 			"url": "svychartjs/lib/js/Chart.js",
 			"mimetype": "text/javascript"
 		}],
