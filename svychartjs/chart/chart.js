@@ -524,7 +524,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 					if (!canvas) return;
 					var ctx = canvas.getContext("2d");
 
-					var parent = canvas.parentNode.parentNode;
+					var parent = canvas.offsetParent
 					canvas.width = parent.offsetWidth;
 					canvas.height = parent.offsetHeight;
 
