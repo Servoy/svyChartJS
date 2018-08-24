@@ -1,8 +1,8 @@
-/** 
+/**
  * ChartJS Demo plugins
  * Client side only objects that can be registered as a ChartJS plugin
  */
- 
+
 /**
  * @type {Object}
  * Declared in place of Chart object to hide warnings.
@@ -105,16 +105,16 @@ var demoPlugin2 = {
 	},
 	afterDraw: function(chart, easing) {
 		if (chart.config.options.showAllTooltips) {
-			// we don't want the permanent tooltips to animate, so don't do anything till the animation runs atleast once
+			// we don't want the permanent tooltips to animate, so don't do anything till the animation runs at least once
 			if (!chart.allTooltipsOnce) {
 				if (easing !== 1)
 					return;
 				chart.allTooltipsOnce = true;
 			}
-					
+
 			// turn on tooltips
 			chart.options.tooltips.enabled = true;
-			Chart['helpers'].each(chart.pluginTooltips, function(tooltip) {				
+			Chart['helpers'].each(chart.pluginTooltips, function(tooltip) {
 					tooltip.initialize();
 					tooltip.update();
 					// we don't actually need this since we are not animating tooltips
@@ -125,4 +125,41 @@ var demoPlugin2 = {
 		}
 	}
 
+}
+
+/**
+ * @properties={typeid:35,uuid:"C9F5E9AE-FEB2-4A5D-A953-C4B0FA12BE31",variableType:-4}
+ */
+var demoPlugin3 = {
+	id: 'demo_plugin_3',
+	afterDatasetsDraw: function(chart) {
+		if (!chart.config.options.showDatapoints) return;
+		var ctx = chart.ctx;
+
+		chart.data.datasets.forEach(function(dataset, i) {
+			var meta = chart.getDatasetMeta(i);
+			if (!meta['hidden']) {
+				meta['data'].forEach(function(element, index) {
+					// Draw the text in black, with the specified font
+					ctx.fillStyle = 'rgb(0, 0, 0)';
+
+					var fontSize = 16;
+					var fontStyle = 'normal';
+					var fontFamily = 'Helvetica Neue';
+					ctx.font = Chart['helpers'].fontString(fontSize, fontStyle, fontFamily);
+
+					// Just naively convert to string for now
+					var dataString = dataset.data[index].toString();
+
+					// Make sure alignment settings are correct
+					ctx.textAlign = 'center';
+					ctx.textBaseline = 'middle';
+
+					var padding = 5;
+					var position = element.tooltipPosition();
+					ctx['fillText'](dataString, position['x'], position['y'] - (fontSize / 2) - padding);
+				});
+			}
+		});
+	}
 }

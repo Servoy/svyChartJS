@@ -68,6 +68,13 @@ typeid:15,
 uuid:"90A4EAB7-B22F-4EC7-B141-B950FBE53550"
 },
 {
+containsFormID:"E0CAEE7A-1D2D-4303-96DE-592A834C8E06",
+location:"372,455",
+text:"Custom Plugin 3",
+typeid:15,
+uuid:"9DCD11BC-0D8A-44B3-9D1B-721FEEB641A3"
+},
+{
 containsFormID:"664130BB-6190-47EE-A927-BAA985182CD3",
 location:"82,206",
 text:"Bar-Line Combo",
