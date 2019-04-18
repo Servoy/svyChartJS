@@ -8,6 +8,7 @@
 		<project>exampleUI</project>
 		<project>svyMicroSamples</project>
 		<project>svychartjs</project>
+		<project>12grid</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
