@@ -9,6 +9,16 @@
 			"version": "2.7.2",
 			"url": "svychartjs/lib/js/Chart.js",
 			"mimetype": "text/javascript"
+		},{
+			"name": "pieoutlabels.js",
+			"version": "0.0.1",
+			"url": "svychartjs/lib/js/chartjs-plugin-piechart-outlabels.js",
+			"mimetype": "text/javascript"
+		},{
+			"name": "funnelchart.js",
+			"version": "0.0.1",
+			"url": "svychartjs/lib/js/chart.funnel.js",
+			"mimetype": "text/javascript"
 		}],
 	"model": 
 	{
@@ -59,7 +69,7 @@
 		},
 		"type" : {
 			"type" : "string", 
-			"values" : [{"BAR":"bar"},{"BUBBLE":"bubble"},{"DOUGHNUT":"doughnut"},{"HORIZONTAL BAR":"horizontalBar"},{"LINE":"line"},{"PIE":"pie"},{"POLAR AREA":"polarArea"},{"RADAR":"radar"},{"SCATTER":"scatter"}],
+			"values" : [{"BAR":"bar"},{"BUBBLE":"bubble"},{"DOUGHNUT":"doughnut"},{"HORIZONTAL BAR":"horizontalBar"},{"LINE":"line"},{"PIE":"pie"},{"POLAR AREA":"polarArea"},{"RADAR":"radar"},{"SCATTER":"scatter"},{"FUNNEL":"funnel"}],
 			"default" : "pie"
 		}
 	},
