@@ -36,6 +36,9 @@ function onShow(firstShow, event) {
 		}
 	}
 	var options = {
+		plugins: {
+			outlabels: false
+		},
 		responsive: false,
 		scale: {
 			reverse: true,

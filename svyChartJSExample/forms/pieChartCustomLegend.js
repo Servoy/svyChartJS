@@ -28,6 +28,9 @@ function onShow(firstShow, event) {
 	}
 
 	var options = {
+		plugins: {
+			outlabels: false
+		},
 		title:{
 			display:true,
 			text:'Pie Chart with a Custom Legend'

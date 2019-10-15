@@ -61,6 +61,13 @@ typeid:15,
 uuid:"55849BE5-DE0D-416D-A70E-BAF9ACC74973"
 },
 {
+containsFormID:"7FBEC311-34A1-4F10-A15D-F6B612585820",
+location:"407,470",
+text:"Funnel",
+typeid:15,
+uuid:"84D34676-3544-423F-AD97-32049A1C5BF6"
+},
+{
 containsFormID:"05FBE711-A836-4D21-98A6-298282A78047",
 location:"216,333",
 text:"Custom Plugin 1",

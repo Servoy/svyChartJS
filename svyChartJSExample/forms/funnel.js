@@ -6,11 +6,11 @@
  *
  * @protected
  *
- * @properties={typeid:24,uuid:"D9F698EF-3BD4-4826-A2AF-1764C3D9B505"}
+ * @properties={typeid:24,uuid:"1DAC7D01-495E-4664-9DB6-148D363CEC94"}
  */
 function onShow(firstShow, event) {
 	var data = {
-		type: 'pie',
+		type: 'funnel',
 		data: {
 			labels: ["Red",
 			"Green",
@@ -28,26 +28,12 @@ function onShow(firstShow, event) {
 	}
 
 	var options = {
-		layout: { padding: 100 },
-		plugins: {
-			outlabels: {
-				text: '%l %p',
-				textAlign: "center",
-				color: 'white',
-				stretch: 40,
-				font: {
-					resizable: true,
-					minSize: 12,
-					maxSize: 12
-				}
-			}
-		},
 		legend: {
 			display: false
 		},
 		title: {
 			display: true,
-			text: 'Pie Chart'
+			text: 'Funnel Chart'
 		},
 		tooltips: {
 			callbacks: {

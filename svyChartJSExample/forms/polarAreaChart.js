@@ -21,6 +21,9 @@ function onShow(firstShow, event) {
 		}
 	}
 	var options = {
+		plugins: {
+			outlabels: false
+		},
 		legend: {
             position: 'right',
         },

@@ -3,7 +3,7 @@
  *
  * @properties={typeid:24,uuid:"2200B80C-3038-4114-9ED6-A2C1CEC0550E"}
  */
-function onShow( event) {
+function onShow(event) {
 	//draw bar
 	var data = {
 		type: 'bar',
@@ -69,9 +69,14 @@ function onShow( event) {
 				"#46BFBD",
 				"#FDB45C"]
 			}]
-		}}
+		}
+	}
 
 	elements.donut_chart.setData(data);
+	elements.donut_chart.setOptions({
+		plugins: {
+			outlabels: false
+		}})
 
 	// draw line
 	data = {
@@ -144,18 +149,22 @@ function onShow( event) {
 				pointHoverBorderWidth: 2,
 				data: [28, 48, 40, 19, 86, 27, 90]
 			}]
-		}}
-	 options = {
-			responsive: false,
-			tooltips: {
-				mode: 'label'
-			},
-			elements: {
-				line: {
-					fill: false
-				}
+		}
+	}
+	options = {
+		plugins: {
+			outlabels: false
+		},
+		responsive: false,
+		tooltips: {
+			mode: 'label'
+		},
+		elements: {
+			line: {
+				fill: false
 			}
-		};
+		}
+	};
 	elements.line_chart.setData(data);
 	elements.line_chart.setOptions(options);
 	//draw linechart
@@ -193,18 +202,19 @@ function onShow( event) {
 				hoverBorderColor: "rgba(220,220,220,1)",
 				data: [28, 48, 40, 19, 86, 27, 90]
 			}]
-		}}
-		options = {
-			responsive: false,
-			scales: {
-				xAxes: [{
-					stacked: true
-				}],
-				yAxes: [{
-					stacked: true
-				}]
-			}
 		}
+	}
+	options = {
+		responsive: false,
+		scales: {
+			xAxes: [{
+				stacked: true
+			}],
+			yAxes: [{
+				stacked: true
+			}]
+		}
+	}
 
 	elements.stacked_chart.setData(data);
 	elements.stacked_chart.setOptions(options);

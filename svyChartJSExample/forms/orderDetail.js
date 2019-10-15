@@ -45,13 +45,11 @@ var color_scheme_2 = ['#4D4D4D',
 	'#F17CB0',
 	'#B2912F',
 	'#B276B2']
-	
+
 /**
  * @properties={typeid:35,uuid:"23CF66E1-7BEB-48B0-BD52-8C23F5DBD530",variableType:-4}
  */
 var backgroundColor = color_scheme_1;
-
-
 
 /**
  * Handle changed data, return false if the value should not be accepted. In NGClient you can return also a (i18n) string, instead of false, which will be shown as a tooltip.
@@ -71,7 +69,6 @@ function onDataChangeChartType(oldValue, newValue, event) {
 	return true
 }
 
-
 /**
  * @param {Number} dataset_index
  * @param {Number} index
@@ -90,4 +87,22 @@ function onClick(dataset_index, index, label, value) {
 	//	sync with order details foundset
 	orders_to_order_details.setSelectedIndex(fsIndex);
 
+}
+
+/**
+ * Callback method for when form is shown.
+ *
+ * @param {Boolean} firstShow form is shown first time after load
+ * @param {JSEvent} event the event that triggered the action
+ *
+ * @private
+ *
+ * @properties={typeid:24,uuid:"AFD1C338-043E-4F04-B5CC-45B8E9BFCD78"}
+ */
+function onShow(firstShow, event) {
+	elements.chart.setOptions({
+		plugins: {
+			outlabels: false
+		}
+	})
 }

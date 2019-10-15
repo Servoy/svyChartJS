@@ -254,6 +254,7 @@ valuelistID:"DD071E36-8A9A-44F1-8C89-612961FDE3E0"
 }
 ],
 name:"orderDetail",
+onShowMethodID:"AFD1C338-043E-4F04-B5CC-45B8E9BFCD78",
 showInMenu:true,
 size:"620,580",
 typeid:3,
