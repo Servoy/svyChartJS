@@ -541,6 +541,12 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 						$scope.model.options.responsive = true;
 						$scope.model.options.maintainAspectRatio = false;
 					}
+					
+					//disable outlabels plugins if not used
+					if (!$scope.model.options.plugins) {
+						$scope.model.options.plugins = { outlabels: false }
+					}
+					
 					$scope.model.chart = new Chart(ctx, {
 							type: x.type,
 							data: x.data,
