@@ -100,9 +100,4 @@ function onClick(dataset_index, index, label, value) {
  * @properties={typeid:24,uuid:"AFD1C338-043E-4F04-B5CC-45B8E9BFCD78"}
  */
 function onShow(firstShow, event) {
-	elements.chart.setOptions({
-		plugins: {
-			outlabels: false
-		}
-	})
 }

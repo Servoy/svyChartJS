@@ -73,10 +73,6 @@ function onShow(event) {
 	}
 
 	elements.donut_chart.setData(data);
-	elements.donut_chart.setOptions({
-		plugins: {
-			outlabels: false
-		}})
 
 	// draw line
 	data = {
@@ -152,9 +148,6 @@ function onShow(event) {
 		}
 	}
 	options = {
-		plugins: {
-			outlabels: false
-		},
 		responsive: false,
 		tooltips: {
 			mode: 'label'

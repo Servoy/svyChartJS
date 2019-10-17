@@ -28,9 +28,6 @@ function onShow(firstShow, event) {
 	}
 
 	var options = {	
-		plugins: {
-			outlabels: false
-		},
 		elements: {
 			center: {
 				// the longest text that could appear in the center

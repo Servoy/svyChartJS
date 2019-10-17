@@ -30,9 +30,6 @@ function onShow(firstShow, event) {
 		}
 	};
 	var options = {
-		plugins:{
-			outlabels:false
-		},
 		title: {
 			display: true,
 			text: 'Line Chart'
