@@ -200,6 +200,7 @@ module.exports = function (Chart) {
 					var arr = dataset[key];
 					if (dataset.hasOwnProperty(key) && Array.isArray(arr)) {
 						var sortedArr = arr.map((item, index) => {
+							if (dataPositions[index])
 							return arr[dataPositions[index].index];
 						});
 						dataset[key] = sortedArr;
