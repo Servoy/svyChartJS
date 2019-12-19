@@ -525,8 +525,8 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 					var ctx = canvas.getContext("2d");
 
 					var parent = canvas.offsetParent
-					canvas.width = parent.offsetWidth;
-					canvas.height = parent.offsetHeight;
+					canvas.width = parent ? parent.offsetWidth : 0;
+					canvas.height = parent ? parent.offsetHeight : 0;
 
 					//check if any of the options have callbacks and re-setup options object.
 					findFnInObj($scope.model.options);
