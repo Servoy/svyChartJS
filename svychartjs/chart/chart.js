@@ -480,7 +480,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 						}
 						//if value found is function, re set the key value for that option
 						for (var i in obj) {
-							if (obj.hasOwnProperty(i) && (typeof obj[i] !== 'string')) {
+							if (obj.hasOwnProperty(i) && obj[i] != null && (typeof obj[i] !== 'string')) {
 								var foundFunction = findFnInObj(obj[i]);
 								if (foundFunction) {
 									obj[i] = foundFunction;
