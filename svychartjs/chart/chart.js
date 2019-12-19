@@ -451,6 +451,12 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 					// update the chart if it already exists
 					if ($scope.model.chart) {
 						$scope.model.chart.update();
+					}	
+				}
+				
+				$scope.api.clearChart = function() {
+					if ($scope.model.chart) {
+						$scope.model.chart.clear();
 					}
 				}
 

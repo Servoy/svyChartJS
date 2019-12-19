@@ -87,11 +87,22 @@
     
 	"api": 
 	{
-		"generateLegend": {"returns":"string"},
-		"drawChart": {},
-		"refreshChart": {},
+		"generateLegend": { 
+			"delayUntilFormLoads": true,
+			"returns":"string" 
+		},
+		"clearChart": {
+			"delayUntilFormLoads": true
+		},
+		"drawChart": {
+			"delayUntilFormLoads": true
+		},
+		"refreshChart": {
+			"delayUntilFormLoads": true
+		},
 		"setPlugin": 
 		{
+			"delayUntilFormLoads": true,
 			"parameters": 
 			[
 				{
@@ -102,6 +113,7 @@
 		},
 		"setOptions": 
 		{
+			"delayUntilFormLoads": true,
 			"parameters": 
 			[
 				{
@@ -112,6 +124,7 @@
 		},
 		"setData": 
 		{
+			"delayUntilFormLoads": true,
 			"parameters": 
 			[
 				{
