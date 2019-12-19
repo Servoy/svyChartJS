@@ -537,7 +537,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 						element.style.height = '100%';
 					}
 					//by default we will use responsive charts
-					if (!$scope.model.options.responsive) {
+					if (!$scope.svyServoyapi.isInAbsoluteLayout()) {
 						$scope.model.options.responsive = true;
 						$scope.model.options.maintainAspectRatio = false;
 					}
