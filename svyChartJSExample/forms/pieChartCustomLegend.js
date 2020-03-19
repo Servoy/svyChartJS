@@ -49,7 +49,17 @@ function onShow(firstShow, event) {
 
 	elements.chart.setData(data);
 	elements.chart.setOptions(options);	
+	elements.legend.putClientProperty(APP_UI_PROPERTY.TRUST_DATA_AS_HTML, true);
+}
+
+/**
+ * @param {JSEvent} event
+ *
+ * @private
+ *
+ * @properties={typeid:24,uuid:"FA113B1A-A017-49D7-9B3A-F254A49540A0"}
+ */
+function onChartDrawn(event) {
 	//use custom legend html and store it to a label
 	elements.legend.text = elements.chart.generateLegend();
-	elements.legend.putClientProperty(APP_UI_PROPERTY.TRUST_DATA_AS_HTML, true);
 }

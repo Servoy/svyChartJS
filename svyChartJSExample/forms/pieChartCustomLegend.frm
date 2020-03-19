@@ -8,6 +8,7 @@ location:{
 x:5,
 y:6
 },
+onChartDrawn:"FA113B1A-A017-49D7-9B3A-F254A49540A0",
 size:{
 height:307,
 width:630

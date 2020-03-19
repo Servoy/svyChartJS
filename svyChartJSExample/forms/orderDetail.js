@@ -74,12 +74,13 @@ function onDataChangeChartType(oldValue, newValue, event) {
  * @param {Number} index
  * @param {string} label
  * @param {Number} value
+ * @param {JSEvent} event
  *
  * @private
  *
  * @properties={typeid:24,uuid:"C8507FD4-BC47-449E-9FCE-3ECE3BE36D20"}
  */
-function onClick(dataset_index, index, label, value) {
+function onClick(dataset_index, index, label, value, event) {
 
 	// record index that was clicked
 	var fsIndex = index + 1;
