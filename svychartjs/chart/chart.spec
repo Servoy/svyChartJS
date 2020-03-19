@@ -75,15 +75,19 @@
 	},
 	
 	"handlers": {
-      "onClick" : {
-        "parameters" : [
-            { "name" : "dataset_index", "type" : "int" },
-            { "name" : "index", "type" : "int" },
-            { "name" : "label", "type" : "string" },
+		"onClick" : {
+	        "parameters" : [
+	            { "name" : "dataset_index", "type" : "int" },
+	            { "name" : "index", "type" : "int" },
+	            { "name" : "label", "type" : "string" },
 	            { "name" : "value", "type" : "int" },
 	            { "name" : "event", "type" : "JSEvent" }
-        ]
-}
+	        ]
+		},
+		"onChartDrawn" : {
+			"parameters" : [
+	        ]
+		}
     },
     
 	"api": 

@@ -557,8 +557,11 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 							type: x.type,
 							data: x.data,
 							options: $scope.model.options
-
 						});
+					
+					if ($scope.handlers.onChartDrawn) {
+						$scope.handlers.onChartDrawn();
+					}
 				}
 
 				//if the data is updated (re)draw chart
