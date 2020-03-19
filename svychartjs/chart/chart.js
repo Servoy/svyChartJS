@@ -588,7 +588,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 					var label = $scope.model.chart.data.labels[selected._index];
 					var value = $scope.model.chart.data.datasets[selected._datasetIndex].data[selected._index];
 					if ($scope.handlers.onClick) {
-						$scope.handlers.onClick(datasetIndex, selected._index, label, value);
+						$scope.handlers.onClick(datasetIndex, selected._index, label, value, e);
 					}
 				}
 
