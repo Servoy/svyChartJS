@@ -1,6 +1,7 @@
 {
 	"name": "svychartjs-chart",
 	"displayName": "chart",
+	"categoryName": "Visualization",
 	"version": 1,
 	"definition": "svychartjs/chart/chart.js",
 	"serverscript": "svychartjs/chart/chart_server.js",
