@@ -1,8 +1,9 @@
 {
 	"name": "svychartjs-chart",
-	"displayName": "chart",
+	"displayName": "Chart",
 	"categoryName": "Visualization",
 	"version": 1,
+	"icon": "svychartjs/chart/icon.png",
 	"definition": "svychartjs/chart/chart.js",
 	"serverscript": "svychartjs/chart/chart_server.js",
 	"libraries": [{
