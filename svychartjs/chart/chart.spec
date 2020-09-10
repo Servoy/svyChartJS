@@ -139,6 +139,11 @@
 					"type": "object"
 				}
 			]
+		},
+		"getChartAsImage":
+		{
+			"delayUntilFormLoads": true,
+			"returns": "string"
 		}
 	}
 }

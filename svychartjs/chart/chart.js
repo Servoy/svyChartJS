@@ -442,6 +442,13 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 						return $scope.model.chart.generateLegend();
 					}
 				}
+				
+				//return image as bass64
+				$scope.api.getChartAsImage = function() {
+					if ($scope.model.chart) {
+						return $scope.model.chart.toBase64Image();
+					}
+				}
 
 				//refresh the chart (if options updated)
 				$scope.api.refreshChart = function() {
@@ -453,7 +460,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 						$scope.model.chart.update();
 					}	
 				}
-				
+	
 				$scope.api.clearChart = function() {
 					if ($scope.model.chart) {
 						$scope.model.chart.clear();
