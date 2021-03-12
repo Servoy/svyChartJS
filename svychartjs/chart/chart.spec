@@ -21,6 +21,11 @@
 			"version": "0.0.1",
 			"url": "svychartjs/lib/js/chart.funnel.js",
 			"mimetype": "text/javascript"
+		},{
+			"name": "treemap.js",
+			"version": "0.2.3",
+			"url": "svychartjs/lib/js/Chart.treemap.js",
+			"mimetype": "text/javascript"
 		}],
 	"model": 
 	{
@@ -71,7 +76,7 @@
 		},
 		"type" : {
 			"type" : "string", 
-			"values" : [{"BAR":"bar"},{"BUBBLE":"bubble"},{"DOUGHNUT":"doughnut"},{"HORIZONTAL BAR":"horizontalBar"},{"LINE":"line"},{"PIE":"pie"},{"POLAR AREA":"polarArea"},{"RADAR":"radar"},{"SCATTER":"scatter"},{"FUNNEL":"funnel"}],
+			"values" : [{"BAR":"bar"},{"BUBBLE":"bubble"},{"DOUGHNUT":"doughnut"},{"HORIZONTAL BAR":"horizontalBar"},{"LINE":"line"},{"PIE":"pie"},{"POLAR AREA":"polarArea"},{"RADAR":"radar"},{"SCATTER":"scatter"},{"FUNNEL":"funnel"},{"TREEMAP":"treemap"}],
 			"default" : "pie"
 		}
 	},

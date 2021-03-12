@@ -5,6 +5,13 @@ items:[
 extendsID:"2A5F4A4C-AB7B-4911-B94F-34313023357A",
 items:[
 {
+containsFormID:"77F951EC-65FA-4D1F-936E-D3F4E5F9A18C",
+location:"442,485",
+text:"treemap",
+typeid:15,
+uuid:"08254882-7E0F-403B-A853-97BE5B35BF03"
+},
+{
 containsFormID:"A0EBB72D-85D8-4BB9-85B9-54CD44A642F9",
 location:"302,425",
 text:"Stacked Bar",

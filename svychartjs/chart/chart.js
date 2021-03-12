@@ -478,11 +478,11 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 							for (var j = 0; j < obj.params.length; j++) {
 								fn += '"' + obj.params[j] + '"';
 								fn += ',';
-							}
+							}							
 							try {
 								//fix for using custom plugins server side
 								var fn2 = fn.toString();
-								fn2 += '"' + obj.expression + '")()';
+								fn2 += '"' + obj.expression + '")()';								
 								if (eval(fn2)) {
 									return;
 								}
@@ -494,7 +494,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 						//if value found is function, re set the key value for that option
 						for (var i in obj) {
 							if (obj.hasOwnProperty(i) && obj[i] != null && (typeof obj[i] !== 'string')) {
-								var foundFunction = findFnInObj(obj[i]);
+								var foundFunction = findFnInObj(obj[i]);								
 								if (foundFunction) {
 									obj[i] = foundFunction;
 								}
@@ -531,6 +531,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 					}
 
 					var x = JSON.parse(str);
+					findFnInObj(x);
 					$scope.model.options.onClick = handleClick;
 					var element = document.getElementById($scope.model.svyMarkupId + '-wrapper');
 					var canvas = document.getElementById($scope.model.svyMarkupId);
