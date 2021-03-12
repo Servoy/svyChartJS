@@ -11,10 +11,7 @@
 function onShow(firstShow, event) {
 	var data = {
 		type: 'treemap',
-		data: {
-			labels: ["Red",
-			"Green",
-			"Yellow"],
+		data: {			
 			datasets: [{
 				label: 'Basic treemap',
 	            tree: [6,6,5,4,3,2,2,1],
@@ -30,8 +27,6 @@ function onShow(firstShow, event) {
 			}]
 		}
 	}
-
-	//	return colorFromValue(ctx.dataset.data[ctx.dataIndex].v);
 
 	var options = {
 		legend: {
