@@ -9,6 +9,11 @@
  * @properties={typeid:24,uuid:"4103590E-5A61-4831-ACEB-03EF42EF5DF9"}
  */
 function onShow(firstShow, event) {
+	var bgExpression =  "if(ctx.dataset.data[ctx.dataIndex])";
+		bgExpression += "{var value = ctx.dataset.data[ctx.dataIndex].v;}";
+		bgExpression += "else{alpha = 1;}; var alpha = (value + 3) / 10;";
+		bgExpression += "return Color('blue').alpha(alpha).rgbString();";
+		
 	var data = {
 		type: 'treemap',
 		data: {			
@@ -22,7 +27,7 @@ function onShow(firstShow, event) {
 				backgroundColor: {
 					isFunction: true,
 					params: ['ctx'],
-					expression: "if(ctx.dataset.data[ctx.dataIndex]) {var value = ctx.dataset.data[ctx.dataIndex].v;}else{alpha = 1;}; var alpha = (value + 3) / 10; return Color('blue').alpha(alpha).rgbString();"
+					expression: bgExpression
 				}
 			}]
 		}
