@@ -26,6 +26,11 @@
 			"version": "0.2.3",
 			"url": "svychartjs/lib/js/Chart.treemap.js",
 			"mimetype": "text/javascript"
+		},{
+			"name": "Chart.datalabel.js",
+			"version": "2.0.0",
+			"url": "svychartjs/lib/js/Chart.datalabel.js",
+			"mimetype": "text/javascript"
 		}],
 	"model": 
 	{

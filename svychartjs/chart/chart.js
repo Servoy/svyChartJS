@@ -442,7 +442,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 						return $scope.model.chart.generateLegend();
 					}
 				}
-				
+
 				//return image as bass64
 				$scope.api.getChartAsImage = function() {
 					if ($scope.model.chart) {
@@ -458,9 +458,9 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 					// update the chart if it already exists
 					if ($scope.model.chart) {
 						$scope.model.chart.update();
-					}	
+					}
 				}
-	
+
 				$scope.api.clearChart = function() {
 					if ($scope.model.chart) {
 						$scope.model.chart.clear();
@@ -478,11 +478,11 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 							for (var j = 0; j < obj.params.length; j++) {
 								fn += '"' + obj.params[j] + '"';
 								fn += ',';
-							}							
+							}
 							try {
 								//fix for using custom plugins server side
 								var fn2 = fn.toString();
-								fn2 += '"' + obj.expression + '")()';								
+								fn2 += '"' + obj.expression + '")()';
 								if (eval(fn2)) {
 									return;
 								}
@@ -494,7 +494,7 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 						//if value found is function, re set the key value for that option
 						for (var i in obj) {
 							if (obj.hasOwnProperty(i) && obj[i] != null && (typeof obj[i] !== 'string')) {
-								var foundFunction = findFnInObj(obj[i]);								
+								var foundFunction = findFnInObj(obj[i]);
 								if (foundFunction) {
 									obj[i] = foundFunction;
 								}
@@ -555,18 +555,28 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 						$scope.model.options.responsive = true;
 						$scope.model.options.maintainAspectRatio = false;
 					}
-					
+
 					//disable outlabels plugins if not used
+					var chrtplugins = [];
 					if (!$scope.model.options.plugins) {
 						$scope.model.options.plugins = { outlabels: false }
+					} else {
+						if ($scope.model.options.plugins.outlabels) {
+							$scope.model.options.plugins.datalabels = false;
+						}
+						if ($scope.model.options.plugins.datalabels) {
+							chrtplugins.push(ChartDataLabels)
+							$scope.model.options.plugins.outlabels = false;
+						}
 					}
-					
+
 					$scope.model.chart = new Chart(ctx, {
+							plugins:chrtplugins,
 							type: x.type,
 							data: x.data,
 							options: $scope.model.options
 						});
-					
+
 					if ($scope.handlers.onChartDrawn) {
 						$scope.handlers.onChartDrawn();
 					}

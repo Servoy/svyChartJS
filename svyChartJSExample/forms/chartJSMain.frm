@@ -7,7 +7,7 @@ items:[
 {
 containsFormID:"77F951EC-65FA-4D1F-936E-D3F4E5F9A18C",
 location:"442,485",
-text:"treemap",
+text:"Treemap",
 typeid:15,
 uuid:"08254882-7E0F-403B-A853-97BE5B35BF03"
 },
@@ -108,6 +108,13 @@ location:"144,272",
 text:"Line",
 typeid:15,
 uuid:"DA0BA1E7-9742-4A4B-B34E-55FE416F44E4"
+},
+{
+containsFormID:"997E4F10-820E-4F28-874F-C1925D681CBD",
+location:"477,500",
+text:"Data Labels",
+typeid:15,
+uuid:"DAEAF8F6-94A5-4678-B6AB-469069FFABCE"
 },
 {
 containsFormID:"858B2A94-1D04-4EFE-A6A6-02EF24F43565",
