@@ -10,7 +10,7 @@
  * @properties={typeid:24,uuid:"55BDDBC0-BF00-40FB-9F66-03C8AFB8BA06"}
  */
 function onShow(firstShow, event) {
-	var DATA_COUNT = 8;
+	var DATA_COUNT = 10;
 	var labels = [];
 
 	for (var i = 0; i < DATA_COUNT; ++i) {
@@ -97,6 +97,11 @@ function onShow(firstShow, event) {
 			line: {
 				fill: false
 			}
+		},
+		tooltips: {
+			  isFunction: true,
+		      params: ['tooltipItem', 'data'],
+		      expression: "return ''"
 		},
 		scales: {
 			yAxes: [{
