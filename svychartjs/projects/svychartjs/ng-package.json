@@ -1,0 +1,14 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/servoy/svychartjs",
+     "assets": [
+    ],
+  "lib": {
+    "entryFile": "src/public-api.ts",
+    "umdId": "servoy.svychartjs",
+    "umdModuleIds": {
+      "@servoy/public": "servoy.public",
+      "@angular/core": "angular.core"
+    }
+  }
+}
