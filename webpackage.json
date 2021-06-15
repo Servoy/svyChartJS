@@ -16,6 +16,7 @@
         {"version": "1.0.3","url": "https://github.com/Servoy/svyChartJS/releases/download/v1.0.3/svychartjs.zip","servoy-version":"8.1.1"},
         {"version": "1.0.4","url": "https://github.com/Servoy/svyChartJS/releases/download/v1.0.4/svychartjs.zip","servoy-version":"8.1.1"},
         {"version": "1.0.5","url": "https://github.com/Servoy/svyChartJS/releases/download/v1.0.5/svychartjs.zip","servoy-version":"8.1.1"},
-        {"version": "1.0.6","url": "https://github.com/Servoy/svyChartJS/releases/download/v1.0.6/svychartjs.zip","servoy-version":"8.1.1"}
+        {"version": "1.0.6","url": "https://github.com/Servoy/svyChartJS/releases/download/v1.0.6/svychartjs.zip","servoy-version":"8.1.1"},
+        {"version": "1.0.7","url": "https://github.com/Servoy/svyChartJS/releases/download/v1.0.7/svychartjs.zip","servoy-version":"2021.3"}
     ]
 }
