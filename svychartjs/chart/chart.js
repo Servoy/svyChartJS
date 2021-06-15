@@ -599,17 +599,25 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 
 				//handle click events.
 				function handleClick(e) {
+					try{
 					var activePoints = $scope.model.chart.getElementsAtEvent(e);
-					var dataset = $scope.model.chart.getDatasetAtEvent(e);
+					var dataset = $scope.model.chart.getDatasetAtEvent(e);					
 					if (!dataset[0]) return;
 					//get selected dataset index (helps distinguish between multiple datasets)
-					var datasetIndex = dataset[0]._datasetIndex;
+					var datasetIndex = dataset[0]._datasetIndex;					
 					var selected = activePoints[datasetIndex];
+					if (!selected) {
+						//try the first index if we don't have the proper index
+						selected = activePoints[0];
+					}					
 					if (!selected) return;
 					var label = $scope.model.chart.data.labels[selected._index];
 					var value = $scope.model.chart.data.datasets[selected._datasetIndex].data[selected._index];
 					if ($scope.handlers.onClick) {
 						$scope.handlers.onClick(datasetIndex, selected._index, label, value, e);
+					}
+					} catch(e){
+//						console.log(e);
 					}
 				}
 
