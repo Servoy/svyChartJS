@@ -568,6 +568,13 @@ angular.module('svychartjsChart', ['servoy']).directive('svychartjsChart', funct
 							chrtplugins.push(ChartDataLabels)
 							$scope.model.options.plugins.outlabels = false;
 						}
+						// support any custom inline plugins
+						Object.keys($scope.model.options.plugins)
+							.map(function (key) {
+								if (['datalabels', 'outlabels'].indexOf(key) === -1) {
+									chrtplugins.push($scope.model.options.plugins[key]);
+								}
+							});
 					}
 
 					$scope.model.chart = new Chart(ctx, {
