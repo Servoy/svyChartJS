@@ -66,8 +66,8 @@ function onShow(firstShow, event) {
 	}
 
 	var plugin = {
-		id: scopes.chartPlugins.demoPlugin3.id,
-		afterDatasetsDraw: { isFunction: true, params: ['chart'], expression: scopes.stringUtils.fnToString(scopes.chartPlugins.demoPlugin3.afterDatasetsDraw) }
+		id: 'demo_plugin_3',
+		afterDatasetsDraw: { isFunction: true, params: ['chart'], expression: scopes.stringUtils.fnToString('chartPlugins','demoPlugin3_afterDatasetsDraw') }
 	}
 
 	elements.chart.setPlugin(plugin);	
