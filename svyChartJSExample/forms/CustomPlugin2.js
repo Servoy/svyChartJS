@@ -58,8 +58,8 @@ function onShow(firstShow, event) {
 //	Plugin that allows all tooltips to appear and stay active at once
 	var plugin = {
 		id: 'demo_plugin_2',
-		beforeRender: { isFunction: true, params: ['chart'], expression: scopes.stringUtils.fnToString('chartPlugins','demoPlugin2_beforeRender') },
-		afterDraw: { isFunction: true, params: ['chart', 'easing'], expression: scopes.stringUtils.fnToString('chartPlugins','demoPlugin2_afterDraw') }
+		beforeRender: { isFunction: true, params: ['chart'], expression: scopes.stringUtils.globalFnToString('chartPlugins','demoPlugin2_beforeRender') },
+		afterDraw: { isFunction: true, params: ['chart', 'easing'], expression: scopes.stringUtils.globalFnToString('chartPlugins','demoPlugin2_afterDraw') }
 	}
 
 	elements.chart.setPlugin(plugin);
