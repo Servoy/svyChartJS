@@ -54,8 +54,8 @@ function onShow(firstShow, event) {
 
 	var plugin = {
 		id: 'demo_plugin',
-		afterUpdate: { isFunction: true, params: ['chart'], expression: scopes.stringUtils.fnToString('chartPlugins','demoPlugin1_afterUpdate') },
-		afterDraw: { isFunction: true, params: ['chart'], expression: scopes.stringUtils.fnToString('chartPlugins','demoPlugin1_afterDraw') }
+		afterUpdate: { isFunction: true, params: ['chart'], expression: scopes.stringUtils.globalFnToString('chartPlugins','demoPlugin1_afterUpdate') },
+		afterDraw: { isFunction: true, params: ['chart'], expression: scopes.stringUtils.globalFnToString('chartPlugins','demoPlugin1_afterDraw') }
 	}
 
 	elements.chart.setPlugin(plugin);
