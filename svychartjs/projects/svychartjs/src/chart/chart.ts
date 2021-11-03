@@ -31,7 +31,7 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
     @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
     @ViewChild('element', { static: true }) elementRef: ElementRef<HTMLDivElement>;
 
-    public dataset: ChartDataSets[] = [{}];
+    public dataset: ChartDataSets[] = [{data : []}];
     public labels: Label[];
 
     private removeListenerFunction: () => void;
