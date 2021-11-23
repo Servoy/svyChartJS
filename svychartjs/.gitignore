@@ -1,3 +1,5 @@
+/.angular/cache
 /dist/
 /node_modules/
 /svychartjs.zip
+/.angular/

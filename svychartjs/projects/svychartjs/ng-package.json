@@ -4,13 +4,7 @@
      "assets": [
     ],
   "lib": {
-    "entryFile": "src/public-api.ts",
-    "umdId": "servoy.svychartjs",
-    "umdModuleIds": {
-      "@servoy/public": "servoy.public",
-      "@angular/core": "angular.core",
-      "ng2-charts": "ng2-charts"
-    }
+    "entryFile": "src/public-api.ts"
   },
   "allowedNonPeerDependencies": ["chart.js", "ng2-charts"]
 }
