@@ -1,6 +1,6 @@
 {
   "name": "@servoy/svychartjs",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "peerDependencies": {
     "@angular/animations": "^13",
     "@angular/common": "^13",
