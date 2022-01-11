@@ -1,7 +1,7 @@
 
 import { NgModule } from '@angular/core';
 import {SvyChartJS} from './chart/chart';
-import { ChartsModule } from 'ng2-charts';
+import { NgChartsModule } from 'ng2-charts';
  
 @NgModule({
     declarations: [
@@ -9,7 +9,7 @@ import { ChartsModule } from 'ng2-charts';
     ],
     providers: [],
     imports: [
-        ChartsModule
+        NgChartsModule
     ],
     exports: [ 
         SvyChartJS

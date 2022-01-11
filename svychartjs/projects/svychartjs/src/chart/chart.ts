@@ -1,7 +1,7 @@
 import { Component, SimpleChanges, Input, Renderer2, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { IFoundset, ServoyBaseComponent } from '@servoy/public';
-import { ChartType, ChartOptions, ChartDataSets } from 'chart.js';
-import { BaseChartDirective, Label } from 'ng2-charts';
+import { ChartType, ChartOptions, ChartEvent, ChartDataset } from 'chart.js';
+import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
     selector: 'svychartjs-chart',
@@ -31,8 +31,8 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
     @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
     @ViewChild('element', { static: true }) elementRef: ElementRef<HTMLDivElement>;
 
-    public dataset: ChartDataSets[] = [{data : []}];
-    public labels: Label[];
+    public dataset: ChartDataset[] = [{data : []}];
+    public labels: string[];
 
     private removeListenerFunction: () => void;
 
@@ -279,9 +279,9 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
         }
     }
 
-    handleClick(e: Event) {
-        const activePoints = this.chart.chart.getElementsAtEvent(e);
-        const dataset = this.chart.chart.getDatasetAtEvent(e);
+    handleClick(e: ChartEvent) {
+        const activePoints = this.chart.chart.getElementsAtEventForMode(e.native,'index', { intersect: true }, false);
+        const dataset = this.chart.chart.getElementsAtEventForMode(e.native,'dataset', { intersect: true }, false);
         if (!dataset[0]) return;
         //get selected dataset index (helps distinguish between multiple datasets)
         const firstdataset: any= dataset[0];
@@ -291,12 +291,14 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
         const label = this.chart.chart.data.labels[selected._index];
         const value = this.chart.chart.data.datasets[selected._datasetIndex].data[selected._index];
         if (this.onClick) {
-            this.onClick(datasetIndex, selected._index, label.toString(), value as number, e);
+            this.onClick(datasetIndex, selected._index, label.toString(), value as number, e.native);
         }
     }
 
     generateLegend(): string {
-        return this.chart.chart.generateLegend().toString();
+        //TODO how can we do this in chart.js 3.x
+        return null;
+        //return this.chart.chart.generateLegend().toString();
     }
 
     getChartAsImage(): string {
