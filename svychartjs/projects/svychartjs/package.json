@@ -8,8 +8,8 @@
     "@angular/forms": "^13"
   },
   "dependencies": {
-    "chart.js": "^3",
-    "ng2-charts": "^3",
+    "chart.js": "<4",
+    "ng2-charts": "<4",
     "tslib": "*"
   },
   "license": "MIT",
