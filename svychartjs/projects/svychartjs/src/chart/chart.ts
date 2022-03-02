@@ -47,6 +47,9 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
                 responsive: true
             };
         }
+        if (!this.plugin){
+            this.plugin = {};
+        }
         if (this.foundset) {
             this.removeListenerFunction = this.foundset.addChangeListener(() => {
                 this.setupData();
