@@ -6,6 +6,7 @@
 	"icon": "svychartjs/chart/icon.png",
 	"definition": "svychartjs/chart/chart.js",
 	"serverscript": "svychartjs/chart/chart_server.js",
+	"doc": "svychartjs/chart/chart_doc.js",
 	"libraries": [{
 			"name": "Chart.js",
 			"version": "2.7.2",
