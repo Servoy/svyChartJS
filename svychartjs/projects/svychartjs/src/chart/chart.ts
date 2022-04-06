@@ -12,10 +12,10 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
     @Input() styleClass: string;
     @Input() backgroundColor: string;
     @Input() borderColor: string;
-    @Input() borderWidth: string;
+    @Input() borderWidth: number;
     @Input() hoverBackgroundColor: string;
     @Input() hoverBorderColor: string;
-    @Input() hoverBorderWidth: string;
+    @Input() hoverBorderWidth: number;
     @Input() backgroundColorScheme: string;
     @Input() legendLabel: string;
     @Input() type: ChartType;
@@ -78,44 +78,15 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
                             this.renderer.addClass(this.getNativeElement(), change.currentValue);
                         break;
                     case 'borderColor':
-                        this.dataset[0].borderColor = change.currentValue;
-                        break;
                     case 'borderWidth':
-                        this.dataset[0].borderWidth = change.currentValue;
-                        break;
                     case 'hoverBackgroundColor':
-                        this.dataset[0].hoverBackgroundColor = change.currentValue;
-                        break;
                     case 'hoverBorderColor':
-                        this.dataset[0].hoverBorderColor = change.currentValue;
-                        break;
                     case 'hoverBorderWidth':
-                        this.dataset[0].hoverBorderWidth = change.currentValue;
-                        break;
                     case 'legendLabel':
-                        this.dataset[0].label = change.currentValue;
-                        break;
                     case 'backgroundColorScheme':
                     case 'backgroundColor':
-                        if (this.backgroundColor) {
-                            this.dataset[0].backgroundColor = this.backgroundColor;
-                        } else {
-                            let color_scheme = ['#5DA5DA',
-                                '#FAA43A',
-                                '#60BD68',
-                                '#F17CB0',
-                                '#B2912F',
-                                '#B276B2',
-                                '#DECF3F',
-                                '#F15854',
-                                '#4D4D4D'];
-
-                            if (this.backgroundColorScheme) {
-                                color_scheme = this.getColorScheme(this.backgroundColorScheme);
-                            }
-                            this.dataset[0].backgroundColor = color_scheme;
-                        }
-                        break;
+                        this.setupData();
+                        break
                     case 'data':
                         this.setupData();
                         if (this.onChartDrawn) {
@@ -266,16 +237,43 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
 
     setupData() {
         if (this.foundset) {
-            const labels = [];
-            this.dataset[0].data = [];
+            this.labels = [];
+
+            //default color scheme if property not used
+            var color_scheme = ['#5DA5DA',
+                '#FAA43A',
+                '#60BD68',
+                '#F17CB0',
+                '#B2912F',
+                '#B276B2',
+                '#DECF3F',
+                '#F15854',
+                '#4D4D4D'];
+
+            if (this.backgroundColorScheme) {
+                color_scheme = this.getColorScheme(this.backgroundColorScheme)
+            }
+
+            this.dataset =  [{data : []}];
+            this.dataset[0] = {
+                label:this.legendLabel,
+                backgroundColor: (typeof this.backgroundColor === 'undefined') ? color_scheme :this.backgroundColor,
+                borderColor:this.borderColor,
+                borderWidth:this.borderWidth,
+                hoverBackgroundColor:this.hoverBackgroundColor,
+                hoverBorderColor:this.hoverBorderColor,
+                hoverBorderWidth:this.hoverBorderWidth,
+                data: []
+            };            
+            
             for (const row of  this.foundset.viewPort.rows) {
-                labels.push(row.label ? row.label : row.value);
+                this.labels.push(row.label ? row.label : row.value);
                 this.dataset[0].data.push(row.value);
             }
             //update datamodel
             this.data = {
                 type: this.type,
-                data: { labels, datasets: [this.dataset] }
+                data: { labels: this.labels, datasets: this.dataset}
             };
         } else if (this.data) {
             this.dataset = this.data.data.datasets;
