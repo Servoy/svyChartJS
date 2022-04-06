@@ -24,6 +24,7 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
     @Input() plugin: any;
     @Input() collapseOnClick: boolean;
     @Input() foundset: IFoundset;
+    @Input() responsiveHeight: number;
 
     @Input() onChartDrawn: () => void;
     @Input() onClick: (datasetIndex: number, index: number, label: string, value: number, event: Event) => void;
