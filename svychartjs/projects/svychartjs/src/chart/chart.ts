@@ -31,6 +31,11 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
 
     @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
     @ViewChild('element', { static: true }) elementRef: ElementRef<HTMLDivElement>;
+    @ViewChild('canvas', { static: true }) canvas: ElementRef<HTMLCanvasElement>;
+    
+    showCanvas = false;
+    canvasHeight = -1;
+    canvasWidth = -1;
 
     public dataset: ChartDataset[] = [{data : []}];
     public labels: string[];
@@ -57,6 +62,13 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
             });
 
         }
+    }
+    
+    ngAfterViewInit(): void {
+        this.canvasWidth = this.getNativeElement().clientWidth;
+        this.canvasHeight= this.responsiveHeight > 0 && !this.servoyApi.isInAbsoluteLayout()? this.responsiveHeight: this.getNativeElement().clientHeight;
+        this.showCanvas = true;
+        this.cdRef.detectChanges();
     }
 
     ngOnDestroy(): void {
