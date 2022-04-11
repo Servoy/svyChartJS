@@ -39,6 +39,7 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
 
     public dataset: ChartDataset[] = [{data : []}];
     public labels: string[];
+    public plugins = [];
 
     private removeListenerFunction: () => void;
 
@@ -53,15 +54,19 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
                 responsive: true
             };
         }
-        if (!this.plugin){
-            this.plugin = {};
-        }
         if (this.foundset) {
             this.removeListenerFunction = this.foundset.addChangeListener(() => {
                 this.setupData();
             });
 
         }
+        
+//        this.plugins = [{
+//            beforeInit: (chart, args, options) => {
+//                    chart.data.labels.forEach((label, i) => {
+//                    });
+//                }
+//        }]
     }
     
     ngAfterViewInit(): void {
@@ -105,7 +110,14 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
                             this.onChartDrawn();
                         }
                         break;
-
+                    case 'plugin': 
+                        if (change.previousValue) {
+                            // remove old one?
+                        }
+                        if (change.currentValue) {
+                            // add it to the plugins array?
+                        }
+                        break;
                 }
             }
         }
