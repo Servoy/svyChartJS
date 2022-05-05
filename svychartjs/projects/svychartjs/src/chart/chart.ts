@@ -2,6 +2,7 @@ import { Component, SimpleChanges, Input, Renderer2, ChangeDetectorRef, ViewChil
 import { IFoundset, ServoyBaseComponent } from '@servoy/public';
 import { ChartType, ChartOptions, ChartEvent, ChartDataset } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
+import 'chartjs-adapter-luxon';
 
 @Component({
     selector: 'svychartjs-chart',

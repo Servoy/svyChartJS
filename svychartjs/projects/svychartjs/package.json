@@ -10,6 +10,8 @@
   "dependencies": {
     "chart.js": "<4",
     "ng2-charts": "<4",
+    "chartjs-adapter-luxon": "<2",
+    "luxon": "<3",
     "tslib": "*"
   },
   "license": "MIT",
