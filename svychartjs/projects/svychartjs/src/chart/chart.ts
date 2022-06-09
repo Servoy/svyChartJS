@@ -104,9 +104,11 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
                     case 'backgroundColorScheme':
                     case 'backgroundColor':
                         this.setupData();
+                        this.showInDesignChart();
                         break
                     case 'data':
                         this.setupData();
+                        this.showInDesignChart();
                         if (this.onChartDrawn) {
                             this.onChartDrawn();
                         }
@@ -353,6 +355,135 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
         this.chart.chart.render();
         if (this.onChartDrawn) {
             this.onChartDrawn();
+        }
+    }
+
+    showInDesignChart() {
+        if (this.servoyApi.isInDesigner()) {
+            if (!this.type) {
+                this.type = 'pie'
+            }
+
+            //default color scheme if property not used
+            let color_scheme = ['#5DA5DA',
+                '#FAA43A',
+                '#60BD68',
+                '#F17CB0',
+                '#B2912F',
+                '#B276B2',
+                '#DECF3F',
+                '#F15854',
+                '#4D4D4D'];
+
+            if (this.backgroundColorScheme) {
+                color_scheme = this.getColorScheme(this.backgroundColorScheme)
+            }
+
+            if (this.type == 'scatter') {
+                let options = {
+                    legend: false,
+                    tooltips: false,
+                    responsive: true,
+                    animation: {
+                        duration: 0
+                    }
+
+                };
+
+                let data = {
+                    datasets: [{
+                        label: "My First dataset",
+                        borderColor: "red",
+                        backgroundColor: color_scheme,
+                        data: [{ x: Math.random() * 100, y: Math.random() * 100 }, { x: Math.random() * 100, y: Math.random() * 100 }, { x: Math.random() * 100, y: Math.random() * 100 }, { x: Math.random() * 100, y: Math.random() * 100 }]
+                    }, {
+                        label: "My Second dataset",
+                        borderColor: "blue",
+                        backgroundColor: color_scheme,
+                        data: [{ x: Math.random() * 100, y: Math.random() * 100 }, { x: Math.random() * 100, y: Math.random() * 100 }, { x: Math.random() * 100, y: Math.random() * 100 }, { x: Math.random() * 100, y: Math.random() * 100 }]
+                    }]
+                }
+
+                this.data = {
+                    data,
+                    type: this.type
+                };
+                this.options = options;
+                return;
+            }
+
+            if (this.type == 'bubble') {
+
+                var DATA_COUNT = 16;
+                var MIN_XY = -150;
+                var MAX_XY = 100;
+
+                function generateData() {
+                    let data = [];
+
+                    for (let i = 0; i < DATA_COUNT; ++i) {
+                        data.push({
+                            x: Math.floor(Math.random() * MIN_XY) + MAX_XY,
+                            y: Math.floor(Math.random() * MIN_XY) + MAX_XY,
+                            v: Math.floor(Math.random() * 1000) + 0
+                        });
+                    }
+
+                    return data;
+                }
+
+                let data = {
+                    datasets: [{
+                        backgroundColor: color_scheme,
+                        data: generateData()
+                    }, {
+                        backgroundColor: color_scheme,
+                        data: generateData()
+                    }]
+                };
+
+                let options = {
+                    legend: false,
+                    tooltips: false,
+                    responsive: true,
+                    animation: {
+                        duration: 0
+                    }
+                };
+
+                this.data = {
+                    data,
+                    type: this.type
+                };
+                this.options = options;
+                return;
+            }
+
+            let data = {
+                labels: ["R", "B", "Y", "G", "P", "O"],
+                datasets: [{
+                    label: 'Chart JS Component',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: color_scheme,
+                    borderColor: this.borderColor,
+                    borderWidth: this.borderWidth,
+                    hoverBackgroundColor: this.hoverBackgroundColor,
+                    hoverBorderColor: this.hoverBorderColor,
+                    hoverBorderWidth: this.hoverBorderWidth
+                }]
+            };
+            this.data = {
+                data,
+                type: this.type
+            };
+
+            this.options = {
+                //legend: { display: false },
+                responsive: true,
+                animation: {
+                    duration: 0
+                }
+            };
         }
     }
 
