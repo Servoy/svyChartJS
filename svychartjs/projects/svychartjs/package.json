@@ -5,13 +5,13 @@
     "@angular/animations": "^13",
     "@angular/common": "^13",
     "@angular/core": "^13",
-    "@angular/forms": "^13"
+    "@angular/forms": "^13",
+    "luxon": "*"
   },
   "dependencies": {
     "chart.js": "<4",
     "ng2-charts": "<3.1",
     "chartjs-adapter-luxon": "<2",
-    "luxon": "<3",
     "tslib": "*"
   },
   "license": "MIT",

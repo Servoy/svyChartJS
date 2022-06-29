@@ -6,5 +6,5 @@
   "lib": {
     "entryFile": "src/public-api.ts"
   },
-  "allowedNonPeerDependencies": ["chart.js", "ng2-charts"]
+  "allowedNonPeerDependencies": ["chart.js", "ng2-charts", "chartjs-adapter-luxon"]
 }
