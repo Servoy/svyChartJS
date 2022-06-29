@@ -305,6 +305,7 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
         } else if (this.data) {
             this.dataset = this.data.data.datasets;
             this.labels = this.data.data.labels;
+            if (this.data.type) this.type = this.data.type;
         }
     }
 
