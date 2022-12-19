@@ -648,6 +648,7 @@ Chart.plugins.register({
 				options.font.size = options.font.maxSize;
 			}
 		}
+		if (options.font.size === 0 ) options.font.size = null;
 	},
 	afterDatasetUpdate: function(chart, args, options) {
 		var labels = chart.config.data.labels;
@@ -718,6 +719,5 @@ Chart.plugins.register({
 		}
 	}
 });
-
 
 })));
