@@ -12,6 +12,10 @@
     "chart.js": "<4",
     "ng2-charts": "<4.1",
     "chartjs-adapter-luxon": "<2",
+    "@energiency/chartjs-plugin-piechart-outlabels": "<1.4",
+    "chartjs-plugin-datalabels": "<3",
+    "chartjs-plugin-funnel": "<1.2",
+    "chartjs-chart-treemap": "<2.3",
     "tslib": "*"
   },
   "license": "MIT",

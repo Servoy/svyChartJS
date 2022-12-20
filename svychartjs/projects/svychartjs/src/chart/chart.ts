@@ -1,7 +1,11 @@
 import { Component, SimpleChanges, Input, Renderer2, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { IFoundset, ServoyBaseComponent } from '@servoy/public';
-import { ChartType, ChartOptions, ChartEvent, ChartDataset } from 'chart.js';
+import { ChartType, ChartOptions, ChartEvent, ChartDataset, Chart } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
+import plugin from "@energiency/chartjs-plugin-piechart-outlabels";
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import {TreemapController, TreemapElement} from 'chartjs-chart-treemap';
+import * as Funnel from "chartjs-plugin-funnel";
 import 'chartjs-adapter-luxon';
 
 @Component({
@@ -50,6 +54,7 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
 
     svyOnInit() {
         super.svyOnInit();
+        
         if (!this.options) {
             this.options = {
                 responsive: true
@@ -62,12 +67,15 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
 
         }
         
-//        this.plugins = [{
-//            beforeInit: (chart, args, options) => {
-//                    chart.data.labels.forEach((label, i) => {
-//                    });
-//                }
-//        }]
+        this.initPlugins();
+        
+        if (this.type && this.type.toString() == 'treemap'){
+            Chart.register(TreemapController, TreemapElement);
+        }
+        
+        if (this.type && this.type.toString() == 'funnel'){
+         // it auto registers
+        }
     }
     
     ngAfterViewInit(): void {
@@ -121,12 +129,15 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
                             // add it to the plugins array?
                         }
                         break;
+                    case 'options':
+                        this.initPlugins();
+                        break;
                 }
             }
         }
         super.svyOnChanges(changes);
     }
-
+    
     getColorScheme(type: string): Array<string> {
         switch (type) {
             case 'default_color_scheme':
@@ -485,6 +496,21 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
                     duration: 0
                 }
             };
+        }
+    }
+    
+    private initPlugins(){
+        if (this.options.plugins){
+            const pluginsArray = new Array();
+            if (this.options.plugins['outlabels'])
+            {
+                pluginsArray.push(plugin);
+            }
+            if (this.options.plugins['datalabels'])
+            {
+                pluginsArray.push(ChartDataLabels);
+            }
+            this.plugins = pluginsArray;
         }
     }
 
