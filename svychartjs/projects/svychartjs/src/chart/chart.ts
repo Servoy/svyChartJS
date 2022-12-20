@@ -34,7 +34,7 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
     @Input() onChartDrawn: () => void;
     @Input() onClick: (datasetIndex: number, index: number, label: string, value: number, event: Event) => void;
 
-    @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
+    @ViewChild(BaseChartDirective, { static: false }) chart: BaseChartDirective;
     @ViewChild('element', { static: true }) elementRef: ElementRef<HTMLDivElement>;
     @ViewChild('canvas', { static: true }) canvas: ElementRef<HTMLCanvasElement>;
     
@@ -326,11 +326,11 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
         if (!dataset[0]) return;
         //get selected dataset index (helps distinguish between multiple datasets)
         const firstdataset: any= dataset[0];
-        const datasetIndex = firstdataset._datasetIndex;
+        const datasetIndex = firstdataset.datasetIndex;
         const selected: any = activePoints[datasetIndex];
         if (!selected) return;
-        const label = this.chart.chart.data.labels[selected._index];
-        const value = this.chart.chart.data.datasets[selected._datasetIndex].data[selected._index];
+        const label = this.chart.chart.data.labels[selected.index];
+        const value = this.chart.chart.data.datasets[selected.datasetIndex].data[selected.index];
         if (this.onClick) {
             this.onClick(datasetIndex, selected._index, label.toString(), value as number, e.native);
         }
