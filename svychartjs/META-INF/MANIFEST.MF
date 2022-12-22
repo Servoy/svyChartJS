@@ -4,7 +4,7 @@ NPM-PackageName: @servoy/svychartjs
 NG2-Module: SvyChartJSModule
 Entry-Point: dist/servoy/svychartjs
 Bundle-Name: Chart JS
-Bundle-Version: 2022.12.0
+Bundle-Version: 2022.12.1
 Package-Type: Web-Component
 
 Name: chart/chart.spec
