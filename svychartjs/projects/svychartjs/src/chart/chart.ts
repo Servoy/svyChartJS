@@ -2,7 +2,7 @@ import { Component, SimpleChanges, Input, Renderer2, ChangeDetectorRef, ViewChil
 import { IFoundset, ServoyBaseComponent } from '@servoy/public';
 import { ChartType, ChartOptions, ChartEvent, ChartDataset, Chart } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
-import plugin from "@energiency/chartjs-plugin-piechart-outlabels";
+import outlabels from "@energiency/chartjs-plugin-piechart-outlabels";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import {TreemapController, TreemapElement} from 'chartjs-chart-treemap';
 import * as Funnel from "chartjs-plugin-funnel";
@@ -325,7 +325,7 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
         const dataset = this.chart.chart.getElementsAtEventForMode(e.native,'dataset', { intersect: true }, false);
         if (!dataset[0]) return;
         //get selected dataset index (helps distinguish between multiple datasets)
-        const firstdataset: any= dataset[0];
+        const firstdataset = dataset[0];
         const datasetIndex = firstdataset.datasetIndex;
         const selected: any = activePoints[datasetIndex];
         if (!selected) return;
@@ -504,7 +504,7 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
             const pluginsArray = new Array();
             if (this.options.plugins['outlabels'])
             {
-                pluginsArray.push(plugin);
+                pluginsArray.push(outlabels);
             }
             if (this.options.plugins['datalabels'])
             {
