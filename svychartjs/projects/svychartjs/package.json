@@ -1,21 +1,21 @@
 {
   "name": "@servoy/svychartjs",
-  "version": "2022.12.1",
+  "version": "2023.3.0",
   "peerDependencies": {
-    "@angular/animations": "^14",
-    "@angular/common": "^14",
-    "@angular/core": "^14",
-    "@angular/forms": "^14",
+    "@angular/animations": "^15",
+    "@angular/common": "^15",
+    "@angular/core": "^15",
+    "@angular/forms": "^15",
     "luxon": "*"
   },
   "dependencies": {
-    "chart.js": "<4",
+    "chart.js": "<4.3",
     "ng2-charts": "<4.2",
     "chartjs-adapter-luxon": "<2",
     "@energiency/chartjs-plugin-piechart-outlabels": "<1.4",
     "chartjs-plugin-datalabels": "<3",
     "chartjs-plugin-funnel": "<1.2",
-    "chartjs-chart-treemap": "<2.3",
+    "chartjs-chart-treemap": "<2.4",
     "tslib": "*"
   },
   "license": "MIT",
