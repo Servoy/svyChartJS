@@ -29,3 +29,33 @@
  * @param {object} options
  */
  function setOptions(options) {}
+ 
+/**
+ * return legend
+ */
+function generateLegend() {
+}
+
+/** 
+ * return image as bass64
+ */
+function getChartAsImage() {
+}
+
+/**
+ * refresh the chart (if options updated)
+ */
+function refreshChart() {
+}
+
+/**
+ * Clears the chart and data.
+ */
+function clearChart() {
+}
+
+/**
+ * (re)draw the chart
+ */
+function drawChart() {
+};
