@@ -82,8 +82,9 @@
 		},
 		"type" : {
 			"type" : "string", 
-			"values" : [{"BAR":"bar"},{"BUBBLE":"bubble"},{"DOUGHNUT":"doughnut"},{"HORIZONTAL BAR":"horizontalBar"},{"LINE":"line"},{"PIE":"pie"},{"POLAR AREA":"polarArea"},{"RADAR":"radar"},{"SCATTER":"scatter"},{"FUNNEL":"funnel"},{"TREEMAP":"treemap"}],
-			"default" : "pie"
+			"values" : [{"BAR":"bar"},{"BUBBLE":"bubble"},{"DOUGHNUT":"doughnut"},{"HORIZONTAL BAR (DEPRECATED ON TiNG)":"horizontalBar"},{"LINE":"line"},{"PIE":"pie"},{"POLAR AREA":"polarArea"},{"RADAR":"radar"},{"SCATTER":"scatter"},{"FUNNEL":"funnel"},{"TREEMAP":"treemap"}],
+			"default" : "pie",
+			"tags": {"doc": "HORIZONTAL BAR is no longer available on the latest ChartJS, please read the ChartJS documentation for replacing this type on TiNG"}
 		}
 	},
 	
