@@ -28,7 +28,7 @@
     "chartjs-plugin-funnel": "1.1.5",
     "chartjs-chart-treemap": "2.3.0",
     "luxon": "3.4.3",
-    "ng2-charts": "5.0.3",
+    "ng2-charts": "5.0.4",
     "rxjs": "7.8.1",
     "tslib": "2.6.2",
     "zone.js": "0.13.3"
