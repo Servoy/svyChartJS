@@ -3,7 +3,7 @@
     "displayName": "ChartJS",
     "packageType": "Web-Component",
     "icon": "https://raw.githubusercontent.com/Servoy/svyChartJS/master/icon.png",
-    "description": "An all-purpose charting component, based on popular open-source lib ChartJS",
+    "description": "An all-purpose charting component, based on popular open-source lib ChartJS.",
     "wikiUrl": "https://github.com/Servoy/svyChartJS/wiki",
     "sourceUrl": "https://github.com/Servoy/svyChartJS",
     "releases": [
