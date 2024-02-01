@@ -355,13 +355,13 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
             return;
         }
         // update the chart if it already exists
-        if (this.chart) {
+        if (this.chart && this.chart.chart) {
             this.chart.chart.update();
         }
     }
 
     clearChart() {
-        if (this.chart) {
+        if (this.chart && this.chart.chart) {
             this.chart.chart.clear();
         }
     }
