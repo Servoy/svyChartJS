@@ -57,7 +57,8 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
         
         if (!this.options) {
             this.options = {
-                responsive: true
+                responsive: true,
+                maintainAspectRatio: false
             };
         }
         if (this.foundset) {
@@ -80,7 +81,7 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
     
     ngAfterViewInit(): void {
         this.canvasWidth = this.getNativeElement().clientWidth;
-        this.canvasHeight= this.responsiveHeight > 0 && !this.servoyApi.isInAbsoluteLayout()? this.responsiveHeight: this.getNativeElement().clientHeight;
+        this.canvasHeight= this.responsiveHeight > 0 && !this.servoyApi.isInAbsoluteLayout() ? this.responsiveHeight: this.getNativeElement().clientHeight;
         this.showCanvas = true;
         this.cdRef.detectChanges();
     }
@@ -136,10 +137,24 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
                     case 'options':
                         this.initPlugins();
                         break;
+                    case 'responsiveHeight':
+                        this.setHeight();
+                        break;
                 }
             }
         }
         super.svyOnChanges(changes);
+    }
+    
+    setHeight() {
+        if (!this.servoyApi.isInAbsoluteLayout()) {
+            if (this.responsiveHeight) {
+                this.elementRef.nativeElement.style.height = this.responsiveHeight + 'px';
+                this.canvasHeight = this.responsiveHeight;
+            } else {
+				this.elementRef.nativeElement.style.height = '100%';
+            }
+        }
     }
     
     getColorScheme(type: string): Array<string> {
@@ -400,6 +415,7 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
                     legend: false,
                     tooltips: false,
                     responsive: true,
+                	maintainAspectRatio: false,
                     animation: {
                         duration: 0
                     }
@@ -462,6 +478,7 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
                     legend: false,
                     tooltips: false,
                     responsive: true,
+                	maintainAspectRatio: false,
                     animation: {
                         duration: 0
                     }
@@ -496,6 +513,7 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
             this.options = {
                 //legend: { display: false },
                 responsive: true,
+                maintainAspectRatio: false,
                 animation: {
                     duration: 0
                 }
