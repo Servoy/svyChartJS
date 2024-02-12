@@ -152,7 +152,8 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
                 this.elementRef.nativeElement.style.height = this.responsiveHeight + 'px';
                 this.canvasHeight = this.responsiveHeight;
             } else {
-				this.elementRef.nativeElement.style.height = '100%';
+				this.elementRef.nativeElement.style.height = '20px';
+				this.canvasHeight = 20;
             }
         }
     }
