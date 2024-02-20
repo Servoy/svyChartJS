@@ -60,7 +60,10 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
                 responsive: true,
                 maintainAspectRatio: false
             };
-        }
+        } else {
+			if (this.options.responsive === undefined) this.options.responsive = true;
+			if (this.options.maintainAspectRatio === undefined) this.options.maintainAspectRatio = false;
+		}
         if (this.foundset) {
             this.removeListenerFunction = this.foundset.addChangeListener(() => {
                 this.setupData();
