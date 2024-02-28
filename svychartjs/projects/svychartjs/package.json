@@ -15,6 +15,7 @@
     "@energiency/chartjs-plugin-piechart-outlabels": "<1.4",
     "chartjs-plugin-datalabels": "<3",
     "chartjs-plugin-funnel": "<1.2",
+    "chart.js-plugin-labels-dv": "5.0.1-beta",
     "chartjs-chart-treemap": "<2.4",
     "tslib": "*"
   },

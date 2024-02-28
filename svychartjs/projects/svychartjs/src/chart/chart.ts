@@ -4,6 +4,7 @@ import { ChartType, ChartOptions, ChartEvent, ChartDataset, Chart } from 'chart.
 import { BaseChartDirective } from 'ng2-charts';
 import outlabels from "@energiency/chartjs-plugin-piechart-outlabels";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { getChartLabelPlugin } from 'chart.js-plugin-labels-dv';
 import {TreemapController, TreemapElement} from 'chartjs-chart-treemap';
 import * as Funnel from "chartjs-plugin-funnel";
 import 'chartjs-adapter-luxon';
@@ -535,6 +536,10 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
             if (this.options.plugins['datalabels'])
             {
                 pluginsArray.push(ChartDataLabels);
+            }
+            if (this.options.plugins['labels'])
+            {
+                pluginsArray.push(getChartLabelPlugin());
             }
             this.plugins = pluginsArray;
         }
