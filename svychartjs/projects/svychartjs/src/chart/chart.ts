@@ -8,6 +8,7 @@ import { getChartLabelPlugin } from 'chart.js-plugin-labels-dv';
 import {TreemapController, TreemapElement} from 'chartjs-chart-treemap';
 import * as Funnel from "chartjs-plugin-funnel";
 import 'chartjs-adapter-luxon';
+import annotationPlugin from "chartjs-plugin-annotation";
 
 @Component({
     selector: 'svychartjs-chart',
@@ -541,6 +542,9 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
             {
                 pluginsArray.push(getChartLabelPlugin());
             }
+            if (this.options.plugins['annotation']) {
+				Chart.register(annotationPlugin);
+			}
             this.plugins = pluginsArray;
         }
     }

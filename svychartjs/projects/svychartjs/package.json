@@ -13,6 +13,7 @@
     "ng2-charts": "<6",
     "chartjs-adapter-luxon": "<2",
     "@energiency/chartjs-plugin-piechart-outlabels": "<1.4",
+    "chartjs-plugin-annotation": "^3.0.1",
     "chartjs-plugin-datalabels": "<3",
     "chartjs-plugin-funnel": "<1.2",
     "chart.js-plugin-labels-dv": "5.0.1-beta",
