@@ -69,6 +69,7 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
         if (this.foundset) {
             this.removeListenerFunction = this.foundset.addChangeListener(() => {
                 this.setupData();
+                this.cdRef.detectChanges();
             });
 
         }
