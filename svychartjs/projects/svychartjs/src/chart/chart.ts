@@ -133,11 +133,30 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
                         }
                         break;
                     case 'plugin': 
+                    	// is unclear if plugins is an Array, or a single plugin or an object with nested plugins in it.
+                    	// looking at NG1 implementation it expect to have 1 single plugin as an object
+                    
                         if (change.previousValue) {
-                            // remove old one?
+                            // remove old one
+                            // since plugin is an object, comparing the exact value to check if was already present
+							if (this.plugins && this.plugins.includes(change.previousValue)) {
+								var index = this.plugins.indexOf(change.previousValue);
+								this.plugins = this.plugins.filter(function (entry) {
+									if ( entry == change.previousValue) {
+										return false;
+									}
+									return true;
+								});
+							}
                         }
                         if (change.currentValue) {
-                            // add it to the plugins array?
+							// add new one
+							if (!this.plugins) this.plugins = new Array();
+							
+                            // if plugin was not already present, push it into the array.
+							if (!this.plugins.includes(change.currentValue)) {
+								this.plugins.push(change.currentValue);
+							}
                         }
                         break;
                     case 'options':
@@ -546,6 +565,11 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
             if (this.options.plugins['annotation']) {
 				Chart.register(annotationPlugin);
 			}
+            // push also the plugin if any
+			if (this.plugin) {
+				pluginsArray.push(this.plugin);
+			}
+			
             this.plugins = pluginsArray;
         }
     }
