@@ -58,7 +58,7 @@
 		"responsiveHeight": { "type": "int", "default": 300, "tags": {"doc": "Charts height to be set in a responsive form. When responsiveHeight is set to 0, the table will use 100% height of the parent container"} },
 		"data": 
 		{
-			"type": "object",
+			"type": "json",
 			"tags": 
 			{
 				"scope": "private"
@@ -66,7 +66,7 @@
 		},
 		"options": 
 		{
-			"type": "object",
+			"type": "json",
 			"tags": 
 			{
 				"scope": "private"
@@ -74,7 +74,7 @@
 		},	
 		"plugin": 
 		{
-			"type": "object",
+			"type": "json",
 			"tags": 
 			{
 				"scope": "private"
