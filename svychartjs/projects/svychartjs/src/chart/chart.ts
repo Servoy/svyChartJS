@@ -6,7 +6,7 @@ import outlabels from "@energiency/chartjs-plugin-piechart-outlabels";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { getChartLabelPlugin } from 'chart.js-plugin-labels-dv';
 import {TreemapController, TreemapElement} from 'chartjs-chart-treemap';
-import * as Funnel from "chartjs-plugin-funnel";
+import { FunnelController, TrapezoidElement } from "chartjs-chart-funnel";
 import 'chartjs-adapter-luxon';
 import annotationPlugin from "chartjs-plugin-annotation";
 
@@ -75,14 +75,6 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
         }
         
         this.initPlugins();
-        
-        if (this.type && this.type.toString() == 'treemap'){
-            Chart.register(TreemapController, TreemapElement);
-        }
-        
-        if (this.type && this.type.toString() == 'funnel'){
-         // it auto registers
-        }
     }
     
     ngAfterViewInit(): void {
@@ -548,6 +540,13 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
     }
     
     private initPlugins(){
+		this.showCanvas = false;
+		if (this.type && this.type.toString() == 'treemap'){
+			Chart.register(TreemapController, TreemapElement);
+		}
+		if (this.type && this.type.toString() == 'funnel'){
+			Chart.register(FunnelController, TrapezoidElement);
+		}
         if (this.options.plugins){
             const pluginsArray = new Array();
             if (this.options.plugins['outlabels'])
@@ -572,6 +571,10 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
 			
             this.plugins = pluginsArray;
         }
+		setTimeout(()=>{
+			this.showCanvas = true;
+			this.cdRef.detectChanges();
+		});
     }
 
 }
