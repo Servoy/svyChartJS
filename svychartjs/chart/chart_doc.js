@@ -1,24 +1,25 @@
-
 /**
- * sets the data for this chart. 
- * Should be an object that like: 
- *  { 
+ * Sets the data for this chart.<br/>
+ * Should be an object that like:<br/>
+ * <pre>
+ * { 
  *     labels: string<array>,
  *     datasets: [{
- *     label: string,
- *     data: array<object>,
- *     fill: boolean,
- *     borderColor: 'rgb(75, 192, 192)',
- *     tension: number
- *   }]
- * see https://www.chartjs.org/docs/latest/general/data-structures.html
+ *       label: string,
+ *       data: array<object>,
+ *       fill: boolean,
+ *       borderColor: 'rgb(75, 192, 192)',
+ *       tension: number
+ *     }]
+ * }
+ * </pre>
+ * <br/>
+ * See <a href="https://www.chartjs.org/docs/latest/general/data-structures.html">https://www.chartjs.org/docs/latest/general/data-structures.html</a>
  * 
  * @param {object} data
  */
- function setData(data) {}
+function setData(data) {}
 
- 
- 
 /**
  * sets the options for this chart. 
  *
@@ -28,7 +29,7 @@
  * 
  * @param {object} options
  */
- function setOptions(options) {}
+function setOptions(options) {}
  
 /**
  * return legend
