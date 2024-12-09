@@ -7,5 +7,5 @@
     "entryFile": "src/public-api.ts"
   },
   "allowedNonPeerDependencies": ["chart.js", "ng2-charts", "chartjs-adapter-luxon", "@energiency/chartjs-plugin-piechart-outlabels", 
-        "chartjs-plugin-annotation", "chartjs-plugin-datalabels", "chartjs-plugin-funnel", "chartjs-chart-treemap","chart.js-plugin-labels-dv"]
+        "chartjs-plugin-annotation", "chartjs-plugin-datalabels", "chartjs-chart-funnel", "chartjs-chart-treemap","chart.js-plugin-labels-dv"]
 }
