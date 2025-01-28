@@ -16,7 +16,7 @@
  * <br/>
  * See <a href="https://www.chartjs.org/docs/latest/general/data-structures.html">https://www.chartjs.org/docs/latest/general/data-structures.html</a>
  * 
- * @param {object} data
+ * @param {Object} data An object containing the chart data, including labels and datasets, structured according to Chart.js data model requirements.
  */
 function setData(data) {}
 
@@ -27,24 +27,30 @@ function setData(data) {}
  * for more info (this sets the options part of the configuration), 
  * some options can also be set through the setData() to be specific to that dataset.
  * 
- * @param {object} options
+ * @param {Object} options An object containing configuration options for the chart, such as layout, scales, and plugins, based on Chart.js options documentation.
  */
 function setOptions(options) {}
  
 /**
- * return legend
+ * Return legend
+ * 
+ * @deprecated
+ * 
+ * @return {String} 
  */
 function generateLegend() {
 }
 
 /** 
- * return image as bass64
+ * Return image as bass64
+ * 
+ * @return {String} The chart rendered as a base64-encoded image string.
  */
 function getChartAsImage() {
 }
 
 /**
- * refresh the chart (if options updated)
+ * Refresh the chart (if options updated)
  */
 function refreshChart() {
 }
@@ -56,7 +62,15 @@ function clearChart() {
 }
 
 /**
- * (re)draw the chart
+ * (re)Draw the chart
  */
 function drawChart() {
 };
+
+/**
+ * Sets the plugins for the chart. Plugins allow you to extend or modify the behavior and appearance of the chart.
+ *
+ * @param {Object} plugin An object defining the plugin configuration, including hooks like `beforeDraw` or `afterRender`.
+ */
+function setPlugin() {
+}

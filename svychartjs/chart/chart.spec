@@ -108,7 +108,8 @@
 	{
 		"generateLegend": { 
 			"delayUntilFormLoads": true,
-			"returns":"string" 
+			"returns":"string",
+			"deprecated": true
 		},
 		"clearChart": {
 			"delayUntilFormLoads": true
@@ -125,7 +126,7 @@
 			"parameters": 
 			[
 				{
-					"name": "plugins",
+					"name": "plugin",
 					"type": "object"
 				}
 			]
