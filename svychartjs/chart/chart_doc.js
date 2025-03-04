@@ -1,3 +1,47 @@
+var foundset;
+
+var legendLabel;
+
+var backgroundColor;
+
+var backgroundColorScheme;
+
+var borderColor;
+
+var borderWidth;
+
+var hoverBackgroundColor;
+
+var hoverBorderColor;
+
+var hoverBorderWidth;
+
+var styleClass;
+
+/**
+ * Charts height to be set in a responsive form. When responsiveHeight is set to 0, the table will use 100% height of the parent container
+ */
+var responsiveHeight;
+
+/**
+ * HORIZONTAL BAR is no longer available on the latest ChartJS, please read the ChartJS documentation for replacing this type on TiNG
+ */
+var type;
+
+
+var handlers = {
+    /**
+     * @param {Number} dataset_index
+     * @param {Number} index
+     * @param {String} label
+     * @param {Number} value
+     * @param {JSEvent} event
+     */
+    onClick: function() {},
+
+    onChartDrawn: function() {}
+};
+
 /**
  * Sets the data for this chart.<br/>
  * Should be an object that like:<br/>
