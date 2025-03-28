@@ -1,21 +1,51 @@
+/**
+ * The foundset containing the data for the chart.
+ */
 var foundset;
 
+/**
+ * Data provider for the legend label of the chart.
+ */
 var legendLabel;
 
+/**
+ * Data provider for the chart's background color.
+ */
 var backgroundColor;
 
+/**
+ * The color scheme to use for the chart's background.
+ */
 var backgroundColorScheme;
 
+/**
+ * Data provider for the chart's border color.
+ */
 var borderColor;
 
+/**
+ * Data provider for the width of the chart's border.
+ */
 var borderWidth;
 
+/**
+ * Data provider for the chart's hover background color.
+ */
 var hoverBackgroundColor;
 
+/**
+ * Data provider for the chart's hover border color.
+ */
 var hoverBorderColor;
 
+/**
+ * Data provider for the width of the chart's hover border.
+ */
 var hoverBorderWidth;
 
+/**
+ * CSS style classes applied to the chart component.
+ */
 var styleClass;
 
 /**
@@ -31,14 +61,19 @@ var type;
 
 var handlers = {
     /**
-     * @param {Number} dataset_index
-     * @param {Number} index
-     * @param {String} label
-     * @param {Number} value
-     * @param {JSEvent} event
+     * Called when a chart element is clicked.
+     *
+     * @param {Number} dataset_index The index of the dataset within the chart.
+     * @param {Number} index The index of the clicked data point within the dataset.
+     * @param {String} label The label associated with the clicked data point.
+     * @param {Number} value The value of the clicked data point.
+     * @param {JSEvent} event The event object associated with the click.
      */
     onClick: function() {},
-
+    
+    /**
+     * Called when the chart has finished drawing.
+     */
     onChartDrawn: function() {}
 };
 
