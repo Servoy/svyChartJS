@@ -12,7 +12,8 @@ import annotationPlugin from "chartjs-plugin-annotation";
 
 @Component({
     selector: 'svychartjs-chart',
-    templateUrl: './chart.html'
+    templateUrl: './chart.html',
+    standalone: false
 })
 export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
 

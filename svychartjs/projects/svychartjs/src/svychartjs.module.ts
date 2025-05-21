@@ -1,7 +1,7 @@
 
 import { NgModule } from '@angular/core';
 import {SvyChartJS} from './chart/chart';
-import { NgChartsModule } from 'ng2-charts';
+import { BaseChartDirective } from 'ng2-charts';
 import { CommonModule } from '@angular/common';
  
 @NgModule({
@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
     ],
     providers: [],
     imports: [
-        NgChartsModule,
+        BaseChartDirective,
         CommonModule 
     ],
     exports: [ 
