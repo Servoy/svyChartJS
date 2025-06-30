@@ -8,6 +8,11 @@
 	"serverscript": "svychartjs/chart/chart_server.js",
 	"doc": "svychartjs/chart/chart_doc.js",
 	"libraries": [{
+			"name": "moment",
+			"version": "2.30.1",
+			"url": "svychartjs/lib/js/moment-with-locales.min.js",
+			"mimetype": "text/javascript"
+		},{
 			"name": "Chart.js",
 			"version": "2.7.2",
 			"url": "svychartjs/lib/js/Chart.js",
