@@ -1,6 +1,6 @@
 {
   "name": "svychartjs",
-  "version": "2025.6.0",
+  "version": "2025.3.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
