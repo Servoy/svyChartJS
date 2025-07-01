@@ -79,7 +79,7 @@
 		},	
 		"plugin": 
 		{
-			"type": "json",
+			"type": "object",
 			"tags": 
 			{
 				"scope": "private"
