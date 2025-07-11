@@ -60,6 +60,8 @@ function onShow(firstShow, event) {
  * @properties={typeid:24,uuid:"FA113B1A-A017-49D7-9B3A-F254A49540A0"}
  */
 function onChartDrawn(event) {
-	//use custom legend html and store it to a label
-	elements.legend.text = elements.chart.generateLegend();
+	application.executeLater(function() {//avoid browser's warnings due to too early calls to this method
+        // Use custom legend html and store it to a label
+        elements.legend.text = elements.chart.generateLegend();
+    }, 100);
 }

@@ -2,6 +2,7 @@
 <buildpath>
 	<buildpathentry excluding=".stp/|medias/" kind="src" path=""/>
 	<buildpathentry exported="true" kind="prj" path="/exampleDataModel"/>
+	<buildpathentry exported="true" kind="prj" path="/exampleUI"/>
 	<buildpathentry exported="true" kind="prj" path="/svyChartUtils"/>
 	<buildpathentry exported="true" kind="prj" path="/svyMicroSamples"/>
 	<buildpathentry exported="true" kind="prj" path="/svyUtils"/>

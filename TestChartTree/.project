@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>TestChartTree</name>
+	<comment></comment>
+	<projects>
+		<project>resources</project>
+		<project>svySearch</project>
+		<project>svyUtils</project>
+		<project>svychartjs</project>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.dltk.core.scriptbuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>com.servoy.eclipse.core.servoyBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>com.servoy.eclipse.core.ServoyProject</nature>
+		<nature>org.eclipse.dltk.javascript.core.nature</nature>
+	</natures>
+</projectDescription>

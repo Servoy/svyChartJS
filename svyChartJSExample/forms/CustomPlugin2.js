@@ -10,7 +10,7 @@
  */
 function onShow(firstShow, event) {
 	var data = {
-		type: 'horizontalBar',
+		type: 'bar',
 		data: {
 			labels: ["Red",
 			"Green",
@@ -28,6 +28,7 @@ function onShow(firstShow, event) {
 	}
 
 	var options = {
+		indexAxis: 'y',
 		legend: {
 			display: false			
 		},
@@ -55,13 +56,17 @@ function onShow(firstShow, event) {
 		}
 	}
 	
+	var beforeRender = scopes.stringUtils.globalFnToString('chartPlugins','demoPlugin2_beforeRender')
+	var afterRender = scopes.stringUtils.globalFnToString('chartPlugins','demoPlugin2_afterDraw')
+
+	
 //	Plugin that allows all tooltips to appear and stay active at once
 	var plugin = {
-		id: 'demo_plugin_2',
-		beforeRender: { isFunction: true, params: ['chart'], expression: scopes.stringUtils.globalFnToString('chartPlugins','demoPlugin2_beforeRender') },
-		afterDraw: { isFunction: true, params: ['chart', 'easing'], expression: scopes.stringUtils.globalFnToString('chartPlugins','demoPlugin2_afterDraw') }
+		id: 'showAllTooltips',
+		beforeRender: { isFunction: true, params: ['chart'], expression: beforeRender },
+		afterDraw: { isFunction: true, params: ['chart', 'easing'], expression: afterRender }
 	}
-
+	
 	elements.chart.setPlugin(plugin);
 	elements.chart.setData(data);
 	elements.chart.setOptions(options);
