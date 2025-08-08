@@ -1,8 +1,6 @@
-{
-"fileVersion":62,
-"mustAuthenticate":false,
-"name":"svyMicroSamples",
-"solutionType":1,
-"typeid":43,
-"uuid":"A3D307CB-90BD-4D2E-BCEE-48F3F37FE923"
-}
+fileVersion:60,
+mustAuthenticate:false,
+name:"svyMicroSamples",
+solutionType:1,
+typeid:43,
+uuid:"A3D307CB-90BD-4D2E-BCEE-48F3F37FE923"

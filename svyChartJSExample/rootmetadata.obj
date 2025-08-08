@@ -1,8 +1,6 @@
-{
-"fileVersion":62,
-"mustAuthenticate":false,
-"name":"svyChartJSExample",
-"solutionType":1024,
-"typeid":43,
-"uuid":"E0CFC944-FFC8-40D1-BD34-F8A41589C648"
-}
+fileVersion:60,
+mustAuthenticate:false,
+name:"svyChartJSExample",
+solutionType:1024,
+typeid:43,
+uuid:"E0CFC944-FFC8-40D1-BD34-F8A41589C648"

@@ -1,8 +1,6 @@
-{
-"fileVersion":62,
-"mustAuthenticate":false,
-"name":"exampleDataModel",
-"solutionType":1,
-"typeid":43,
-"uuid":"495059BC-B312-4751-89C1-B491F861A3E5"
-}
+fileVersion:60,
+mustAuthenticate:false,
+name:"exampleDataModel",
+solutionType:1,
+typeid:43,
+uuid:"495059BC-B312-4751-89C1-B491F861A3E5"
