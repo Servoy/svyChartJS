@@ -1,4 +1,4 @@
-customProperties:"{\"formComponent\":false}",
+customProperties:"formComponent:false",
 encapsulation:60,
 items:[
 {

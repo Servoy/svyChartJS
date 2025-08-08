@@ -1,46 +1,44 @@
-{
-"columns":{
-"columns":[
-{
-"allowNull":false,
-"autoEnterSubType":0,
-"autoEnterType":2,
-"creationOrderIndex":3,
-"dataType":4,
-"flags":1,
-"name":"chat_user_id"
+columns: {
+  columns: [
+    {
+      allowNull: false,
+      autoEnterSubType: 0,
+      autoEnterType: 2,
+      creationOrderIndex: 3,
+      dataType: 4,
+      flags: 1,
+      name: "chat_user_id"
+    },
+    {
+      allowNull: true,
+      creationOrderIndex: 1,
+      dataType: 12,
+      length: 50,
+      name: "ip_address"
+    },
+    {
+      allowNull: true,
+      creationOrderIndex: 2,
+      dataType: 93,
+      name: "login_time"
+    },
+    {
+      allowNull: true,
+      creationOrderIndex: 4,
+      dataType: 4,
+      name: "status"
+    },
+    {
+      allowNull: true,
+      creationOrderIndex: 0,
+      dataType: 12,
+      length: 50,
+      name: "user_name"
+    }
+  ],
+  name: "chat_users",
+  tableType: 0
 },
-{
-"allowNull":true,
-"creationOrderIndex":1,
-"dataType":12,
-"length":50,
-"name":"ip_address"
-},
-{
-"allowNull":true,
-"creationOrderIndex":2,
-"dataType":93,
-"name":"login_time"
-},
-{
-"allowNull":true,
-"creationOrderIndex":4,
-"dataType":4,
-"name":"status"
-},
-{
-"allowNull":true,
-"creationOrderIndex":0,
-"dataType":12,
-"length":50,
-"name":"user_name"
-}
-],
-"name":"chat_users",
-"tableType":0
-},
-"dataSource":"mem:chat_users",
-"typeid":39,
-"uuid":"1123312C-1AD0-46B3-BAFC-F94BF9366959"
-}
+dataSource: "mem:chat_users",
+typeid: 39,
+uuid: "1123312C-1AD0-46B3-BAFC-F94BF9366959"

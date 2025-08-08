@@ -1,34 +1,32 @@
-{
-"columns":{
-"columns":[
-{
-"allowNull":false,
-"autoEnterSubType":0,
-"autoEnterType":2,
-"creationOrderIndex":0,
-"dataType":4,
-"flags":1,
-"name":"shipperid"
+columns: {
+  columns: [
+    {
+      allowNull: false,
+      autoEnterSubType: 0,
+      autoEnterType: 2,
+      creationOrderIndex: 0,
+      dataType: 4,
+      flags: 1,
+      name: "shipperid"
+    },
+    {
+      allowNull: false,
+      creationOrderIndex: 1,
+      dataType: 12,
+      length: 40,
+      name: "companyname"
+    },
+    {
+      allowNull: true,
+      creationOrderIndex: 2,
+      dataType: 12,
+      length: 24,
+      name: "phone"
+    }
+  ],
+  name: "shippers",
+  tableType: 0
 },
-{
-"allowNull":false,
-"creationOrderIndex":1,
-"dataType":12,
-"length":40,
-"name":"companyname"
-},
-{
-"allowNull":true,
-"creationOrderIndex":2,
-"dataType":12,
-"length":24,
-"name":"phone"
-}
-],
-"name":"shippers",
-"tableType":0
-},
-"dataSource":"mem:shippers",
-"typeid":39,
-"uuid":"1123312C-1AD0-46B3-BAFC-F94BF9366966"
-}
+dataSource: "mem:shippers",
+typeid: 39,
+uuid: "1123312C-1AD0-46B3-BAFC-F94BF9366966"
