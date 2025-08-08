@@ -1,4 +1,4 @@
-customProperties:"{\"formComponent\":false}",
+customProperties:"formComponent:false",
 dataSource:"db:/example_data/orders",
 extendsID:"B2F60AA9-D837-4542-9782-037C059C1B8D",
 items:[
