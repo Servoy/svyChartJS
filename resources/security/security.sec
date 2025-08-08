@@ -1,16 +1,14 @@
-{
-"groups":[
-"Administrators",
-"crm_ActivityAcess",
-"crm_ClientCareAccess",
-"crm_ContactsAccess",
-"crm_DashboardAccess",
-"crm_QuotesAccess",
-"DocumentManagement",
-"ExternalUser"
+groups: [
+  "Administrators",
+  "crm_ActivityAcess",
+  "crm_ClientCareAccess",
+  "crm_ContactsAccess",
+  "crm_DashboardAccess",
+  "crm_QuotesAccess",
+  "DocumentManagement",
+  "ExternalUser"
 ],
-"usergroups":{
+usergroups: {
 
 },
-"users":[]
-}
+users: []
