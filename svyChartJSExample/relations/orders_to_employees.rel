@@ -1,0 +1,10 @@
+allowCreationRelatedRecords:true,
+foreignDataSource:"db:/example_data/employees",
+items:[
+{foreignColumnName:"employeeid",primaryDataProviderID:"employeeid",typeid:23,uuid:"70146953-2116-48B3-B8A2-0EA5528BF53E"}
+],
+joinType:1,
+name:"orders_to_employees",
+primaryDataSource:"db:/example_data/orders",
+typeid:22,
+uuid:"66847C26-D5DB-4753-864E-5F110FA30723"

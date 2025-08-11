@@ -1,0 +1,7 @@
+allowCreationRelatedRecords:true,
+foreignDataSource:"db:/example_data/orders",
+joinType:1,
+name:"orders$foundset",
+primaryDataSource:"db:/example_data/orders",
+typeid:22,
+uuid:"145FFEC5-F6D0-42D7-A533-0B959F935B5C"

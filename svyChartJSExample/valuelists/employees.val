@@ -1,0 +1,12 @@
+addEmptyValue:1,
+dataProviderID1:"firstname",
+dataProviderID2:"lastname",
+dataProviderID3:"employeeid",
+dataSource:"db:/example_data/employees",
+name:"employees",
+returnDataProviders:4,
+showDataProviders:3,
+sortOptions:"firstname asc, lastname asc",
+typeid:34,
+uuid:"A33C239F-71F8-40CA-81B7-3F27692826CA",
+valueListType:1

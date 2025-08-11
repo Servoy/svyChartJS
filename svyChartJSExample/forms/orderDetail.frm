@@ -56,7 +56,7 @@ size:"190,30",
 text:"Customer",
 typeid:4,
 uuid:"4AC53E03-32CF-47DC-8A90-DC8B36ABA6E8",
-valuelistID:"46AC7E83-19D0-40B1-B20D-D544218C7D56"
+valuelistID:"EBA0D0AD-F4AA-429C-8017-DB04637E5846"
 },
 {
 anchors:15,
@@ -86,7 +86,7 @@ size:"190,30",
 text:"Sales Rep",
 typeid:4,
 uuid:"688E78C4-ECCB-4A79-9A91-48876A1EC62C",
-valuelistID:"0B278E08-D559-4D27-B1F1-0A7DE73C4F9D"
+valuelistID:"A33C239F-71F8-40CA-81B7-3F27692826CA"
 },
 {
 anchors:6,
@@ -237,7 +237,7 @@ size:"190,30",
 text:"Shipper",
 typeid:4,
 uuid:"E61D44DE-F46F-4FB7-BB5C-E384C8CB65D7",
-valuelistID:"364ABB20-3F0C-47F4-8498-9EAA691C3FC4"
+valuelistID:"8573A41D-F2CE-4E7A-B23E-BFB8D93FBC8D"
 },
 {
 dataProviderID:"chartType",

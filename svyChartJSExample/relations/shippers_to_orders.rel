@@ -1,0 +1,10 @@
+allowCreationRelatedRecords:true,
+foreignDataSource:"db:/example_data/orders",
+items:[
+{foreignColumnName:"shipvia",primaryDataProviderID:"shipperid",typeid:23,uuid:"4473508E-E660-4581-820C-2E747EDC6DD0"}
+],
+joinType:1,
+name:"shippers_to_orders",
+primaryDataSource:"db:/example_data/shippers",
+typeid:22,
+uuid:"3B1B8E2B-78C4-4A70-9AEE-8FB4ECC3D82B"

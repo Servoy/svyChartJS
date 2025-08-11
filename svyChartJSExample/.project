@@ -3,11 +3,8 @@
 	<name>svyChartJSExample</name>
 	<comment></comment>
 	<projects>
-		<project>exampleDataModel</project>
-		<project>exampleUI</project>
 		<project>resources</project>
 		<project>svychartjs</project>
-		<project>svyMicroSamples</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

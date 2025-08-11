@@ -71,7 +71,7 @@ text:"Product",
 transparent:true,
 typeid:4,
 uuid:"52221D5D-F2F6-4C93-A308-8FCB732F88A8",
-valuelistID:"1F460D44-8F26-41CC-9B41-7843677D3B6F"
+valuelistID:"14667CB5-94CF-4A88-83EB-72365DDCD12B"
 },
 {
 anchors:3,

@@ -1,0 +1,9 @@
+foreignDataSource:"db:/example_data/categories",
+items:[
+{foreignColumnName:"categoryid",primaryDataProviderID:"categoryid",typeid:23,uuid:"BFF9AADD-662E-46F3-9930-1D4BEB75DDC2"}
+],
+joinType:1,
+name:"products_to_categories",
+primaryDataSource:"db:/example_data/products",
+typeid:22,
+uuid:"ACE07968-2260-422F-A215-A9CF01A105AF"

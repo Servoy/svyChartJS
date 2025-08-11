@@ -1,9 +1,9 @@
 customProperties:"formComponent:false",
 encapsulation:60,
-extendsID:"1046CC5D-E653-4F9C-B8B9-E3FCDA83A211",
+extendsID:"07076C1A-FDD2-48FB-AE5B-15CE9A122E33",
 items:[
 {
-extendsID:"CCD8084B-3484-41E7-8FBA-CBF44DD9BF67",
+extendsID:"40A84A38-87EF-4768-8C70-A61CA6CFCAC7",
 height:360,
 typeid:19,
 uuid:"5487AD3E-1B04-438E-8C15-F5EB555BDDA1"

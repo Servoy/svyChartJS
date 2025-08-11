@@ -1,0 +1,10 @@
+allowCreationRelatedRecords:true,
+foreignDataSource:"db:/example_data/suppliers",
+items:[
+{foreignColumnName:"supplierid",primaryDataProviderID:"supplierid",typeid:23,uuid:"B52765B6-25BC-45BA-AFCC-CCF3433A9BC3"}
+],
+joinType:1,
+name:"products_to_suppliers",
+primaryDataSource:"db:/example_data/products",
+typeid:22,
+uuid:"CDA20130-0773-4874-AF77-DC887CBDD81C"

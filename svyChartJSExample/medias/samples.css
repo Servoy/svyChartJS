@@ -1,0 +1,134 @@
+@IMPORT url("sideNav.css");
+
+.body_main
+{
+	width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+	background-color: #fff;
+}
+
+.banner
+{
+	text-align: center;
+	font-size: 32px;
+	border: 0px solid #ff8000;
+	border-bottom-width: 2px;
+}
+.svy-main-window-container{
+	background-color: #444;
+}
+
+.label_header_3
+{
+	font-weight: bold;
+	padding-left: 12px;
+	color: #008040;
+	background-color: #c2e7c4;
+	font-size: 12pt;
+	border-radius: 4px;
+}
+.label_header_2
+{
+	font-weight: bold;
+	padding-left: 12px;
+	color: #005177;
+	background-color: #eee;
+	font-size: 12pt;
+	border-radius: 4px;
+}
+.label_header_1
+{
+	font-weight: bold;
+	padding-left: 12px;
+	color: #fff;
+	background-color: #5a96e1;
+	font-size: 16pt;
+	border-radius: 4px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+.center
+{
+	text-align: center;
+}
+.font-icon
+{
+	font-size: 18px;
+	text-align: center;
+	color: #aaa;
+	transition: .25s;
+}
+.font-icon.large
+{
+	font-size: 24px;
+}
+.font-icon.inverted
+{
+	color: #fff;
+}
+.font-icon:HOVER
+{
+	color: #e77509;
+}
+.label-info
+{
+	background-color: #5bc0de;
+	color: #fff;
+	border-radius: 4px;
+	text-align: center;
+	box-shadow: 4px 4px 5px #888888;
+	font-weight: bold;
+}
+.label-warn
+{
+	background-color: #ff8000;
+	color: #fff;
+	border-radius: 4px;
+	text-align: center;
+	box-shadow: 4px 4px 5px #888888;
+	font-weight: bold;
+}
+.label-error
+{
+	background-color: #800000;
+	color: #fff;
+	border-radius: 4px;
+	text-align: center;
+	box-shadow: 4px 4px 5px #888888;
+	font-weight: bold;
+}
+.label-info:HOVER {
+	background-color: #5a96e1;
+}
+
+.message-submit {
+  position: absolute;
+  z-index: 1;
+  top: 9px;
+  right: 10px;
+  color: #fff;
+  border: none;
+  background: #248A52;
+  font-size: 10px;
+  text-transform: uppercase;
+  line-height: 1;
+  padding: 6px 10px;
+  border-radius: 10px;
+  outline: none !important;
+  -webkit-transition: background .2s ease;
+  transition: background .2s ease;
+}
+
+.customLabel{
+	color:#000000;
+}
+
+.margin{
+	
+	margin-top:15px;
+}
+.full_width
+{
+	width: 100%;
+}

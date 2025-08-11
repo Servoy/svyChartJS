@@ -6,7 +6,7 @@ parameters:null\
 }\
 }",
 encapsulation:60,
-extendsID:"1046CC5D-E653-4F9C-B8B9-E3FCDA83A211",
+extendsID:"07076C1A-FDD2-48FB-AE5B-15CE9A122E33",
 items:[
 {
 anchors:15,

@@ -1,0 +1,11 @@
+addEmptyValue:1,
+dataProviderID1:"categoryname",
+dataProviderID2:"categoryid",
+dataSource:"db:/example_data/categories",
+name:"categories",
+returnDataProviders:2,
+showDataProviders:1,
+sortOptions:"categoryname asc",
+typeid:34,
+uuid:"DA592000-634E-4779-88A0-13302B398373",
+valueListType:1

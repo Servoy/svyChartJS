@@ -1,0 +1,9 @@
+foreignDataSource:"db:/example_data/orders",
+items:[
+{foreignColumnName:"orderid",primaryDataProviderID:"orderid",typeid:23,uuid:"351B544B-B8DC-4B31-8343-8F293FE737A5"}
+],
+joinType:1,
+name:"order_details_to_orders",
+primaryDataSource:"db:/example_data/order_details",
+typeid:22,
+uuid:"5090CCEB-B6BE-43B2-A8E9-35AC784A178B"

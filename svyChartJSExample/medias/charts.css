@@ -1,3 +1,6 @@
+@IMPORT url("example.css");
+@IMPORT url("samples.css");
+
 .chart-one {
 	width: 30vw;
 	height: 30vh;
