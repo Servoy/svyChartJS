@@ -196,18 +196,18 @@ function onShow(event) {
 				data: [28, 48, 40, 19, 86, 27, 90]
 			}]
 		}
-	}
+	};
 	options = {
 		responsive: false,
 		scales: {
-			xAxes: [{
+			x: {
 				stacked: true
-			}],
-			yAxes: [{
+			},
+			y: {
 				stacked: true
-			}]
+			}
 		}
-	}
+	};
 
 	elements.stacked_chart.setData(data);
 	elements.stacked_chart.setOptions(options);

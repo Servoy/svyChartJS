@@ -104,11 +104,11 @@ function onShow(firstShow, event) {
 		      expression: "return ''"
 		},
 		scales: {
-			yAxes: [{
+			y: {
 				stacked: true
-			}]
+			}
 		}
-	}
+	};
 
 	elements.chart.setData(data);
 	elements.chart.setOptions(options);

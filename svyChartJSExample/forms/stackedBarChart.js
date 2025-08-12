@@ -44,18 +44,18 @@ function onShow(firstShow, event) {
 				data: [28, 48, 40, 19, 86, 27, 90]
 			}]
 		}
-	}
+	};
 	var options = {
 		responsive: false,
 		scales: {
-			xAxes: [{
+			x: {
 				stacked: true
-			}],
-			yAxes: [{
+			},
+			y: {
 				stacked: true
-			}]
+			}
 		}
-	}
+	};
 
 	elements.chart.setData(data);
 	elements.chart.setOptions(options);

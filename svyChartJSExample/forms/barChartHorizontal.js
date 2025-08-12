@@ -31,7 +31,7 @@ var data = {
  */
 var options = {
     scales: {
-        xAxes: [{
+        x: [{
             gridLines: {
                 offsetGridLines: true
             },
@@ -41,7 +41,7 @@ var options = {
 				fontSize: 16
             }
         }],
-		yAxes: [{
+		y: [{
 			scaleLabel: {
 				display: true,
 				labelString: 'Months',

@@ -47,14 +47,14 @@ function onShow(firstShow, event) {
             intersect: true
         },
         scales: {
-            xAxes: [{
+            x: [{
                 display: true,
                 scaleLabel: {
                     display: true,
                     labelString: 'Month'
                 }
             }],
-            yAxes: [{
+            y: [{
                 display: true,
                 scaleLabel: {
                     display: true,

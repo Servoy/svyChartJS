@@ -42,7 +42,7 @@ var data = {
  */
 var options = {
     scales: {
-        xAxes: [{
+        x: {
         	stacked: true,
             gridLines: {
                 offsetGridLines: true
@@ -52,15 +52,15 @@ var options = {
 				labelString: 'Months',
 				fontSize: 16
             }
-        }],
-		yAxes: [{
+        },
+		y: {
 			stacked: true,
 			scaleLabel: {
 				display: true,
 				labelString: 'Data',
 				fontSize: 16
 			}
-		}]
+		}
 	}
 }
 /**

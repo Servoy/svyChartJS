@@ -33,7 +33,7 @@ var data = {
  */
 var options = {
     scales: {
-        xAxes: [{
+        x: [{
             gridLines: {
                 offsetGridLines: true
             },
@@ -43,7 +43,7 @@ var options = {
 				fontSize: 16
             }
         }],
-        yAxes: [{
+        y: [{
             position: "left",
             id: "y-axis-1",
             scaleLabel: {
