@@ -34,6 +34,7 @@ function onShow(firstShow, event) {
 				backgroundColor: 'teal',
 				borderColor: 'teal',
 				data: dt,
+				tension: 0.4,
 				datalabels: {
 					align: 'start',
 					anchor: 'start'
@@ -41,11 +42,13 @@ function onShow(firstShow, event) {
 			}, {
 				backgroundColor: 'blue',
 				borderColor: 'blue',
-				data: dt1
+				data: dt1,
+				tension: 0.4
 			}, {
 				backgroundColor: 'purple',
 				borderColor: 'purple',
 				data: dt2,
+				tension: 0.4,
 				datalabels: {
 					align: 'end',
 					anchor: 'end'
@@ -56,33 +59,30 @@ function onShow(firstShow, event) {
 
 	var options = {
 		plugins: {
+			legend: {
+				display: false
+			},
+			title: {
+				display: true,
+				text: 'Data Labels'
+			},
+			tooltip: {
+				enabled: true,
+				callbacks: {
+					label: clientutils.generateBrowserFunction("function(context) { const value = context.parsed.y; return 'Value: ' + Math.round(value); }"),
+				    title: clientutils.generateBrowserFunction("function(context) { return 'Label: ' + context[0].label; }")
+					}
+			},
 			datalabels: {
-				backgroundColor: {
-					isFunction: true,
-					params: ['context'],
-					expression: "return context.dataset.backgroundColor;"
-				},
+				backgroundColor: clientutils.generateBrowserFunction("function(context) { return '' + context.dataset.backgroundColor }"),
 				borderRadius: 4,
 				color: 'white',
 				font: {
 					weight: 'bold'
 				},
-				formatter: {
-					isFunction: true,
-					params: [''],
-					expression: "return Math.round"
-				},
+				formatter: clientutils.generateBrowserFunction("function(value) { return '' + Math.round(value) }"),
 				padding: 6
 			}
-		},
-
-		// Core options
-		legend: {
-			display: false
-		},
-		title: {
-			display: true,
-			text: 'Data Labels'
 		},
 		aspectRatio: 5 / 3,
 		layout: {
@@ -98,17 +98,12 @@ function onShow(firstShow, event) {
 				fill: false
 			}
 		},
-		tooltips: {
-			  isFunction: true,
-		      params: ['tooltipItem', 'data'],
-		      expression: "return ''"
-		},
 		scales: {
 			y: {
-				stacked: true
+				stacked: false
 			}
 		}
-	};
+	}
 
 	elements.chart.setData(data);
 	elements.chart.setOptions(options);

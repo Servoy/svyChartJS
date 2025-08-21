@@ -21,6 +21,7 @@ function onShow(firstShow, event) {
 		}
 	}
 	var options = {
+		// ng1
 		legend: {
             position: 'right',
         },
@@ -37,6 +38,16 @@ function onShow(firstShow, event) {
         animation: {
             animateRotate: false,
             animateScale: true
+        },
+        // ng2
+        plugins: {
+        	legend: {
+                position: 'right',
+            },
+            title: {
+                display: true,
+                text: 'Chart.js Polar Area Chart'
+            }
         }
 	}
 	elements.chart.setData(data);

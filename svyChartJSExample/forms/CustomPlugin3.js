@@ -38,6 +38,7 @@ function onShow(firstShow, event) {
 	}
 
 	var options = {
+		// ng1
 		legend: {
 			display: false
 		},
@@ -61,6 +62,25 @@ function onShow(firstShow, event) {
 					params: ['tooltipItem', 'data'],
 					expression: "return data.datasets[0].data[tooltipItem.index];"
 				}
+			}
+		},
+		// ng2
+		plugins: {
+			legend: {
+				display: false
+			},
+			title: {
+				display: true,
+				text: 'CUSTOM PLUGIN TO SHOW DATA POINTS'
+			},
+			tooltip: {
+				enabled: false,
+			},
+			customTooltipPlugin: {
+				showLabels: false, 
+				showValues:true, 
+				labelOffset: 10, 
+				valueOffset: 10
 			}
 		}
 	}

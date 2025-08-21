@@ -1,6 +1,6 @@
 import { Component, SimpleChanges, Input, Renderer2, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { IFoundset, ServoyBaseComponent } from '@servoy/public';
-import { ChartType, ChartOptions, ChartEvent, ChartDataset, Chart } from 'chart.js';
+import { ChartType, ChartOptions, ChartEvent, ChartDataset, Chart, Tooltip } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import outlabels from "@energiency/chartjs-plugin-piechart-outlabels";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
@@ -375,9 +375,19 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
     }
 
     generateLegend(): string {
-        //TODO how can we do this in chart.js 3.x
+        const chart = this?.chart?.chart;
+        if (chart && chart.legend) {
+            const legend = chart.legend;
+            const legendItems = legend.legendItems;
+            let html = '<ul class="chart-legend">';
+            for (let i = 0; i < legendItems.length; i++) {
+                const item = legendItems[i];
+                html += `<li><span style="background-color:${item.fillStyle}"></span>${item.text}</li>`;
+            }
+            html += '</ul>';
+            return html;
+        }
         return null;
-        //return this.chart.chart.generateLegend().toString();
     }
 
     getChartAsImage(): string {
@@ -544,6 +554,12 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
 		this.showCanvas = false;
 		if (this.type && this.type.toString() == 'treemap'){
 			Chart.register(TreemapController, TreemapElement);
+            Tooltip.positioners['treemap'] = (elements, eventPosition) => {
+              return {
+                x: eventPosition.x,
+                y: eventPosition.y
+              };
+            };
 		}
 		if (this.type && this.type.toString() == 'funnel'){
 			Chart.register(FunnelController, TrapezoidElement);
@@ -565,6 +581,89 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
             if (this.options.plugins['annotation']) {
 				Chart.register(annotationPlugin);
 			}
+            if (this.options.plugins['customCenterTextPlugin']) {
+                // Custom plugin to draw text in the center of the chart
+                Chart.register({
+                    id: 'customCenterTextPlugin',
+                    beforeDraw(chart, args, pluginOptions) {
+                        const { ctx, chartArea } = chart;
+                        const centerConfig = pluginOptions;
+
+                        if (!centerConfig || !centerConfig.text) return;
+
+                        const text = centerConfig.text;
+                        const fontColor = centerConfig.fontColor || '#000';
+                        const fontFamily = centerConfig.fontFamily || 'Arial';
+                        const fontStyle = centerConfig.fontStyle || 'normal';
+                        const maxFontSize = centerConfig.maxFontSize || 256;
+                        const minFontSize = centerConfig.minFontSize || 1;
+
+                        const centerX = (chartArea.left + chartArea.right) / 2;
+                        const centerY = (chartArea.top + chartArea.bottom) / 2;
+
+                        ctx.save();
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+
+                        // Dynamically calculate font size
+                        let fontSize = 30;
+                        ctx.font = `${fontStyle} ${fontSize}px ${fontFamily}`;
+                        let textWidth = ctx.measureText(text).width;
+
+                        while (textWidth > chartArea.width && fontSize > minFontSize) {
+                            fontSize--;
+                            ctx.font = `${fontStyle} ${fontSize}px ${fontFamily}`;
+                            textWidth = ctx.measureText(text).width;
+                        }
+
+                        fontSize = Math.min(fontSize, maxFontSize);
+                        ctx.font = `${fontStyle} ${fontSize}px ${fontFamily}`;
+                        ctx.fillStyle = fontColor;
+                        ctx.fillText(text, centerX, centerY);
+                        ctx.restore();
+                    }
+                });
+            }
+            if (this.options.plugins['customTooltipPlugin']) {
+                // Custom tooltip plugin to show labels and values
+                Chart.register({
+                    id: 'customTooltipPlugin',
+                    afterDatasetsDraw(chart, args, pluginOptions) {
+                        const { ctx } = chart;
+                        const { showLabels = false, showValues = false, labelOffset = 10, valueOffset = 10 } = pluginOptions;
+
+                        if (!showLabels && !showValues) return;
+
+                        chart.data.datasets.forEach((dataset, datasetIndex) => {
+                            const meta = chart.getDatasetMeta(datasetIndex);
+
+                            meta.data.forEach((element, index) => {
+                                const label = chart.data.labels[index];
+                                const value = dataset.data[index];
+                                const centerX = element.x;
+                                const centerY = element.y;
+
+                                ctx.save();
+                                ctx.font = '14px sans-serif';
+                                ctx.fillStyle = 'black';
+                                ctx.textAlign = 'center';
+
+                                if (showLabels) {
+                                    ctx.textBaseline = 'bottom';
+                                    ctx.fillText(String(label), centerX, centerY - labelOffset);
+                                }
+
+                                if (showValues) {
+                                    ctx.textBaseline = showLabels ? 'top' : 'bottom';
+                                    ctx.fillText(String(value), centerX, centerY + (showLabels ? valueOffset : -6));
+                                }
+
+                                ctx.restore();
+                            });
+                        });
+                    }
+                });
+            }
             // push also the plugin if any
 			if (this.plugin) {
 				pluginsArray.push(this.plugin);

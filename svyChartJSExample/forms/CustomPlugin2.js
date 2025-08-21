@@ -28,7 +28,7 @@ function onShow(firstShow, event) {
 	}
 
 	var options = {
-		indexAxis: 'y',
+		// NG1
 		legend: {
 			display: false			
 		},
@@ -52,6 +52,26 @@ function onShow(firstShow, event) {
 					params: ['tooltipItem', 'data'],
 					expression: "return data.datasets[0].data[tooltipItem.index];"
 				}
+			}
+		},
+		// NG2
+		indexAxis: 'x',
+		plugins: {
+			legend: {
+				display: false
+			},
+			title: {
+				display: true,
+				text: 'CUSTOM PLUGIN TO SHOW ALL TOOLTIPS AT SAME TIME'
+			},
+			tooltip: {
+				enabled: false
+			}, 
+			customTooltipPlugin: {
+				showLabels: true, 
+				showValues:true, 
+				labelOffset: 10, 
+				valueOffset: 10
 			}
 		}
 	}

@@ -113,8 +113,6 @@ function setOptions(options) {}
 /**
  * Return legend
  * 
- * @deprecated
- * 
  * @return {String} 
  */
 function generateLegend() {

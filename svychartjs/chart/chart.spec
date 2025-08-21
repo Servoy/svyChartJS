@@ -113,8 +113,7 @@
 	{
 		"generateLegend": { 
 			"delayUntilFormLoads": true,
-			"returns":"string",
-			"deprecated": "deprecated"
+			"returns":"string"
 		},
 		"clearChart": {
 			"delayUntilFormLoads": true

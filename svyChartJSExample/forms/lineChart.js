@@ -61,7 +61,7 @@ function onShow(firstShow, event) {
 				pointHoverBorderWidth: 2,
 
 				// Tension - bezier curve tension of the line. Set to 0 to draw straight Wlines connecting points
-				tension: 0.1,
+				tension: 0.4,
 
 				// The actual data
 				data: [65, 59, 80, 81, 56, 55, 40]
@@ -78,7 +78,8 @@ function onShow(firstShow, event) {
 				pointHoverBackgroundColor: "rgba(220,220,220,1)",
 				pointHoverBorderColor: "rgba(220,220,220,1)",
 				pointHoverBorderWidth: 2,
-				data: [28, 48, 40, 19, 86, 27, 90]
+				data: [28, 48, 40, 19, 86, 27, 90],
+				tension: 0.4
 			}]
 		}
 	}

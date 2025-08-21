@@ -28,21 +28,20 @@ function onShow(firstShow, event) {
 	}
 
 	var options = {
-		title:{
-			display:true,
-			text:'Pie Chart with a Custom Legend'
-		},
 		responsive: true,
-		legend:{
-			display:false
-		},
-		tooltips: {
-			callbacks: {
-				label: {
-					isFunction: true,
-					params: ['tooltipItem', 'data'],
-					expression: "return ' $'+data.datasets[0].data[tooltipItem.index];"
-				}
+		plugins: {
+			tooltip: {
+				enabled: true,
+				callbacks: {
+					label: clientutils.generateBrowserFunction("function(context) { const value = context.parsed; return '$' + value; }")
+					}
+			},
+			title:{
+				display:true,
+				text:'Pie Chart with a Custom Legend'
+			},
+			legend:{
+				display:false
 			}
 		}
 	}

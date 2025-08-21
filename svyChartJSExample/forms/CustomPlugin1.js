@@ -27,7 +27,8 @@ function onShow(firstShow, event) {
 		}
 	}
 
-	var options = {	
+	var options = {
+		// NG1
 		elements: {
 			center: {
 				// the longest text that could appear in the center
@@ -40,18 +41,20 @@ function onShow(firstShow, event) {
 				maxFontSize: 256
 			}
 		},
-		tooltips: {
-			callbacks: {
-				label: {
-					isFunction: true,
-					params: ['tooltipItem', 'data'],
-					expression: "return ' $'+data.datasets[0].data[tooltipItem.index];"
-				}
-			}
-		}
-	}
-
-
+		// NG2
+	    plugins: {
+	        customCenterTextPlugin: {
+	          text: 'DOH!',
+	          fontColor: '#36A2EB',
+	          fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+	          fontStyle: 'normal',
+	          minFontSize: 1,
+	          maxFontSize: 256
+	        }
+	      }
+	    }
+	// NG1
+	// ----------Start----------
 	var plugin = {
 		id: 'demo_plugin',
 		afterUpdate: { isFunction: true, params: ['chart'], expression: scopes.stringUtils.globalFnToString('chartPlugins','demoPlugin1_afterUpdate') },
@@ -59,6 +62,8 @@ function onShow(firstShow, event) {
 	}
 
 	elements.chart.setPlugin(plugin);
+	// ----------END----------
+
 	elements.chart.setData(data);
 	elements.chart.setOptions(options);
 }

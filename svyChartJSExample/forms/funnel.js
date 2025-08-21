@@ -16,7 +16,7 @@ function onShow(firstShow, event) {
 			"Green",
 			"Yellow"],
 			datasets: [{
-				data: [300, 50, 100],
+				data: [50, 100, 300],
 				backgroundColor: ["#F7464A",
 				"#46BFBD",
 				"#FDB45C"],
@@ -28,6 +28,7 @@ function onShow(firstShow, event) {
 	}
 
 	var options = {
+		// ng1
 		legend: {
 			display: false
 		},
@@ -42,6 +43,17 @@ function onShow(firstShow, event) {
 					params: ['tooltipItem', 'data'],
 					expression: "return ' $'+data.datasets[0].data[tooltipItem.index];"
 				}
+			}
+		},
+		// ng2
+		indexAxis: 'y',
+		plugins: {
+			legend: {
+				display: false
+			},
+			title: {
+				display: true,
+				text: 'Funnel Chart'
 			}
 		}
 	}
