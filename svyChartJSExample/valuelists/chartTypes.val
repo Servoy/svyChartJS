@@ -1,9 +1,11 @@
 addEmptyValue:1,
 customValues:"BAR|bar\r\
 DONUT|doughnut\
-HORIZONTAL BAR|horizontalBar\r\
+\r\
 PIE|pie\r\
 POLAR AREA|polarArea",
+displayValueType:12,
 name:"chartTypes",
+realValueType:12,
 typeid:34,
 uuid:"DD071E36-8A9A-44F1-8C89-612961FDE3E0"
