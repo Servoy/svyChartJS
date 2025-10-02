@@ -113,7 +113,7 @@ function setOptions(options) {}
 /**
  * Return legend
  * 
- * @return {String} 
+ * @return {String} generated legend as a HTML string.
  */
 function generateLegend() {
 }
