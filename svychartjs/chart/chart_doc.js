@@ -1,3 +1,7 @@
+/*
+ * An all-purpose charting component, based on popular open-source lib ChartJS.
+ */
+
 /**
  * The foundset containing the data for the chart.
  */
