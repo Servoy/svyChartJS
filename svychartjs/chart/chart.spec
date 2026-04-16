@@ -61,6 +61,7 @@
 		"hoverBorderWidth":{"type":"dataprovider"},
 		"styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "values" :[]},
 		"responsiveHeight": { "type": "int", "default": 300, "tags": {"doc": "Charts height to be set in a responsive form. When responsiveHeight is set to 0, the table will use 100% height of the parent container"} },
+        "visible" : {"type" : "visible", "tags": {"doc": "Whether the chart is visible or not"}},
 		"data": 
 		{
 			"type": "json",
