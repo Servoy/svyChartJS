@@ -1,4 +1,5 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 
 import { SvyChartJS } from './chart';
 
@@ -6,21 +7,23 @@ describe('SvyChartJS', () => {
   let component: SvyChartJS;
   let fixture: ComponentFixture<SvyChartJS>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SvyChartJS ]
-    })
-    .compileComponents();
-  }));
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [SvyChartJS]
+    }).compileComponents();
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(SvyChartJS);
     component = fixture.componentInstance;
-    component.servoyApi =  jasmine.createSpyObj('ServoyApi', ['getMarkupId','trustAsHtml','registerComponent','unRegisterComponent']);
+    fixture.componentRef.setInput('servoyApi', {
+      getMarkupId: vi.fn(),
+      trustAsHtml: vi.fn(),
+      registerComponent: vi.fn(),
+      unRegisterComponent: vi.fn()
+    });
     fixture.detectChanges();
   });
 
-  xit('should create', () => {
+  it.skip('should create', () => {
     expect(component).toBeTruthy();
   });
 });

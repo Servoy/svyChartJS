@@ -1,7 +1,9 @@
-import { Component, SimpleChanges, Input, Renderer2, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
+import { Component, SimpleChanges, ViewChild, ChangeDetectionStrategy, input, model, signal } from '@angular/core';
 import { IFoundset, ServoyBaseComponent } from '@servoy/public';
+import 'chart.js/auto';
 import { ChartType, ChartOptions, ChartEvent, ChartDataset, Chart, Tooltip } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
+// @ts-ignore
 import outlabels from "@energiency/chartjs-plugin-piechart-outlabels";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { getChartLabelPlugin } from 'chart.js-plugin-labels-dv';
@@ -13,64 +15,60 @@ import annotationPlugin from "chartjs-plugin-annotation";
 @Component({
     selector: 'svychartjs-chart',
     templateUrl: './chart.html',
-    standalone: false
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [BaseChartDirective]
 })
 export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
 
-    @Input() styleClass: string;
-    @Input() backgroundColor: string;
-    @Input() borderColor: string;
-    @Input() borderWidth: number;
-    @Input() hoverBackgroundColor: string;
-    @Input() hoverBorderColor: string;
-    @Input() hoverBorderWidth: number;
-    @Input() backgroundColorScheme: string;
-    @Input() legendLabel: string;
-    @Input() type: ChartType;
-    @Input() data: any;
-    @Input() options: ChartOptions;
-    @Input() plugin: any;
-    @Input() collapseOnClick: boolean;
-    @Input() foundset: IFoundset;
-    @Input() responsiveHeight: number;
+    readonly chart = input<any>(undefined as any);
+    readonly styleClass = input<string>(undefined as any);
+    readonly backgroundColor = input<string>(undefined as any);
+    readonly borderColor = input<string>(undefined as any);
+    readonly borderWidth = input<number>(undefined as any);
+    readonly hoverBackgroundColor = input<string>(undefined as any);
+    readonly hoverBorderColor = input<string>(undefined as any);
+    readonly hoverBorderWidth = input<number>(undefined as any);
+    readonly backgroundColorScheme = input<string>(undefined as any);
+    readonly legendLabel = input<string>(undefined as any);
+    readonly type = model<ChartType>(undefined as any);
+    readonly data = model<any>(undefined as any);
+    readonly options = model<ChartOptions>(undefined as any);
+    readonly plugin = input<any>(undefined as any);
+    readonly collapseOnClick = input<boolean>(undefined as any);
+    readonly foundset = input<IFoundset>(undefined as any);
+    readonly responsiveHeight = input<number>(undefined as any);
 
-    @Input() onChartDrawn: () => void;
-    @Input() onClick: (datasetIndex: number, index: number, label: string, value: number, event: Event) => void;
+    readonly onChartDrawn = input<() => void>(undefined as any);
+    readonly onClick = input<(datasetIndex: number, index: number, label: string, value: number, event: Event) => void>(undefined as any);
 
-    @ViewChild(BaseChartDirective, { static: false }) chart: BaseChartDirective;
-    @ViewChild('element', { static: true }) elementRef: ElementRef<HTMLDivElement>;
-    @ViewChild('canvas', { static: true }) canvas: ElementRef<HTMLCanvasElement>;
-    
-    showCanvas = false;
-    canvasHeight = -1;
-    canvasWidth = -1;
+    @ViewChild(BaseChartDirective, { static: false }) chartDirective!: BaseChartDirective;
+
+    showCanvas = signal(false);
+    canvasHeight = signal(-1);
+    canvasWidth = signal(-1);
 
     public dataset: ChartDataset[] = [{data : []}];
-    public labels: string[];
-    public plugins = [];
+    public labels!: string[];
+    public plugins: any[] = [];
 
-    private removeListenerFunction: () => void;
-
-    constructor(renderer: Renderer2, cdRef: ChangeDetectorRef) {
-        super(renderer, cdRef);
-    }
+    private removeListenerFunction: (() => void) | null = null;
 
     svyOnInit() {
         super.svyOnInit();
         
-        if (!this.options) {
-            this.options = {
+        if (!this.options()) {
+            this.options.set({
                 responsive: true,
                 maintainAspectRatio: false
-            };
+            });
         } else {
-			if (this.options.responsive === undefined) this.options.responsive = true;
-			if (this.options.maintainAspectRatio === undefined) this.options.maintainAspectRatio = false;
+			if (this.options().responsive === undefined) this.options.update(o => ({ ...o, responsive: true }));
+			if (this.options().maintainAspectRatio === undefined) this.options.update(o => ({ ...o, maintainAspectRatio: false }));
 		}
-        if (this.foundset) {
-            this.removeListenerFunction = this.foundset.addChangeListener(() => {
+        if (this.foundset()) {
+            this.removeListenerFunction = this.foundset().addChangeListener(() => {
                 this.setupData();
-                this.cdRef.detectChanges();
             });
 
         }
@@ -79,10 +77,9 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
     }
     
     ngAfterViewInit(): void {
-        this.canvasWidth = this.getNativeElement().clientWidth;
-        this.canvasHeight= this.responsiveHeight > 0 && !this.servoyApi.isInAbsoluteLayout() ? this.responsiveHeight: this.getNativeElement().clientHeight;
-        this.showCanvas = true;
-        this.cdRef.detectChanges();
+        this.canvasWidth.set(this.getNativeElement().clientWidth);
+        this.canvasHeight.set(this.responsiveHeight() > 0 && !this.servoyApi().isInAbsoluteLayout() ? this.responsiveHeight(): this.getNativeElement().clientHeight);
+        this.showCanvas.set(true);
     }
 
     ngOnDestroy(): void {
@@ -121,19 +118,13 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
                     case 'data':
                         this.setupData();
                         this.showInDesignChart();
-                        if (this.onChartDrawn) {
-                            this.onChartDrawn();
+                        if (this.onChartDrawn()) {
+                            this.onChartDrawn()();
                         }
                         break;
                     case 'plugin': 
-                    	// is unclear if plugins is an Array, or a single plugin or an object with nested plugins in it.
-                    	// looking at NG1 implementation it expect to have 1 single plugin as an object
-                    
                         if (change.previousValue) {
-                            // remove old one
-                            // since plugin is an object, comparing the exact value to check if was already present
 							if (this.plugins && this.plugins.includes(change.previousValue)) {
-								var index = this.plugins.indexOf(change.previousValue);
 								this.plugins = this.plugins.filter(function (entry) {
 									if ( entry == change.previousValue) {
 										return false;
@@ -143,10 +134,7 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
 							}
                         }
                         if (change.currentValue) {
-							// add new one
 							if (!this.plugins) this.plugins = new Array();
-							
-                            // if plugin was not already present, push it into the array.
 							if (!this.plugins.includes(change.currentValue)) {
 								this.plugins.push(change.currentValue);
 							}
@@ -165,13 +153,13 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
     }
     
     setHeight() {
-        if (!this.servoyApi.isInAbsoluteLayout()) {
-            if (this.responsiveHeight) {
-                this.elementRef.nativeElement.style.height = this.responsiveHeight + 'px';
-                this.canvasHeight = this.responsiveHeight;
+        if (!this.servoyApi().isInAbsoluteLayout()) {
+            if (this.responsiveHeight()) {
+                this.elementRef()!.nativeElement.style.height = this.responsiveHeight() + 'px';
+                this.canvasHeight.set(this.responsiveHeight());
             } else {
-				this.elementRef.nativeElement.style.height = '20px';
-				this.canvasHeight = 20;
+				this.elementRef()!.nativeElement.style.height = '20px';
+				this.canvasHeight.set(20);
             }
         }
     }
@@ -308,14 +296,13 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
             default:
                 break;
         }
-        return null;
+        return null as any;
     }
 
     setupData() {
-        if (this.foundset) {
+        if (this.foundset()) {
             this.labels = [];
 
-            //default color scheme if property not used
             var color_scheme = ['#5DA5DA',
                 '#FAA43A',
                 '#60BD68',
@@ -326,105 +313,100 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
                 '#F15854',
                 '#4D4D4D'];
 
-            if (this.backgroundColorScheme) {
-                color_scheme = this.getColorScheme(this.backgroundColorScheme)
+            if (this.backgroundColorScheme()) {
+                color_scheme = this.getColorScheme(this.backgroundColorScheme())
             }
 
             this.dataset =  [{data : []}];
             this.dataset[0] = {
-                label:this.legendLabel,
-                backgroundColor: (typeof this.backgroundColor === 'undefined') ? color_scheme :this.backgroundColor,
-                borderColor:this.borderColor,
-                borderWidth:this.borderWidth,
-                hoverBackgroundColor:this.hoverBackgroundColor,
-                hoverBorderColor:this.hoverBorderColor,
-                hoverBorderWidth:this.hoverBorderWidth,
+                label:this.legendLabel(),
+                backgroundColor: (typeof this.backgroundColor() === 'undefined') ? color_scheme :this.backgroundColor(),
+                borderColor:this.borderColor(),
+                borderWidth:this.borderWidth(),
+                hoverBackgroundColor:this.hoverBackgroundColor(),
+                hoverBorderColor:this.hoverBorderColor(),
+                hoverBorderWidth:this.hoverBorderWidth(),
                 data: []
             };            
             
-            for (const row of  this.foundset.viewPort.rows) {
+            for (const row of  this.foundset().viewPort.rows) {
                 this.labels.push(row.label ? row.label : row.value);
                 this.dataset[0].data.push(row.value);
             }
-            //update datamodel
-            this.data = {
-                type: this.type,
+            this.data.set({
+                type: this.type(),
                 data: { labels: this.labels, datasets: this.dataset}
-            };
-        } else if (this.data) {
-            this.dataset = this.data.data.datasets;
-            this.labels = this.data.data.labels;
-            if (this.data.type) this.type = this.data.type;
+            });
+        } else if (this.data()) {
+            this.dataset = this.data().data.datasets;
+            this.labels = this.data().data.labels;
+            if (this.data().type) this.type.set(this.data().type);
         }
     }
 
     handleClick(e: ChartEvent) {
-        const activePoints = this.chart.chart.getElementsAtEventForMode(e.native,'index', { intersect: true }, false);
-        const dataset = this.chart.chart.getElementsAtEventForMode(e.native,'dataset', { intersect: true }, false);
-        if (!dataset[0]) return;
-        //get selected dataset index (helps distinguish between multiple datasets)
+        const activePoints = this.chartDirective?.chart?.getElementsAtEventForMode(e.native as Event,'index', { intersect: true }, false);
+        const dataset = this.chartDirective?.chart?.getElementsAtEventForMode(e.native as Event,'dataset', { intersect: true }, false);
+        if (!dataset?.[0]) return;
         const firstdataset = dataset[0];
         const datasetIndex = firstdataset.datasetIndex;
-        const selected: any = activePoints[datasetIndex];
+        const selected: any = activePoints![datasetIndex];
         if (!selected) return;
-        const label = this.chart.chart.data.labels[selected.index];
-        const value = this.chart.chart.data.datasets[selected.datasetIndex].data[selected.index];
-        if (this.onClick) {
-            this.onClick(datasetIndex, selected._index, label.toString(), value as number, e.native);
+        const label = this.chartDirective.chart?.data?.labels?.[selected.index];
+        const value = this.chartDirective.chart?.data?.datasets?.[selected.datasetIndex]?.data?.[selected.index];
+        if (this.onClick()) {
+            this.onClick()!(datasetIndex, selected._index, String(label), value as number, e.native as Event);
         }
     }
 
     generateLegend(): string {
-        const chart = this?.chart?.chart;
+        const chart = this?.chartDirective?.chart;
         if (chart && chart.legend) {
             const legend = chart.legend;
             const legendItems = legend.legendItems;
             let html = '<ul class="chart-legend">';
-            for (let i = 0; i < legendItems.length; i++) {
-                const item = legendItems[i];
+            for (let i = 0; i < legendItems!.length; i++) {
+                const item = legendItems![i];
                 html += `<li><span style="background-color:${item.fillStyle}"></span>${item.text}</li>`;
             }
             html += '</ul>';
             return html;
         }
-        return null;
+        return null as any;
     }
 
     getChartAsImage(): string {
-        return this.chart.chart.toBase64Image();
+        return this.chartDirective?.chart?.toBase64Image() as string;
     }
 
     refreshChart() {
-        if (!this.data || !this.options) {
+        if (!this.data() || !this.options()) {
             return;
         }
-        // update the chart if it already exists
-        if (this.chart && this.chart.chart) {
-            this.chart.chart.update();
+        if (this.chartDirective && this.chartDirective.chart) {
+            this.chartDirective.chart.update();
         }
     }
 
     clearChart() {
-        if (this.chart && this.chart.chart) {
-            this.chart.chart.clear();
+        if (this.chartDirective && this.chartDirective.chart) {
+            this.chartDirective.chart.clear();
         }
     }
 
     drawChart() {
-        // what to do here ?
-        this.chart.chart.render();
-        if (this.onChartDrawn) {
-            this.onChartDrawn();
+        this.chartDirective?.chart?.render();
+        if (this.onChartDrawn()) {
+            this.onChartDrawn()();
         }
     }
 
     showInDesignChart() {
-        if (this.servoyApi.isInDesigner()) {
-            if (!this.type) {
-                this.type = 'pie'
+        if (this.servoyApi().isInDesigner()) {
+            if (!this.type()) {
+                this.type.set('pie' as ChartType);
             }
 
-            //default color scheme if property not used
             let color_scheme = ['#5DA5DA',
                 '#FAA43A',
                 '#60BD68',
@@ -435,11 +417,11 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
                 '#F15854',
                 '#4D4D4D'];
 
-            if (this.backgroundColorScheme) {
-                color_scheme = this.getColorScheme(this.backgroundColorScheme)
+            if (this.backgroundColorScheme()) {
+                color_scheme = this.getColorScheme(this.backgroundColorScheme())
             }
 
-            if (this.type == 'scatter') {
+            if (this.type() == 'scatter') {
                 let options = {
                     legend: false,
                     tooltips: false,
@@ -465,15 +447,15 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
                     }]
                 }
 
-                this.data = {
+                this.data.set({
                     data,
-                    type: this.type
-                };
-                this.options = options;
+                    type: this.type()
+                });
+                this.options.set(options as any);
                 return;
             }
 
-            if (this.type == 'bubble') {
+            if (this.type() == 'bubble') {
 
                 var DATA_COUNT = 16;
                 var MIN_XY = -150;
@@ -513,11 +495,11 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
                     }
                 };
 
-                this.data = {
+                this.data.set({
                     data,
-                    type: this.type
-                };
-                this.options = options;
+                    type: this.type()
+                });
+                this.options.set(options as any);
                 return;
             }
 
@@ -527,67 +509,66 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
                     label: 'Chart JS Component',
                     data: [12, 19, 3, 5, 2, 3],
                     backgroundColor: color_scheme,
-                    borderColor: this.borderColor,
-                    borderWidth: this.borderWidth,
-                    hoverBackgroundColor: this.hoverBackgroundColor,
-                    hoverBorderColor: this.hoverBorderColor,
-                    hoverBorderWidth: this.hoverBorderWidth
+                    borderColor: this.borderColor(),
+                    borderWidth: this.borderWidth(),
+                    hoverBackgroundColor: this.hoverBackgroundColor(),
+                    hoverBorderColor: this.hoverBorderColor(),
+                    hoverBorderWidth: this.hoverBorderWidth()
                 }]
             };
-            this.data = {
+            this.data.set({
                 data,
-                type: this.type
-            };
+                type: this.type()
+            });
 
-            this.options = {
-                //legend: { display: false },
+            this.options.set({
                 responsive: true,
                 maintainAspectRatio: false,
                 animation: {
                     duration: 0
                 }
-            };
+            });
         }
     }
     
     private initPlugins(){
-		this.showCanvas = false;
-		if (this.type && this.type.toString() == 'treemap'){
+		this.showCanvas.set(false);
+		if (this.type() && this.type().toString() == 'treemap'){
 			Chart.register(TreemapController, TreemapElement);
-            Tooltip.positioners['treemap'] = (elements, eventPosition) => {
+            (Tooltip.positioners as any)['treemap'] = (elements: any, eventPosition: any) => {
               return {
                 x: eventPosition.x,
                 y: eventPosition.y
               };
             };
 		}
-		if (this.type && this.type.toString() == 'funnel'){
+		if (this.type() && this.type().toString() == 'funnel'){
 			Chart.register(FunnelController, TrapezoidElement);
 		}
-        if (this.options.plugins){
-            const pluginsArray = new Array();
-            if (this.options.plugins['outlabels'])
+        const opts = this.options();
+        if (opts.plugins){
+            const pluginsArray: any[] = new Array();
+            if ((opts.plugins as any)['outlabels'])
             {
                 pluginsArray.push(outlabels);
             }
-            if (this.options.plugins['datalabels'])
+            if ((opts.plugins as any)['datalabels'])
             {
                 pluginsArray.push(ChartDataLabels);
             }
-            if (this.options.plugins['labels'])
+            if ((opts.plugins as any)['labels'])
             {
                 pluginsArray.push(getChartLabelPlugin());
             }
-            if (this.options.plugins['annotation']) {
+            if ((opts.plugins as any)['annotation']) {
 				Chart.register(annotationPlugin);
 			}
-            if (this.options.plugins['customCenterTextPlugin']) {
-                // Custom plugin to draw text in the center of the chart
+            if ((opts.plugins as any)['customCenterTextPlugin']) {
                 Chart.register({
                     id: 'customCenterTextPlugin',
                     beforeDraw(chart, args, pluginOptions) {
                         const { ctx, chartArea } = chart;
-                        const centerConfig = pluginOptions;
+                        const centerConfig = pluginOptions as any;
 
                         if (!centerConfig || !centerConfig.text) return;
 
@@ -605,7 +586,6 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
                         ctx.textAlign = 'center';
                         ctx.textBaseline = 'middle';
 
-                        // Dynamically calculate font size
                         let fontSize = 30;
                         ctx.font = `${fontStyle} ${fontSize}px ${fontFamily}`;
                         let textWidth = ctx.measureText(text).width;
@@ -624,13 +604,12 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
                     }
                 });
             }
-            if (this.options.plugins['customTooltipPlugin']) {
-                // Custom tooltip plugin to show labels and values
+            if ((opts.plugins as any)['customTooltipPlugin']) {
                 Chart.register({
                     id: 'customTooltipPlugin',
                     afterDatasetsDraw(chart, args, pluginOptions) {
                         const { ctx } = chart;
-                        const { showLabels = false, showValues = false, labelOffset = 10, valueOffset = 10 } = pluginOptions;
+                        const { showLabels = false, showValues = false, labelOffset = 10, valueOffset = 10 } = pluginOptions as any;
 
                         if (!showLabels && !showValues) return;
 
@@ -638,7 +617,7 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
                             const meta = chart.getDatasetMeta(datasetIndex);
 
                             meta.data.forEach((element, index) => {
-                                const label = chart.data.labels[index];
+                                const label = chart.data.labels?.[index];
                                 const value = dataset.data[index];
                                 const centerX = element.x;
                                 const centerY = element.y;
@@ -664,18 +643,15 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
                     }
                 });
             }
-            // push also the plugin if any
-			if (this.plugin) {
-				pluginsArray.push(this.plugin);
+			if (this.plugin()) {
+				pluginsArray.push(this.plugin());
 			}
 			
             this.plugins = pluginsArray;
         }
 		setTimeout(()=>{
-			this.showCanvas = true;
-			this.cdRef.detectChanges();
+			this.showCanvas.set(true);
 		});
     }
 
 }
-

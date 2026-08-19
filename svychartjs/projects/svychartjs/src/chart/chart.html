@@ -1,14 +1,15 @@
-<div [id]="servoyApi.getMarkupId() + '-wrapper'" style="width:100%; height:100%" #element >
-    <canvas  baseChart [id]="servoyApi.getMarkupId()"
-         [type]="type"
-         [options]="options"
-         [plugins]="plugins"
-         [datasets]="dataset"
-         [labels]="labels"
-         (chartClick)="handleClick($event.event)"
-         *ngIf="showCanvas"
-         [width]="canvasWidth"
-         [height]="canvasHeight"
-         #canvas>
+<div [id]="servoyApi().getMarkupId() + '-wrapper'" style="width:100%; height:100%" #element >
+  @if (showCanvas()) {
+    <canvas  baseChart [id]="servoyApi().getMarkupId()"
+      [type]="type()"
+      [options]="options()"
+      [plugins]="plugins"
+      [datasets]="dataset"
+      [labels]="labels"
+      (chartClick)="$event.event && handleClick($event.event)"
+      [width]="canvasWidth()"
+      [height]="canvasHeight()"
+      #canvas>
     </canvas>
+  }
 </div>
