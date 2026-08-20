@@ -23,7 +23,7 @@ describe('SvyChartJS', () => {
     fixture.detectChanges();
   });
 
-  it.skip('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

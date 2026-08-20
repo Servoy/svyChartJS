@@ -1,7 +1,6 @@
 Manifest-Version: 1.0
 Bundle-SymbolicName: svychartjs
 NPM-PackageName: @servoy/svychartjs
-NG2-Module: SvyChartJSModule
 NG2-Components: SvyChartJS
 Entry-Point: dist/servoy/svychartjs
 Bundle-Name: Chart JS

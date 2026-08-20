@@ -18,7 +18,7 @@ module.exports = tseslint.config(
     rules: {
       '@angular-eslint/component-class-suffix': 'off',
       '@angular-eslint/directive-selector': ['warn', { type: 'attribute', prefix: 'lib', style: 'camelCase' }],
-      '@angular-eslint/component-selector': ['warn', { type: 'element', prefix: 'lib', style: 'kebab-case' }],
+      '@angular-eslint/component-selector': ['warn', { type: 'element', prefix: 'svychartjs', style: 'kebab-case' }],
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
       'max-len': ['warn', { code: 200 }],

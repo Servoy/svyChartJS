@@ -1,16 +1,16 @@
-import { Component, SimpleChanges, ViewChild, ChangeDetectionStrategy, input, model, signal } from '@angular/core';
+import { Component, SimpleChanges, ViewChild, ChangeDetectionStrategy, input, model, signal, Injector, inject, afterNextRender, AfterViewInit, OnDestroy } from '@angular/core';
 import { IFoundset, ServoyBaseComponent } from '@servoy/public';
 import 'chart.js/auto';
 import { ChartType, ChartOptions, ChartEvent, ChartDataset, Chart, Tooltip } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
-// @ts-ignore
-import outlabels from "@energiency/chartjs-plugin-piechart-outlabels";
+// @ts-expect-error no types available
+import outlabels from '@energiency/chartjs-plugin-piechart-outlabels';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { getChartLabelPlugin } from 'chart.js-plugin-labels-dv';
 import {TreemapController, TreemapElement} from 'chartjs-chart-treemap';
-import { FunnelController, TrapezoidElement } from "chartjs-chart-funnel";
+import { FunnelController, TrapezoidElement } from 'chartjs-chart-funnel';
 import 'chartjs-adapter-luxon';
-import annotationPlugin from "chartjs-plugin-annotation";
+import annotationPlugin from 'chartjs-plugin-annotation';
 
 @Component({
     selector: 'svychartjs-chart',
@@ -19,7 +19,9 @@ import annotationPlugin from "chartjs-plugin-annotation";
     standalone: true,
     imports: [BaseChartDirective]
 })
-export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
+export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> implements AfterViewInit, OnDestroy {
+
+    private readonly injector = inject(Injector);
 
     readonly chart = input<any>(undefined as any);
     readonly styleClass = input<string>(undefined as any);
@@ -48,9 +50,9 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
     canvasHeight = signal(-1);
     canvasWidth = signal(-1);
 
-    public dataset: ChartDataset[] = [{data : []}];
-    public labels!: string[];
-    public plugins: any[] = [];
+    public dataset = signal<ChartDataset[]>([{data : []}]);
+    public labels = signal<string[]>([]);
+    public plugins = signal<any[]>([]);
 
     private removeListenerFunction: (() => void) | null = null;
 
@@ -124,19 +126,20 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
                         break;
                     case 'plugin': 
                         if (change.previousValue) {
-							if (this.plugins && this.plugins.includes(change.previousValue)) {
-								this.plugins = this.plugins.filter(function (entry) {
+							const currentPlugins = this.plugins();
+							if (currentPlugins && currentPlugins.includes(change.previousValue)) {
+								this.plugins.set(currentPlugins.filter(function (entry) {
 									if ( entry == change.previousValue) {
 										return false;
 									}
 									return true;
-								});
+								}));
 							}
                         }
                         if (change.currentValue) {
-							if (!this.plugins) this.plugins = new Array();
-							if (!this.plugins.includes(change.currentValue)) {
-								this.plugins.push(change.currentValue);
+							const currentPlugins = this.plugins();
+							if (!currentPlugins.includes(change.currentValue)) {
+								this.plugins.set([...currentPlugins, change.currentValue]);
 							}
                         }
                         break;
@@ -301,9 +304,9 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
 
     setupData() {
         if (this.foundset()) {
-            this.labels = [];
+            const newLabels: string[] = [];
 
-            var color_scheme = ['#5DA5DA',
+            let color_scheme = ['#5DA5DA',
                 '#FAA43A',
                 '#60BD68',
                 '#F17CB0',
@@ -317,8 +320,7 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
                 color_scheme = this.getColorScheme(this.backgroundColorScheme())
             }
 
-            this.dataset =  [{data : []}];
-            this.dataset[0] = {
+            const newDataset: ChartDataset[] = [{
                 label:this.legendLabel(),
                 backgroundColor: (typeof this.backgroundColor() === 'undefined') ? color_scheme :this.backgroundColor(),
                 borderColor:this.borderColor(),
@@ -327,19 +329,21 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
                 hoverBorderColor:this.hoverBorderColor(),
                 hoverBorderWidth:this.hoverBorderWidth(),
                 data: []
-            };            
+            }];
             
             for (const row of  this.foundset().viewPort.rows) {
-                this.labels.push(row.label ? row.label : row.value);
-                this.dataset[0].data.push(row.value);
+                newLabels.push(row.label ? row.label : row.value);
+                newDataset[0].data.push(row.value);
             }
+            this.dataset.set(newDataset);
+            this.labels.set(newLabels);
             this.data.set({
                 type: this.type(),
-                data: { labels: this.labels, datasets: this.dataset}
+                data: { labels: newLabels, datasets: newDataset}
             });
         } else if (this.data()) {
-            this.dataset = this.data().data.datasets;
-            this.labels = this.data().data.labels;
+            this.dataset.set(this.data().data.datasets);
+            this.labels.set(this.data().data.labels);
             if (this.data().type) this.type.set(this.data().type);
         }
     }
@@ -422,7 +426,7 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
             }
 
             if (this.type() == 'scatter') {
-                let options = {
+                const options = {
                     legend: false,
                     tooltips: false,
                     responsive: true,
@@ -433,17 +437,27 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
 
                 };
 
-                let data = {
+                const data = {
                     datasets: [{
-                        label: "My First dataset",
-                        borderColor: "red",
+                        label: 'My First dataset',
+                        borderColor: 'red',
                         backgroundColor: color_scheme,
-                        data: [{ x: Math.random() * 100, y: Math.random() * 100 }, { x: Math.random() * 100, y: Math.random() * 100 }, { x: Math.random() * 100, y: Math.random() * 100 }, { x: Math.random() * 100, y: Math.random() * 100 }]
+                        data: [
+                            { x: Math.random() * 100, y: Math.random() * 100 },
+                            { x: Math.random() * 100, y: Math.random() * 100 },
+                            { x: Math.random() * 100, y: Math.random() * 100 },
+                            { x: Math.random() * 100, y: Math.random() * 100 }
+                        ]
                     }, {
-                        label: "My Second dataset",
-                        borderColor: "blue",
+                        label: 'My Second dataset',
+                        borderColor: 'blue',
                         backgroundColor: color_scheme,
-                        data: [{ x: Math.random() * 100, y: Math.random() * 100 }, { x: Math.random() * 100, y: Math.random() * 100 }, { x: Math.random() * 100, y: Math.random() * 100 }, { x: Math.random() * 100, y: Math.random() * 100 }]
+                        data: [
+                            { x: Math.random() * 100, y: Math.random() * 100 },
+                            { x: Math.random() * 100, y: Math.random() * 100 },
+                            { x: Math.random() * 100, y: Math.random() * 100 },
+                            { x: Math.random() * 100, y: Math.random() * 100 }
+                        ]
                     }]
                 }
 
@@ -457,12 +471,12 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
 
             if (this.type() == 'bubble') {
 
-                var DATA_COUNT = 16;
-                var MIN_XY = -150;
-                var MAX_XY = 100;
+                const DATA_COUNT = 16;
+                const MIN_XY = -150;
+                const MAX_XY = 100;
 
                 function generateData() {
-                    let data = [];
+                    const data = [];
 
                     for (let i = 0; i < DATA_COUNT; ++i) {
                         data.push({
@@ -475,7 +489,7 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
                     return data;
                 }
 
-                let data = {
+                const data = {
                     datasets: [{
                         backgroundColor: color_scheme,
                         data: generateData()
@@ -485,7 +499,7 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
                     }]
                 };
 
-                let options = {
+                const options = {
                     legend: false,
                     tooltips: false,
                     responsive: true,
@@ -503,8 +517,8 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
                 return;
             }
 
-            let data = {
-                labels: ["R", "B", "Y", "G", "P", "O"],
+            const data = {
+                labels: ['R', 'B', 'Y', 'G', 'P', 'O'],
                 datasets: [{
                     label: 'Chart JS Component',
                     data: [12, 19, 3, 5, 2, 3],
@@ -547,7 +561,7 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
 		}
         const opts = this.options();
         if (opts.plugins){
-            const pluginsArray: any[] = new Array();
+            const pluginsArray: any[] = [];
             if ((opts.plugins as any)['outlabels'])
             {
                 pluginsArray.push(outlabels);
@@ -647,11 +661,11 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
 				pluginsArray.push(this.plugin());
 			}
 			
-            this.plugins = pluginsArray;
+            this.plugins.set(pluginsArray);
         }
-		setTimeout(()=>{
+		afterNextRender(() => {
 			this.showCanvas.set(true);
-		});
+		}, { injector: this.injector });
     }
 
 }
