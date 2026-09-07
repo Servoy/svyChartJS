@@ -1,6 +1,6 @@
 {
   "name": "@servoy/svychartjs",
-  "version": "2026.9.0",
+  "version": "2026.9.1",
   "dependencies": {
     "chart.js": "^4.4",
     "ng2-charts": "^8",
