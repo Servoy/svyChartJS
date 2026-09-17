@@ -400,10 +400,11 @@ export class SvyChartJS extends ServoyBaseComponent<HTMLDivElement> {
     }
 
     drawChart() {
-        // what to do here ?
-        this.chart.chart.render();
-        if (this.onChartDrawn) {
-            this.onChartDrawn();
+        if (this.chart && this.chart.chart) {
+            this.chart.chart.render();
+            if (this.onChartDrawn) {
+                this.onChartDrawn();
+            }
         }
     }
 
